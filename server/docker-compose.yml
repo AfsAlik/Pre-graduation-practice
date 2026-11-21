@@ -1,0 +1,108 @@
+# Развертывание серверной части «Финансового помощника».
+#   docker compose up -d --build                      – запуск
+#   docker compose --profile monitoring up -d         – запуск вместе с Prometheus и Grafana
+#   docker compose exec api python -m app.manage seed-demo   – демонстрационные данные
+# Параметры задаются в файле .env (см. .env.example).
+
+x-app: &app
+  build: .
+  image: finhelper-server:1.0.0
+  restart: unless-stopped
+  env_file:
+    - path: .env
+      required: false
+  environment: &app-env
+    FH_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-finhelper}:${POSTGRES_PASSWORD:-finhelper}@db:5432/${POSTGRES_DB:-finhelper}
+    FH_REDIS_URL: redis://redis:6379/0
+    FH_ML_SERVICE_URL: http://ml:8001
+    FH_AUTO_CREATE_TABLES: "false"
+    FH_STORAGE_DIR: /srv/finhelper/var/storage
+  volumes:
+    - app-data:/srv/finhelper/var
+    - ml-models:/srv/finhelper/var/models
+
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-finhelper}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-finhelper}
+      POSTGRES_DB: ${POSTGRES_DB:-finhelper}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --locale=C.UTF-8"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-finhelper} -d ${POSTGRES_DB:-finhelper}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  redis:
+    image: redis:7
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  ml:
+    <<: *app
+    command: ["uvicorn", "ml_service.main:app", "--host", "0.0.0.0", "--port", "8001"]
+    environment:
+      FH_ML_MODELS_DIR: /srv/finhelper/var/models
+    volumes:
+      - ml-models:/srv/finhelper/var/models
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+
+  api:
+    <<: *app
+    depends_on:
+      db: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      ml: {condition: service_healthy}
+    ports:
+      - "${FH_PORT:-8000}:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health/ready"]
+      interval: 10s
+      timeout: 3s
+      retries: 30
+
+  worker:
+    <<: *app
+    command: ["python", "-m", "app.worker"]
+    depends_on:
+      api: {condition: service_healthy}
+
+  prometheus:
+    image: prom/prometheus:v2.55.1
+    profiles: ["monitoring"]
+    restart: unless-stopped
+    volumes:
+      - ./deploy/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:11.3.0
+    profiles: ["monitoring"]
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+    volumes:
+      - ./deploy/grafana-datasource.yml:/etc/grafana/provisioning/datasources/prometheus.yml:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+
+volumes:
+  db-data:
+  app-data:
+  ml-models:
+  grafana-data:

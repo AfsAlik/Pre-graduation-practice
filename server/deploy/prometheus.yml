@@ -1,0 +1,9 @@
+# Сбор метрик серверного приложения «Финансового помощника»
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: finhelper-api
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["api:8000"]

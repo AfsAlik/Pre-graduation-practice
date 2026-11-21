@@ -1,0 +1,8993 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "Финансовый помощник – программный интерфейс",
+  "description": "REST API мобильного приложения для управления личными финансами.",
+  "version": "1.0.0"
+ },
+ "paths": {
+  "/api/v1/auth/register": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Register",
+    "description": "Регистрация учетной записи. Согласие на обработку персональных данных обязательно.",
+    "operationId": "register_api_v1_auth_register_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RegisterIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/confirm-email": {
+   "get": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Confirm Email",
+    "operationId": "confirm_email_api_v1_auth_confirm_email_get",
+    "parameters": [
+     {
+      "name": "token",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Token"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "text/html": {
+        "schema": {
+         "type": "string"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/login": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Login",
+    "description": "Вход в систему. После пяти неудачных попыток вход блокируется на 15 минут.",
+    "operationId": "login_api_v1_auth_login_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/LoginIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TokenOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/refresh": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Refresh",
+    "operationId": "refresh_api_v1_auth_refresh_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RefreshIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TokenOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/logout": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Logout",
+    "operationId": "logout_api_v1_auth_logout_post",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/auth/password/forgot": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Forgot Password",
+    "description": "Отправляет временную ссылку для восстановления пароля.",
+    "operationId": "forgot_password_api_v1_auth_password_forgot_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ForgotIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/password/reset": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Reset Password",
+    "operationId": "reset_password_api_v1_auth_password_reset_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ResetIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/auth/password/change": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Change Password",
+    "operationId": "change_password_api_v1_auth_password_change_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ChangePasswordIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/auth/2fa/setup": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Setup 2Fa",
+    "description": "Создает секрет двухфакторной аутентификации для приложения-аутентификатора.",
+    "operationId": "setup_2fa_api_v1_auth_2fa_setup_post",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Setup 2Fa Api V1 Auth 2Fa Setup Post"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/auth/2fa/enable": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Enable 2Fa",
+    "operationId": "enable_2fa_api_v1_auth_2fa_enable_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TotpCodeIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/auth/2fa/disable": {
+   "post": {
+    "tags": [
+     "Аутентификация"
+    ],
+    "summary": "Disable 2Fa",
+    "operationId": "disable_2fa_api_v1_auth_2fa_disable_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TotpCodeIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/profile": {
+   "get": {
+    "tags": [
+     "Профиль"
+    ],
+    "summary": "Get Profile",
+    "operationId": "get_profile_api_v1_profile_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProfileOut"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   },
+   "delete": {
+    "tags": [
+     "Профиль"
+    ],
+    "summary": "Delete Profile",
+    "description": "Удаление учетной записи. Персональные данные удаляются в срок не более 30 дней.",
+    "operationId": "delete_profile_api_v1_profile_delete",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/DeleteAccountIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   },
+   "patch": {
+    "tags": [
+     "Профиль"
+    ],
+    "summary": "Update Profile",
+    "description": "Настройка профиля: валюта, риск-профиль, горизонт, тема, уведомления.",
+    "operationId": "update_profile_api_v1_profile_patch",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProfileUpdate"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProfileOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/profile/devices": {
+   "post": {
+    "tags": [
+     "Профиль"
+    ],
+    "summary": "Register Device",
+    "description": "Регистрация устройства и токена доставки push-уведомлений.",
+    "operationId": "register_device_api_v1_profile_devices_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/DeviceIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/notifications": {
+   "get": {
+    "tags": [
+     "Уведомления"
+    ],
+    "summary": "List Notifications",
+    "operationId": "list_notifications_api_v1_notifications_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "unread_only",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Unread Only"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 50,
+       "title": "Limit"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response List Notifications Api V1 Notifications Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/notifications/{notification_id}/read": {
+   "post": {
+    "tags": [
+     "Уведомления"
+    ],
+    "summary": "Read Notification",
+    "operationId": "read_notification_api_v1_notifications__notification_id__read_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "notification_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Notification Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/bank-consents": {
+   "get": {
+    "tags": [
+     "Интеграции"
+    ],
+    "summary": "List Consents",
+    "operationId": "list_consents_api_v1_bank_consents_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response List Consents Api V1 Bank Consents Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   },
+   "post": {
+    "tags": [
+     "Интеграции"
+    ],
+    "summary": "Grant Consent",
+    "description": "Явное согласие пользователя на подключение внешнего источника банковских данных.",
+    "operationId": "grant_consent_api_v1_bank_consents_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ConsentIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/bank-consents/{provider}": {
+   "delete": {
+    "tags": [
+     "Интеграции"
+    ],
+    "summary": "Revoke Consent",
+    "description": "Отзыв согласия: подключение источника прекращается.",
+    "operationId": "revoke_consent_api_v1_bank_consents__provider__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "provider",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Provider"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/bank-connections": {
+   "post": {
+    "tags": [
+     "Интеграции"
+    ],
+    "summary": "Connect Bank",
+    "description": "Подключение внешнего источника банковских данных.\n\nВыполняется только при наличии действующего согласия пользователя\n(п. 4.2.1.7 д ТЗ). В первой версии системы данные банка загружаются\nимпортом выписки; автоматическая синхронизация предусмотрена развитием.",
+    "operationId": "connect_bank_api_v1_bank_connections_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ConsentIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Connect Bank Api V1 Bank Connections Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/support/faq": {
+   "get": {
+    "tags": [
+     "Поддержка"
+    ],
+    "summary": "Faq",
+    "operationId": "faq_api_v1_support_faq_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Faq Api V1 Support Faq Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/support/requests": {
+   "post": {
+    "tags": [
+     "Поддержка"
+    ],
+    "summary": "Support Request",
+    "operationId": "support_request_api_v1_support_requests_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SupportIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/client-errors": {
+   "post": {
+    "tags": [
+     "Поддержка"
+    ],
+    "summary": "Client Error",
+    "description": "Прием записей журнала ошибок мобильного приложения.",
+    "operationId": "client_error_api_v1_client_errors_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ClientErrorIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/system/status": {
+   "get": {
+    "tags": [
+     "Справочники"
+    ],
+    "summary": "System Status",
+    "description": "Режим работы системы: штатный или техническое обслуживание.",
+    "operationId": "system_status_api_v1_system_status_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response System Status Api V1 System Status Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/accounts": {
+   "get": {
+    "tags": [
+     "Счета"
+    ],
+    "summary": "List Accounts",
+    "description": "Счета пользователя с рассчитанными балансами и пересчетом в базовую валюту.",
+    "operationId": "list_accounts_api_v1_accounts_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "include_deleted",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Include Deleted"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/AccountOut"
+         },
+         "title": "Response List Accounts Api V1 Accounts Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Счета"
+    ],
+    "summary": "Create Account",
+    "operationId": "create_account_api_v1_accounts_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AccountIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AccountOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/accounts/{item_id}": {
+   "put": {
+    "tags": [
+     "Счета"
+    ],
+    "summary": "Update Account",
+    "operationId": "update_account_api_v1_accounts__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AccountIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AccountOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Счета"
+    ],
+    "summary": "Delete Account",
+    "operationId": "delete_account_api_v1_accounts__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/accounts/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Счета"
+    ],
+    "summary": "Restore Account",
+    "operationId": "restore_account_api_v1_accounts__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AccountOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/categories": {
+   "get": {
+    "tags": [
+     "Категории"
+    ],
+    "summary": "List Categories",
+    "description": "Справочник категорий: системные и созданные пользователем.",
+    "operationId": "list_categories_api_v1_categories_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "kind",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Kind"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/CategoryOut"
+         },
+         "title": "Response List Categories Api V1 Categories Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Категории"
+    ],
+    "summary": "Create Category",
+    "operationId": "create_category_api_v1_categories_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CategoryIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CategoryOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/categories/{item_id}": {
+   "put": {
+    "tags": [
+     "Категории"
+    ],
+    "summary": "Update Category",
+    "operationId": "update_category_api_v1_categories__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CategoryIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CategoryOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Категории"
+    ],
+    "summary": "Delete Category",
+    "operationId": "delete_category_api_v1_categories__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/categories/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Категории"
+    ],
+    "summary": "Restore Category",
+    "operationId": "restore_category_api_v1_categories__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/CategoryOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/transactions": {
+   "get": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "List Transactions",
+    "description": "История операций с фильтрацией по дате, категории, счету, сумме и поиском.",
+    "operationId": "list_transactions_api_v1_transactions_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "date_from",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Date From"
+      }
+     },
+     {
+      "name": "date_to",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Date To"
+      }
+     },
+     {
+      "name": "category_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Category Id"
+      }
+     },
+     {
+      "name": "account_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Account Id"
+      }
+     },
+     {
+      "name": "kind",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Kind"
+      }
+     },
+     {
+      "name": "amount_min",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Amount Min"
+      }
+     },
+     {
+      "name": "amount_max",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Amount Max"
+      }
+     },
+     {
+      "name": "search",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Search"
+      }
+     },
+     {
+      "name": "deleted",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Deleted"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 500,
+       "minimum": 1,
+       "default": 50,
+       "title": "Limit"
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 0,
+       "default": 0,
+       "title": "Offset"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TransactionPage"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "Create Transaction",
+    "operationId": "create_transaction_api_v1_transactions_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TransactionIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TransactionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/transactions/suggest-category": {
+   "post": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "Suggest",
+    "description": "Автоматическое определение категории по тексту операции.",
+    "operationId": "suggest_api_v1_transactions_suggest_category_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "kind",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "default": "expense",
+       "title": "Kind"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ParseTextIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SuggestOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/transactions/parse-receipt": {
+   "post": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "Parse Receipt",
+    "description": "Выделяет сумму и категорию из распознанного текста чека; сохраняет фотографию.",
+    "operationId": "parse_receipt_api_v1_transactions_parse_receipt_post",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_parse_receipt_api_v1_transactions_parse_receipt_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ParsedTransactionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/transactions/parse-voice": {
+   "post": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "Parse Voice",
+    "description": "Разбирает распознанную голосовую фразу: вид операции, сумма, категория.",
+    "operationId": "parse_voice_api_v1_transactions_parse_voice_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ParseTextIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ParsedTransactionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/transactions/{item_id}/receipt": {
+   "post": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "Attach Receipt",
+    "operationId": "attach_receipt_api_v1_transactions__item_id__receipt_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/x-www-form-urlencoded": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_attach_receipt_api_v1_transactions__item_id__receipt_post"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TransactionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/transactions/{item_id}": {
+   "put": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "Update Transaction",
+    "operationId": "update_transaction_api_v1_transactions__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TransactionIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TransactionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "Delete Transaction",
+    "operationId": "delete_transaction_api_v1_transactions__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/transactions/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Транзакции"
+    ],
+    "summary": "Restore Transaction",
+    "operationId": "restore_transaction_api_v1_transactions__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TransactionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/templates": {
+   "get": {
+    "tags": [
+     "Шаблоны"
+    ],
+    "summary": "List Template",
+    "operationId": "list_template_api_v1_templates_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "include_deleted",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Include Deleted"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/TemplateOut"
+         },
+         "title": "Response List Template Api V1 Templates Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Шаблоны"
+    ],
+    "summary": "Create Template",
+    "operationId": "create_template_api_v1_templates_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TemplateIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TemplateOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/templates/{item_id}": {
+   "put": {
+    "tags": [
+     "Шаблоны"
+    ],
+    "summary": "Update Template",
+    "operationId": "update_template_api_v1_templates__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TemplateIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TemplateOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Шаблоны"
+    ],
+    "summary": "Delete Template",
+    "operationId": "delete_template_api_v1_templates__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/templates/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Шаблоны"
+    ],
+    "summary": "Restore Template",
+    "operationId": "restore_template_api_v1_templates__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TemplateOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/recurring-payments": {
+   "get": {
+    "tags": [
+     "Регулярные платежи"
+    ],
+    "summary": "List Recurring Payment",
+    "operationId": "list_recurring_payment_api_v1_recurring_payments_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "include_deleted",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Include Deleted"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/RecurringPaymentOut"
+         },
+         "title": "Response List Recurring Payment Api V1 Recurring Payments Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Регулярные платежи"
+    ],
+    "summary": "Create Recurring Payment",
+    "operationId": "create_recurring_payment_api_v1_recurring_payments_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RecurringPaymentIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RecurringPaymentOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/recurring-payments/{item_id}": {
+   "put": {
+    "tags": [
+     "Регулярные платежи"
+    ],
+    "summary": "Update Recurring Payment",
+    "operationId": "update_recurring_payment_api_v1_recurring_payments__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/RecurringPaymentIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RecurringPaymentOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Регулярные платежи"
+    ],
+    "summary": "Delete Recurring Payment",
+    "operationId": "delete_recurring_payment_api_v1_recurring_payments__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/recurring-payments/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Регулярные платежи"
+    ],
+    "summary": "Restore Recurring Payment",
+    "operationId": "restore_recurring_payment_api_v1_recurring_payments__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/RecurringPaymentOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/budgets/status": {
+   "get": {
+    "tags": [
+     "Бюджет"
+    ],
+    "summary": "Budgets State",
+    "description": "Исполнение бюджета: израсходовано, остаток, процент и статус по каждому лимиту.",
+    "operationId": "budgets_state_api_v1_budgets_status_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/BudgetStatusOut"
+         },
+         "type": "array",
+         "title": "Response Budgets State Api V1 Budgets Status Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/budgets/{item_id}/status": {
+   "get": {
+    "tags": [
+     "Бюджет"
+    ],
+    "summary": "One Budget State",
+    "operationId": "one_budget_state_api_v1_budgets__item_id__status_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/BudgetStatusOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/budgets": {
+   "get": {
+    "tags": [
+     "Бюджет"
+    ],
+    "summary": "List Budget",
+    "operationId": "list_budget_api_v1_budgets_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "include_deleted",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Include Deleted"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/BudgetOut"
+         },
+         "title": "Response List Budget Api V1 Budgets Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Бюджет"
+    ],
+    "summary": "Create Budget",
+    "operationId": "create_budget_api_v1_budgets_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/BudgetIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/BudgetOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/budgets/{item_id}": {
+   "put": {
+    "tags": [
+     "Бюджет"
+    ],
+    "summary": "Update Budget",
+    "operationId": "update_budget_api_v1_budgets__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/BudgetIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/BudgetOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Бюджет"
+    ],
+    "summary": "Delete Budget",
+    "operationId": "delete_budget_api_v1_budgets__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/budgets/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Бюджет"
+    ],
+    "summary": "Restore Budget",
+    "operationId": "restore_budget_api_v1_budgets__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/BudgetOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/goals/progress": {
+   "get": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Goals Progress",
+    "description": "Цели с прогрессом, прогнозируемой датой и рекомендуемой суммой накоплений.",
+    "operationId": "goals_progress_api_v1_goals_progress_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/GoalProgressOut"
+         },
+         "type": "array",
+         "title": "Response Goals Progress Api V1 Goals Progress Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/goals/{item_id}/progress": {
+   "get": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "One Goal Progress",
+    "operationId": "one_goal_progress_api_v1_goals__item_id__progress_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GoalProgressOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/goals/{item_id}/contributions": {
+   "get": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Goal Contributions",
+    "operationId": "goal_contributions_api_v1_goals__item_id__contributions_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/GoalContributionOut"
+         },
+         "title": "Response Goal Contributions Api V1 Goals  Item Id  Contributions Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/goals": {
+   "get": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "List Goal",
+    "operationId": "list_goal_api_v1_goals_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "include_deleted",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Include Deleted"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/GoalOut"
+         },
+         "title": "Response List Goal Api V1 Goals Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Create Goal",
+    "operationId": "create_goal_api_v1_goals_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GoalIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GoalOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/goals/{item_id}": {
+   "put": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Update Goal",
+    "operationId": "update_goal_api_v1_goals__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GoalIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GoalOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Delete Goal",
+    "operationId": "delete_goal_api_v1_goals__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/goals/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Restore Goal",
+    "operationId": "restore_goal_api_v1_goals__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GoalOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/goal-contributions": {
+   "get": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "List Goal Contribution",
+    "operationId": "list_goal_contribution_api_v1_goal_contributions_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "include_deleted",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Include Deleted"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/GoalContributionOut"
+         },
+         "title": "Response List Goal Contribution Api V1 Goal Contributions Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Create Goal Contribution",
+    "operationId": "create_goal_contribution_api_v1_goal_contributions_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GoalContributionIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GoalContributionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/goal-contributions/{item_id}": {
+   "put": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Update Goal Contribution",
+    "operationId": "update_goal_contribution_api_v1_goal_contributions__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/GoalContributionIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GoalContributionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Delete Goal Contribution",
+    "operationId": "delete_goal_contribution_api_v1_goal_contributions__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/goal-contributions/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Цели"
+    ],
+    "summary": "Restore Goal Contribution",
+    "operationId": "restore_goal_contribution_api_v1_goal_contributions__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/GoalContributionOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/investments/trades": {
+   "get": {
+    "tags": [
+     "Инвестиции"
+    ],
+    "summary": "List Trades",
+    "operationId": "list_trades_api_v1_investments_trades_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/TradeOut"
+         },
+         "type": "array",
+         "title": "Response List Trades Api V1 Investments Trades Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   },
+   "post": {
+    "tags": [
+     "Инвестиции"
+    ],
+    "summary": "Create Investment Trade",
+    "operationId": "create_investment_trade_api_v1_investments_trades_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TradeIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TradeOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/investments/trades/{item_id}": {
+   "put": {
+    "tags": [
+     "Инвестиции"
+    ],
+    "summary": "Update Investment Trade",
+    "operationId": "update_investment_trade_api_v1_investments_trades__item_id__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/TradeIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TradeOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "Инвестиции"
+    ],
+    "summary": "Delete Investment Trade",
+    "operationId": "delete_investment_trade_api_v1_investments_trades__item_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/investments/trades/{item_id}/restore": {
+   "post": {
+    "tags": [
+     "Инвестиции"
+    ],
+    "summary": "Restore Investment Trade",
+    "operationId": "restore_investment_trade_api_v1_investments_trades__item_id__restore_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "item_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Item Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/TradeOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/investments/portfolio": {
+   "get": {
+    "tags": [
+     "Инвестиции"
+    ],
+    "summary": "Portfolio",
+    "description": "Портфель: позиции, текущая стоимость и доходность.\n\nПри открытии портфеля рыночные цены обновляются из внешнего источника\n(п. 4.2.2.15 ТЗ); при его недоступности используются сохраненные цены.",
+    "operationId": "portfolio_api_v1_investments_portfolio_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "refresh",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": true,
+       "title": "Refresh"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PortfolioOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/investments/dynamics": {
+   "get": {
+    "tags": [
+     "Инвестиции"
+    ],
+    "summary": "Dynamics",
+    "description": "Динамика стоимости портфеля за день, месяц или год.",
+    "operationId": "dynamics_api_v1_investments_dynamics_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "period",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "pattern": "^(day|month|year)$",
+       "default": "month",
+       "title": "Period"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Dynamics Api V1 Investments Dynamics Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/investments/assets/{ticker}": {
+   "get": {
+    "tags": [
+     "Инвестиции"
+    ],
+    "summary": "Asset",
+    "description": "Детальная аналитика по активу: история цен, доходность за периоды, комиссии.",
+    "operationId": "asset_api_v1_investments_assets__ticker__get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "ticker",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Ticker"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Asset Api V1 Investments Assets  Ticker  Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/dashboard": {
+   "get": {
+    "tags": [
+     "Аналитика"
+    ],
+    "summary": "Dashboard",
+    "description": "Главный экран: баланс, доходы и расходы, график, бюджет, цель, портфель, прогноз.",
+    "operationId": "dashboard_api_v1_dashboard_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Dashboard Api V1 Dashboard Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/reports": {
+   "get": {
+    "tags": [
+     "Аналитика"
+    ],
+    "summary": "Report",
+    "description": "Аналитический отчет за период с фильтрацией по счетам и категориям.",
+    "operationId": "report_api_v1_reports_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "start",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Start"
+      }
+     },
+     {
+      "name": "end",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "End"
+      }
+     },
+     {
+      "name": "account_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Account Id"
+      }
+     },
+     {
+      "name": "category_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Category Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Report Api V1 Reports Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/reports/export": {
+   "get": {
+    "tags": [
+     "Импорт и экспорт"
+    ],
+    "summary": "Export Report",
+    "description": "Экспорт отчета по категориям в PDF, XLSX или CSV.",
+    "operationId": "export_report_api_v1_reports_export_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "format",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "pattern": "^(pdf|xlsx|csv)$",
+       "default": "pdf",
+       "title": "Format"
+      }
+     },
+     {
+      "name": "start",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Start"
+      }
+     },
+     {
+      "name": "end",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "End"
+      }
+     },
+     {
+      "name": "account_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Account Id"
+      }
+     },
+     {
+      "name": "category_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Category Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/transactions/export": {
+   "get": {
+    "tags": [
+     "Импорт и экспорт"
+    ],
+    "summary": "Export Transactions",
+    "description": "Экспорт истории операций за период в PDF, XLSX или CSV.",
+    "operationId": "export_transactions_api_v1_transactions_export_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "format",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "pattern": "^(pdf|xlsx|csv)$",
+       "default": "xlsx",
+       "title": "Format"
+      }
+     },
+     {
+      "name": "start",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Start"
+      }
+     },
+     {
+      "name": "end",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "End"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/import/statement": {
+   "post": {
+    "tags": [
+     "Импорт и экспорт"
+    ],
+    "summary": "Import Statement",
+    "description": "Импорт транзакций из банковской выписки CSV, OFX или QIF.\n\nПоля выписки распознаются автоматически, импортированные операции\nкатегоризируются. Повторный импорт той же выписки не создает дубликатов.\nПри dry_run=true возвращается предварительный просмотр без сохранения.",
+    "operationId": "import_statement_api_v1_import_statement_post",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_import_statement_api_v1_import_statement_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Import Statement Api V1 Import Statement Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/rates": {
+   "get": {
+    "tags": [
+     "Справочники"
+    ],
+    "summary": "Rates",
+    "description": "Курсы валют к рублю с датой актуальности.",
+    "operationId": "rates_api_v1_rates_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "refresh",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": false,
+       "title": "Refresh"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Rates Api V1 Rates Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/recommendations": {
+   "get": {
+    "tags": [
+     "Рекомендации"
+    ],
+    "summary": "Recommendations",
+    "description": "Карточки рекомендаций с пояснением и оценкой возможной экономии.",
+    "operationId": "recommendations_api_v1_recommendations_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "refresh",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "boolean",
+       "default": true,
+       "title": "Refresh"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Recommendations Api V1 Recommendations Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/recommendations/{recommendation_id}/feedback": {
+   "post": {
+    "tags": [
+     "Рекомендации"
+    ],
+    "summary": "Feedback",
+    "description": "Явная обратная связь: оценка «Полезно» / «Не полезно».",
+    "operationId": "feedback_api_v1_recommendations__recommendation_id__feedback_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "recommendation_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Recommendation Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/FeedbackIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Feedback Api V1 Recommendations  Recommendation Id  Feedback Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/recommendations/{recommendation_id}/apply": {
+   "post": {
+    "tags": [
+     "Рекомендации"
+    ],
+    "summary": "Apply",
+    "description": "Применение рекомендации (неявная обратная связь): например, установка бюджета.",
+    "operationId": "apply_api_v1_recommendations__recommendation_id__apply_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "recommendation_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Recommendation Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Apply Api V1 Recommendations  Recommendation Id  Apply Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/recommendations/{recommendation_id}/dismiss": {
+   "post": {
+    "tags": [
+     "Рекомендации"
+    ],
+    "summary": "Dismiss",
+    "operationId": "dismiss_api_v1_recommendations__recommendation_id__dismiss_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "recommendation_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Recommendation Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/forecast": {
+   "get": {
+    "tags": [
+     "Рекомендации"
+    ],
+    "summary": "Forecast",
+    "description": "Прогноз расходов и доходов на следующий месяц с интервалом уверенности.",
+    "operationId": "forecast_api_v1_forecast_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Forecast Api V1 Forecast Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/patterns": {
+   "get": {
+    "tags": [
+     "Рекомендации"
+    ],
+    "summary": "Patterns",
+    "description": "Финансовые паттерны: регулярные расходы, сезонные колебания, аномалии.",
+    "operationId": "patterns_api_v1_patterns_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Patterns Api V1 Patterns Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/risks": {
+   "get": {
+    "tags": [
+     "Рекомендации"
+    ],
+    "summary": "Risks",
+    "description": "Оценка финансовых рисков с предупреждениями.",
+    "operationId": "risks_api_v1_risks_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Risks Api V1 Risks Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/sync": {
+   "post": {
+    "tags": [
+     "Синхронизация"
+    ],
+    "summary": "Sync",
+    "description": "Прием операций автономного режима и выдача изменений с сервера.",
+    "operationId": "sync_api_v1_sync_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SyncRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/SyncResponse"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/sync/status": {
+   "get": {
+    "tags": [
+     "Синхронизация"
+    ],
+    "summary": "Sync Status",
+    "operationId": "sync_status_api_v1_sync_status_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Sync Status Api V1 Sync Status Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/admin/users": {
+   "get": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "List Users",
+    "operationId": "list_users_api_v1_admin_users_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "search",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Search"
+      }
+     },
+     {
+      "name": "role",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Role"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 200,
+       "default": 50,
+       "title": "Limit"
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 0,
+       "title": "Offset"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response List Users Api V1 Admin Users Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Create User",
+    "description": "Создание учетной записи с назначением роли.",
+    "operationId": "create_user_api_v1_admin_users_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserCreateIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Create User Api V1 Admin Users Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/users/{user_id}": {
+   "patch": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Update User",
+    "description": "Изменение роли и имени учетной записи.\n\nСтрока учетной записи блокируется на время изменения, поэтому одновременные\nдействия двух администраторов выполняются последовательно и не теряются.",
+    "operationId": "update_user_api_v1_admin_users__user_id__patch",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/UserUpdateIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Update User Api V1 Admin Users  User Id  Patch"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/users/{user_id}/block": {
+   "post": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Block User",
+    "operationId": "block_user_api_v1_admin_users__user_id__block_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Block User Api V1 Admin Users  User Id  Block Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/users/{user_id}/unblock": {
+   "post": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Unblock User",
+    "operationId": "unblock_user_api_v1_admin_users__user_id__unblock_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Unblock User Api V1 Admin Users  User Id  Unblock Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/users/{user_id}/reset-password": {
+   "post": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Reset User Password",
+    "description": "Сброс пароля: пользователю назначается временный пароль и отправляется письмо.",
+    "operationId": "reset_user_password_api_v1_admin_users__user_id__reset_password_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Reset User Password Api V1 Admin Users  User Id  Reset Password Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/logs": {
+   "get": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "List Logs",
+    "description": "Журнал аудита с фильтрацией по дате, пользователю и типу действия.",
+    "operationId": "list_logs_api_v1_admin_logs_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "date_from",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Date From"
+      }
+     },
+     {
+      "name": "date_to",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Date To"
+      }
+     },
+     {
+      "name": "user",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "User"
+      }
+     },
+     {
+      "name": "action",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Action"
+      }
+     },
+     {
+      "name": "journal",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Journal"
+      }
+     },
+     {
+      "name": "origin",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Origin"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 1000,
+       "default": 100,
+       "title": "Limit"
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 0,
+       "title": "Offset"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response List Logs Api V1 Admin Logs Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/logs/export": {
+   "get": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Export Logs",
+    "description": "Экспорт журнала аудита в файл CSV.",
+    "operationId": "export_logs_api_v1_admin_logs_export_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "date_from",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Date From"
+      }
+     },
+     {
+      "name": "date_to",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Date To"
+      }
+     },
+     {
+      "name": "user",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "User"
+      }
+     },
+     {
+      "name": "action",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Action"
+      }
+     },
+     {
+      "name": "journal",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Journal"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/logs/import": {
+   "post": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Import Logs",
+    "description": "Импорт внешнего журнала из файла CSV для анализа (записи помечаются origin=import).",
+    "operationId": "import_logs_api_v1_admin_logs_import_post",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_import_logs_api_v1_admin_logs_import_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Import Logs Api V1 Admin Logs Import Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/admin/errors": {
+   "get": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "List Errors",
+    "operationId": "list_errors_api_v1_admin_errors_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "source",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Source"
+      }
+     },
+     {
+      "name": "hours",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "default": 24,
+       "title": "Hours"
+      }
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 500,
+       "default": 100,
+       "title": "Limit"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response List Errors Api V1 Admin Errors Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/sync-log": {
+   "get": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Sync Log",
+    "operationId": "sync_log_api_v1_admin_sync_log_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 500,
+       "default": 100,
+       "title": "Limit"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Sync Log Api V1 Admin Sync Log Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/monitoring": {
+   "get": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Monitoring Summary",
+    "description": "Доступность серверной части, среднее время ответа, ошибки, график доступности.",
+    "operationId": "monitoring_summary_api_v1_admin_monitoring_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "hours",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 744,
+       "minimum": 1,
+       "default": 24,
+       "title": "Hours"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Monitoring Summary Api V1 Admin Monitoring Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/settings": {
+   "get": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Get Settings All",
+    "operationId": "get_settings_all_api_v1_admin_settings_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Get Settings All Api V1 Admin Settings Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/admin/settings/{key}": {
+   "put": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Put Setting",
+    "description": "Изменение системной настройки: интеграции, пороги уведомлений, расписание копирования.",
+    "operationId": "put_setting_api_v1_admin_settings__key__put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "key",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Key"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/SettingIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/admin/support-requests": {
+   "get": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Support Requests",
+    "operationId": "support_requests_api_v1_admin_support_requests_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Support Requests Api V1 Admin Support Requests Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/ml/quality": {
+   "get": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Quality",
+    "description": "Показатели качества: категоризация, прогноз, оценки рекомендаций и их динамика.",
+    "operationId": "quality_api_v1_ml_quality_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Quality Api V1 Ml Quality Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/ml/models": {
+   "get": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Models",
+    "operationId": "models_api_v1_ml_models_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Models Api V1 Ml Models Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/ml/models/train": {
+   "post": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Train",
+    "description": "Запуск повторного обучения модели категоризации в фоновом режиме.",
+    "operationId": "train_api_v1_ml_models_train_post",
+    "responses": {
+     "202": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Train Api V1 Ml Models Train Post"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/ml/models/{model_id}": {
+   "get": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Model State",
+    "operationId": "model_state_api_v1_ml_models__model_id__get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "model_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Model Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Model State Api V1 Ml Models  Model Id  Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/ml/models/{model_id}/activate": {
+   "post": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Activate",
+    "description": "Выбор активной версии модели.",
+    "operationId": "activate_api_v1_ml_models__model_id__activate_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "model_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Model Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Activate Api V1 Ml Models  Model Id  Activate Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/ml/models/{model_id}/export": {
+   "get": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Export Model",
+    "description": "Экспорт файла модели.",
+    "operationId": "export_model_api_v1_ml_models__model_id__export_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "model_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Model Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/ml/models/import": {
+   "post": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Import Model",
+    "description": "Импорт файла модели как новой версии (без автоматической активации).",
+    "operationId": "import_model_api_v1_ml_models_import_post",
+    "requestBody": {
+     "content": {
+      "multipart/form-data": {
+       "schema": {
+        "$ref": "#/components/schemas/Body_import_model_api_v1_ml_models_import_post"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Import Model Api V1 Ml Models Import Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/ml/evaluate": {
+   "post": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Evaluate",
+    "description": "Оценка активной модели на контрольной выборке с известными категориями.",
+    "operationId": "evaluate_api_v1_ml_evaluate_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/EvaluateIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Evaluate Api V1 Ml Evaluate Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/api/v1/ml/training-data": {
+   "get": {
+    "tags": [
+     "Аналитика ИИ"
+    ],
+    "summary": "Training Data",
+    "description": "Сведения об обезличенных данных для обучения.",
+    "operationId": "training_data_api_v1_ml_training_data_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Training Data Api V1 Ml Training Data Get"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/health": {
+   "get": {
+    "tags": [
+     "Служебные"
+    ],
+    "summary": "Health",
+    "description": "Проверка доступности серверного приложения.",
+    "operationId": "health_health_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "object",
+         "title": "Response Health Health Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/health/ready": {
+   "get": {
+    "tags": [
+     "Служебные"
+    ],
+    "summary": "Ready",
+    "description": "Проверка готовности: доступность базы данных.",
+    "operationId": "ready_health_ready_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "AccountIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "cash",
+       "bank",
+       "credit",
+       "investment"
+      ],
+      "title": "Type",
+      "default": "cash"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "initial_balance": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Initial Balance",
+      "default": "0"
+     },
+     "is_archived": {
+      "type": "boolean",
+      "title": "Is Archived",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "name"
+    ],
+    "title": "AccountIn"
+   },
+   "AccountOut": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "type": {
+      "type": "string",
+      "enum": [
+       "cash",
+       "bank",
+       "credit",
+       "investment"
+      ],
+      "title": "Type",
+      "default": "cash"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "initial_balance": {
+      "type": "string",
+      "title": "Initial Balance",
+      "default": "0.00"
+     },
+     "is_archived": {
+      "type": "boolean",
+      "title": "Is Archived",
+      "default": false
+     },
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     },
+     "balance": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Balance"
+     },
+     "balance_base": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Balance Base"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "id",
+     "created_at",
+     "updated_at"
+    ],
+    "title": "AccountOut"
+   },
+   "Body_attach_receipt_api_v1_transactions__item_id__receipt_post": {
+    "properties": {
+     "receipt_file": {
+      "type": "string",
+      "title": "Receipt File"
+     }
+    },
+    "type": "object",
+    "required": [
+     "receipt_file"
+    ],
+    "title": "Body_attach_receipt_api_v1_transactions__item_id__receipt_post"
+   },
+   "Body_import_logs_api_v1_admin_logs_import_post": {
+    "properties": {
+     "file": {
+      "type": "string",
+      "format": "binary",
+      "title": "File"
+     }
+    },
+    "type": "object",
+    "required": [
+     "file"
+    ],
+    "title": "Body_import_logs_api_v1_admin_logs_import_post"
+   },
+   "Body_import_model_api_v1_ml_models_import_post": {
+    "properties": {
+     "file": {
+      "type": "string",
+      "format": "binary",
+      "title": "File"
+     }
+    },
+    "type": "object",
+    "required": [
+     "file"
+    ],
+    "title": "Body_import_model_api_v1_ml_models_import_post"
+   },
+   "Body_import_statement_api_v1_import_statement_post": {
+    "properties": {
+     "account_id": {
+      "type": "string",
+      "title": "Account Id"
+     },
+     "dry_run": {
+      "type": "boolean",
+      "title": "Dry Run",
+      "default": false
+     },
+     "file": {
+      "type": "string",
+      "format": "binary",
+      "title": "File"
+     }
+    },
+    "type": "object",
+    "required": [
+     "account_id",
+     "file"
+    ],
+    "title": "Body_import_statement_api_v1_import_statement_post"
+   },
+   "Body_parse_receipt_api_v1_transactions_parse_receipt_post": {
+    "properties": {
+     "text": {
+      "type": "string",
+      "maxLength": 20000,
+      "title": "Text"
+     },
+     "photo": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "binary"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Photo"
+     }
+    },
+    "type": "object",
+    "required": [
+     "text"
+    ],
+    "title": "Body_parse_receipt_api_v1_transactions_parse_receipt_post"
+   },
+   "BudgetIn": {
+    "properties": {
+     "category_id": {
+      "type": "string",
+      "title": "Category Id"
+     },
+     "period": {
+      "type": "string",
+      "enum": [
+       "week",
+       "month",
+       "year"
+      ],
+      "title": "Period",
+      "default": "month"
+     },
+     "limit_amount": {
+      "anyOf": [
+       {
+        "type": "number",
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Limit Amount"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "is_active": {
+      "type": "boolean",
+      "title": "Is Active",
+      "default": true
+     }
+    },
+    "type": "object",
+    "required": [
+     "category_id",
+     "limit_amount"
+    ],
+    "title": "BudgetIn"
+   },
+   "BudgetOut": {
+    "properties": {
+     "category_id": {
+      "type": "string",
+      "title": "Category Id"
+     },
+     "period": {
+      "type": "string",
+      "enum": [
+       "week",
+       "month",
+       "year"
+      ],
+      "title": "Period",
+      "default": "month"
+     },
+     "limit_amount": {
+      "type": "string",
+      "title": "Limit Amount"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "is_active": {
+      "type": "boolean",
+      "title": "Is Active",
+      "default": true
+     },
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     }
+    },
+    "type": "object",
+    "required": [
+     "category_id",
+     "limit_amount",
+     "id",
+     "created_at",
+     "updated_at"
+    ],
+    "title": "BudgetOut"
+   },
+   "BudgetStatusOut": {
+    "properties": {
+     "budget": {
+      "$ref": "#/components/schemas/BudgetOut"
+     },
+     "category_name": {
+      "type": "string",
+      "title": "Category Name"
+     },
+     "period_start": {
+      "type": "string",
+      "format": "date",
+      "title": "Period Start"
+     },
+     "period_end": {
+      "type": "string",
+      "format": "date",
+      "title": "Period End"
+     },
+     "spent": {
+      "type": "string",
+      "title": "Spent"
+     },
+     "remaining": {
+      "type": "string",
+      "title": "Remaining"
+     },
+     "percent": {
+      "type": "number",
+      "title": "Percent"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "ok",
+       "exceeded",
+       "critical"
+      ],
+      "title": "Status"
+     },
+     "status_title": {
+      "type": "string",
+      "title": "Status Title"
+     },
+     "warning": {
+      "type": "boolean",
+      "title": "Warning"
+     }
+    },
+    "type": "object",
+    "required": [
+     "budget",
+     "category_name",
+     "period_start",
+     "period_end",
+     "spent",
+     "remaining",
+     "percent",
+     "status",
+     "status_title",
+     "warning"
+    ],
+    "title": "BudgetStatusOut"
+   },
+   "CategoryIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "income",
+       "expense"
+      ],
+      "title": "Kind",
+      "default": "expense"
+     },
+     "parent_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Parent Id"
+     },
+     "icon": {
+      "type": "string",
+      "maxLength": 50,
+      "title": "Icon",
+      "default": ""
+     },
+     "color": {
+      "type": "string",
+      "maxLength": 9,
+      "title": "Color",
+      "default": ""
+     }
+    },
+    "type": "object",
+    "required": [
+     "name"
+    ],
+    "title": "CategoryIn"
+   },
+   "CategoryOut": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "income",
+       "expense"
+      ],
+      "title": "Kind",
+      "default": "expense"
+     },
+     "parent_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Parent Id"
+     },
+     "icon": {
+      "type": "string",
+      "maxLength": 50,
+      "title": "Icon",
+      "default": ""
+     },
+     "color": {
+      "type": "string",
+      "maxLength": 9,
+      "title": "Color",
+      "default": ""
+     },
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     },
+     "is_system": {
+      "type": "boolean",
+      "title": "Is System",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "id",
+     "created_at",
+     "updated_at"
+    ],
+    "title": "CategoryOut"
+   },
+   "ChangePasswordIn": {
+    "properties": {
+     "current_password": {
+      "type": "string",
+      "title": "Current Password"
+     },
+     "new_password": {
+      "type": "string",
+      "maxLength": 128,
+      "minLength": 8,
+      "title": "New Password"
+     }
+    },
+    "type": "object",
+    "required": [
+     "current_password",
+     "new_password"
+    ],
+    "title": "ChangePasswordIn"
+   },
+   "ClientErrorIn": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "maxLength": 100,
+      "title": "Kind",
+      "default": ""
+     },
+     "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "title": "Message"
+     },
+     "level": {
+      "type": "string",
+      "pattern": "^(error|critical)$",
+      "title": "Level",
+      "default": "error"
+     },
+     "context": {
+      "type": "object",
+      "title": "Context"
+     }
+    },
+    "type": "object",
+    "required": [
+     "message"
+    ],
+    "title": "ClientErrorIn"
+   },
+   "ConsentIn": {
+    "properties": {
+     "provider": {
+      "type": "string",
+      "maxLength": 50,
+      "minLength": 2,
+      "title": "Provider"
+     }
+    },
+    "type": "object",
+    "required": [
+     "provider"
+    ],
+    "title": "ConsentIn"
+   },
+   "DeleteAccountIn": {
+    "properties": {
+     "password": {
+      "type": "string",
+      "title": "Password"
+     }
+    },
+    "type": "object",
+    "required": [
+     "password"
+    ],
+    "title": "DeleteAccountIn"
+   },
+   "DeviceIn": {
+    "properties": {
+     "device_id": {
+      "type": "string",
+      "maxLength": 36,
+      "minLength": 8,
+      "title": "Device Id"
+     },
+     "push_token": {
+      "type": "string",
+      "maxLength": 512,
+      "title": "Push Token",
+      "default": ""
+     },
+     "model": {
+      "type": "string",
+      "maxLength": 100,
+      "title": "Model",
+      "default": ""
+     }
+    },
+    "type": "object",
+    "required": [
+     "device_id"
+    ],
+    "title": "DeviceIn"
+   },
+   "EvaluateIn": {
+    "properties": {
+     "samples": {
+      "items": {
+       "$ref": "#/components/schemas/Sample"
+      },
+      "type": "array",
+      "title": "Samples"
+     }
+    },
+    "type": "object",
+    "required": [
+     "samples"
+    ],
+    "title": "EvaluateIn"
+   },
+   "FeedbackIn": {
+    "properties": {
+     "useful": {
+      "type": "boolean",
+      "title": "Useful"
+     }
+    },
+    "type": "object",
+    "required": [
+     "useful"
+    ],
+    "title": "FeedbackIn"
+   },
+   "ForgotIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Email"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email"
+    ],
+    "title": "ForgotIn"
+   },
+   "GoalContributionIn": {
+    "properties": {
+     "goal_id": {
+      "type": "string",
+      "title": "Goal Id"
+     },
+     "amount": {
+      "anyOf": [
+       {
+        "type": "number",
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Amount"
+     },
+     "occurred_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Occurred At"
+     },
+     "comment": {
+      "type": "string",
+      "maxLength": 300,
+      "title": "Comment",
+      "default": ""
+     }
+    },
+    "type": "object",
+    "required": [
+     "goal_id",
+     "amount"
+    ],
+    "title": "GoalContributionIn"
+   },
+   "GoalContributionOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     },
+     "goal_id": {
+      "type": "string",
+      "title": "Goal Id"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Occurred At"
+     },
+     "comment": {
+      "type": "string",
+      "title": "Comment",
+      "default": ""
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "created_at",
+     "updated_at",
+     "goal_id",
+     "amount",
+     "occurred_at"
+    ],
+    "title": "GoalContributionOut"
+   },
+   "GoalIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "target_amount": {
+      "anyOf": [
+       {
+        "type": "number",
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Target Amount"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "deadline": {
+      "type": "string",
+      "format": "date",
+      "title": "Deadline"
+     },
+     "priority": {
+      "type": "string",
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Priority",
+      "default": "medium"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "target_amount",
+     "deadline"
+    ],
+    "title": "GoalIn"
+   },
+   "GoalOut": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "target_amount": {
+      "type": "string",
+      "title": "Target Amount"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "deadline": {
+      "type": "string",
+      "format": "date",
+      "title": "Deadline"
+     },
+     "priority": {
+      "type": "string",
+      "enum": [
+       "low",
+       "medium",
+       "high"
+      ],
+      "title": "Priority",
+      "default": "medium"
+     },
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     },
+     "status": {
+      "type": "string",
+      "title": "Status",
+      "default": "active"
+     },
+     "achieved_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Achieved At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "target_amount",
+     "deadline",
+     "id",
+     "created_at",
+     "updated_at"
+    ],
+    "title": "GoalOut"
+   },
+   "GoalProgressOut": {
+    "properties": {
+     "goal": {
+      "$ref": "#/components/schemas/GoalOut"
+     },
+     "saved": {
+      "type": "string",
+      "title": "Saved"
+     },
+     "remaining": {
+      "type": "string",
+      "title": "Remaining"
+     },
+     "percent": {
+      "type": "number",
+      "title": "Percent"
+     },
+     "forecast_date": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Forecast Date"
+     },
+     "recommended_monthly": {
+      "type": "string",
+      "title": "Recommended Monthly"
+     },
+     "on_track": {
+      "type": "boolean",
+      "title": "On Track"
+     },
+     "read_only": {
+      "type": "boolean",
+      "title": "Read Only"
+     }
+    },
+    "type": "object",
+    "required": [
+     "goal",
+     "saved",
+     "remaining",
+     "percent",
+     "forecast_date",
+     "recommended_monthly",
+     "on_track",
+     "read_only"
+    ],
+    "title": "GoalProgressOut"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "LoginIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Email"
+     },
+     "password": {
+      "type": "string",
+      "title": "Password"
+     },
+     "totp_code": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Totp Code"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email",
+     "password"
+    ],
+    "title": "LoginIn"
+   },
+   "Message": {
+    "properties": {
+     "message": {
+      "type": "string",
+      "title": "Message"
+     }
+    },
+    "type": "object",
+    "required": [
+     "message"
+    ],
+    "title": "Message"
+   },
+   "NotificationSettings": {
+    "properties": {
+     "push_enabled": {
+      "type": "boolean",
+      "title": "Push Enabled",
+      "default": true
+     },
+     "email_enabled": {
+      "type": "boolean",
+      "title": "Email Enabled",
+      "default": false
+     },
+     "budget_threshold_percent": {
+      "type": "integer",
+      "maximum": 100.0,
+      "minimum": 10.0,
+      "title": "Budget Threshold Percent",
+      "default": 80
+     },
+     "frequency": {
+      "type": "string",
+      "enum": [
+       "instant",
+       "daily"
+      ],
+      "title": "Frequency",
+      "default": "instant"
+     },
+     "budget": {
+      "type": "boolean",
+      "title": "Budget",
+      "default": true
+     },
+     "recurring": {
+      "type": "boolean",
+      "title": "Recurring",
+      "default": true
+     },
+     "goals": {
+      "type": "boolean",
+      "title": "Goals",
+      "default": true
+     },
+     "recommendations": {
+      "type": "boolean",
+      "title": "Recommendations",
+      "default": true
+     },
+     "risks": {
+      "type": "boolean",
+      "title": "Risks",
+      "default": true
+     }
+    },
+    "type": "object",
+    "title": "NotificationSettings"
+   },
+   "ParseTextIn": {
+    "properties": {
+     "text": {
+      "type": "string",
+      "maxLength": 5000,
+      "minLength": 1,
+      "title": "Text"
+     }
+    },
+    "type": "object",
+    "required": [
+     "text"
+    ],
+    "title": "ParseTextIn"
+   },
+   "ParsedTransactionOut": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "title": "Kind",
+      "default": "expense"
+     },
+     "amount": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Amount"
+     },
+     "occurred_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Occurred At"
+     },
+     "merchant": {
+      "type": "string",
+      "title": "Merchant",
+      "default": ""
+     },
+     "category": {
+      "$ref": "#/components/schemas/SuggestOut",
+      "default": {}
+     },
+     "receipt_file": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Receipt File"
+     }
+    },
+    "type": "object",
+    "title": "ParsedTransactionOut"
+   },
+   "PortfolioOut": {
+    "properties": {
+     "base_currency": {
+      "type": "string",
+      "title": "Base Currency"
+     },
+     "costing_method": {
+      "type": "string",
+      "title": "Costing Method"
+     },
+     "positions": {
+      "items": {
+       "$ref": "#/components/schemas/PositionOut"
+      },
+      "type": "array",
+      "title": "Positions"
+     },
+     "total_invested_base": {
+      "type": "string",
+      "title": "Total Invested Base"
+     },
+     "total_value_base": {
+      "type": "string",
+      "title": "Total Value Base"
+     },
+     "total_profit_base": {
+      "type": "string",
+      "title": "Total Profit Base"
+     },
+     "total_profit_percent": {
+      "type": "number",
+      "title": "Total Profit Percent"
+     },
+     "structure": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "type": "object",
+      "title": "Structure"
+     },
+     "quotes_as_of": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Quotes As Of"
+     },
+     "quotes_stale": {
+      "type": "boolean",
+      "title": "Quotes Stale"
+     }
+    },
+    "type": "object",
+    "required": [
+     "base_currency",
+     "costing_method",
+     "positions",
+     "total_invested_base",
+     "total_value_base",
+     "total_profit_base",
+     "total_profit_percent",
+     "structure",
+     "quotes_as_of",
+     "quotes_stale"
+    ],
+    "title": "PortfolioOut"
+   },
+   "PositionOut": {
+    "properties": {
+     "ticker": {
+      "type": "string",
+      "title": "Ticker"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "asset_type": {
+      "type": "string",
+      "title": "Asset Type"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "quantity": {
+      "type": "string",
+      "title": "Quantity"
+     },
+     "average_price": {
+      "type": "string",
+      "title": "Average Price"
+     },
+     "invested": {
+      "type": "string",
+      "title": "Invested"
+     },
+     "fees": {
+      "type": "string",
+      "title": "Fees"
+     },
+     "current_price": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Current Price"
+     },
+     "price_as_of": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Price As Of"
+     },
+     "current_value": {
+      "type": "string",
+      "title": "Current Value"
+     },
+     "current_value_base": {
+      "type": "string",
+      "title": "Current Value Base"
+     },
+     "profit": {
+      "type": "string",
+      "title": "Profit"
+     },
+     "profit_percent": {
+      "type": "number",
+      "title": "Profit Percent"
+     },
+     "realized_profit": {
+      "type": "string",
+      "title": "Realized Profit"
+     }
+    },
+    "type": "object",
+    "required": [
+     "ticker",
+     "name",
+     "asset_type",
+     "currency",
+     "quantity",
+     "average_price",
+     "invested",
+     "fees",
+     "current_price",
+     "price_as_of",
+     "current_value",
+     "current_value_base",
+     "profit",
+     "profit_percent",
+     "realized_profit"
+    ],
+    "title": "PositionOut"
+   },
+   "ProfileOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Email"
+     },
+     "display_name": {
+      "type": "string",
+      "title": "Display Name"
+     },
+     "role": {
+      "type": "string",
+      "title": "Role"
+     },
+     "base_currency": {
+      "type": "string",
+      "title": "Base Currency"
+     },
+     "risk_profile": {
+      "type": "string",
+      "title": "Risk Profile"
+     },
+     "invest_horizon_years": {
+      "type": "integer",
+      "title": "Invest Horizon Years"
+     },
+     "theme": {
+      "type": "string",
+      "title": "Theme"
+     },
+     "costing_method": {
+      "type": "string",
+      "title": "Costing Method"
+     },
+     "onboarding_done": {
+      "type": "boolean",
+      "title": "Onboarding Done"
+     },
+     "totp_enabled": {
+      "type": "boolean",
+      "title": "Totp Enabled"
+     },
+     "email_confirmed": {
+      "type": "boolean",
+      "title": "Email Confirmed"
+     },
+     "notification_settings": {
+      "$ref": "#/components/schemas/NotificationSettings"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "email",
+     "display_name",
+     "role",
+     "base_currency",
+     "risk_profile",
+     "invest_horizon_years",
+     "theme",
+     "costing_method",
+     "onboarding_done",
+     "totp_enabled",
+     "email_confirmed",
+     "notification_settings",
+     "created_at"
+    ],
+    "title": "ProfileOut"
+   },
+   "ProfileUpdate": {
+    "properties": {
+     "display_name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 100
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Display Name"
+     },
+     "base_currency": {
+      "anyOf": [
+       {
+        "type": "string",
+        "pattern": "^[A-Z]{3}$"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Base Currency"
+     },
+     "risk_profile": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "conservative",
+         "moderate",
+         "aggressive"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Risk Profile"
+     },
+     "invest_horizon_years": {
+      "anyOf": [
+       {
+        "type": "integer",
+        "maximum": 50.0,
+        "minimum": 1.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Invest Horizon Years"
+     },
+     "theme": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "light",
+         "dark",
+         "system"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Theme"
+     },
+     "costing_method": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "average",
+         "fifo"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Costing Method"
+     },
+     "onboarding_done": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Onboarding Done"
+     },
+     "notification_settings": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/NotificationSettings"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "type": "object",
+    "title": "ProfileUpdate"
+   },
+   "RecurringPaymentIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "amount": {
+      "anyOf": [
+       {
+        "type": "number",
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Amount"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "account_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Account Id"
+     },
+     "category_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Id"
+     },
+     "period": {
+      "type": "string",
+      "enum": [
+       "week",
+       "month",
+       "year"
+      ],
+      "title": "Period",
+      "default": "month"
+     },
+     "next_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Next Date"
+     },
+     "remind_days_before": {
+      "type": "integer",
+      "maximum": 30.0,
+      "minimum": 0.0,
+      "title": "Remind Days Before",
+      "default": 1
+     },
+     "is_active": {
+      "type": "boolean",
+      "title": "Is Active",
+      "default": true
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "amount",
+     "next_date"
+    ],
+    "title": "RecurringPaymentIn"
+   },
+   "RecurringPaymentOut": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "account_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Account Id"
+     },
+     "category_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Id"
+     },
+     "period": {
+      "type": "string",
+      "enum": [
+       "week",
+       "month",
+       "year"
+      ],
+      "title": "Period",
+      "default": "month"
+     },
+     "next_date": {
+      "type": "string",
+      "format": "date",
+      "title": "Next Date"
+     },
+     "remind_days_before": {
+      "type": "integer",
+      "maximum": 30.0,
+      "minimum": 0.0,
+      "title": "Remind Days Before",
+      "default": 1
+     },
+     "is_active": {
+      "type": "boolean",
+      "title": "Is Active",
+      "default": true
+     },
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "amount",
+     "next_date",
+     "id",
+     "created_at",
+     "updated_at"
+    ],
+    "title": "RecurringPaymentOut"
+   },
+   "RefreshIn": {
+    "properties": {
+     "refresh_token": {
+      "type": "string",
+      "title": "Refresh Token"
+     }
+    },
+    "type": "object",
+    "required": [
+     "refresh_token"
+    ],
+    "title": "RefreshIn"
+   },
+   "RegisterIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Email"
+     },
+     "password": {
+      "type": "string",
+      "maxLength": 128,
+      "minLength": 8,
+      "title": "Password"
+     },
+     "display_name": {
+      "type": "string",
+      "maxLength": 100,
+      "title": "Display Name",
+      "default": ""
+     },
+     "consent_personal_data": {
+      "type": "boolean",
+      "title": "Consent Personal Data",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "email",
+     "password"
+    ],
+    "title": "RegisterIn"
+   },
+   "ResetIn": {
+    "properties": {
+     "token": {
+      "type": "string",
+      "title": "Token"
+     },
+     "new_password": {
+      "type": "string",
+      "maxLength": 128,
+      "minLength": 8,
+      "title": "New Password"
+     }
+    },
+    "type": "object",
+    "required": [
+     "token",
+     "new_password"
+    ],
+    "title": "ResetIn"
+   },
+   "Sample": {
+    "properties": {
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind",
+      "default": "expense"
+     },
+     "category": {
+      "type": "string",
+      "title": "Category"
+     }
+    },
+    "type": "object",
+    "required": [
+     "text",
+     "category"
+    ],
+    "title": "Sample"
+   },
+   "SettingIn": {
+    "properties": {
+     "value": {
+      "type": "object",
+      "title": "Value"
+     }
+    },
+    "type": "object",
+    "required": [
+     "value"
+    ],
+    "title": "SettingIn"
+   },
+   "SuggestOut": {
+    "properties": {
+     "category_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Id"
+     },
+     "category_name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Name"
+     },
+     "confidence": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Confidence"
+     },
+     "source": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Source"
+     }
+    },
+    "type": "object",
+    "title": "SuggestOut"
+   },
+   "SupportIn": {
+    "properties": {
+     "subject": {
+      "type": "string",
+      "maxLength": 200,
+      "minLength": 3,
+      "title": "Subject"
+     },
+     "message": {
+      "type": "string",
+      "maxLength": 5000,
+      "minLength": 5,
+      "title": "Message"
+     }
+    },
+    "type": "object",
+    "required": [
+     "subject",
+     "message"
+    ],
+    "title": "SupportIn"
+   },
+   "SyncChange": {
+    "properties": {
+     "op_id": {
+      "type": "string",
+      "maxLength": 36,
+      "minLength": 8,
+      "title": "Op Id"
+     },
+     "entity": {
+      "type": "string",
+      "title": "Entity"
+     },
+     "id": {
+      "type": "string",
+      "maxLength": 36,
+      "minLength": 8,
+      "title": "Id"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted": {
+      "type": "boolean",
+      "title": "Deleted",
+      "default": false
+     },
+     "data": {
+      "type": "object",
+      "title": "Data"
+     }
+    },
+    "type": "object",
+    "required": [
+     "op_id",
+     "entity",
+     "id",
+     "updated_at"
+    ],
+    "title": "SyncChange",
+    "description": "Одна операция из очереди несинхронизированных операций клиента."
+   },
+   "SyncRequest": {
+    "properties": {
+     "device_id": {
+      "type": "string",
+      "title": "Device Id",
+      "default": ""
+     },
+     "since_rev": {
+      "type": "integer",
+      "title": "Since Rev",
+      "default": 0
+     },
+     "changes": {
+      "items": {
+       "$ref": "#/components/schemas/SyncChange"
+      },
+      "type": "array",
+      "maxItems": 2000,
+      "title": "Changes"
+     }
+    },
+    "type": "object",
+    "title": "SyncRequest"
+   },
+   "SyncResponse": {
+    "properties": {
+     "rev": {
+      "type": "integer",
+      "title": "Rev"
+     },
+     "server_time": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Server Time"
+     },
+     "results": {
+      "items": {
+       "$ref": "#/components/schemas/SyncResult"
+      },
+      "type": "array",
+      "title": "Results"
+     },
+     "changes": {
+      "additionalProperties": {
+       "items": {
+        "type": "object"
+       },
+       "type": "array"
+      },
+      "type": "object",
+      "title": "Changes"
+     }
+    },
+    "type": "object",
+    "required": [
+     "rev",
+     "server_time",
+     "results",
+     "changes"
+    ],
+    "title": "SyncResponse"
+   },
+   "SyncResult": {
+    "properties": {
+     "op_id": {
+      "type": "string",
+      "title": "Op Id"
+     },
+     "entity": {
+      "type": "string",
+      "title": "Entity"
+     },
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "status": {
+      "type": "string",
+      "enum": [
+       "applied",
+       "duplicate",
+       "conflict",
+       "rejected"
+      ],
+      "title": "Status"
+     },
+     "message": {
+      "type": "string",
+      "title": "Message",
+      "default": ""
+     }
+    },
+    "type": "object",
+    "required": [
+     "op_id",
+     "entity",
+     "id",
+     "status"
+    ],
+    "title": "SyncResult"
+   },
+   "TemplateIn": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "income",
+       "expense"
+      ],
+      "title": "Kind",
+      "default": "expense"
+     },
+     "amount": {
+      "anyOf": [
+       {
+        "type": "number",
+        "minimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Amount",
+      "default": "0"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "account_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Account Id"
+     },
+     "category_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Id"
+     },
+     "comment": {
+      "type": "string",
+      "maxLength": 500,
+      "title": "Comment",
+      "default": ""
+     }
+    },
+    "type": "object",
+    "required": [
+     "name"
+    ],
+    "title": "TemplateIn"
+   },
+   "TemplateOut": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Name"
+     },
+     "kind": {
+      "type": "string",
+      "enum": [
+       "income",
+       "expense"
+      ],
+      "title": "Kind",
+      "default": "expense"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount",
+      "default": "0.00"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "account_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Account Id"
+     },
+     "category_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Id"
+     },
+     "comment": {
+      "type": "string",
+      "maxLength": 500,
+      "title": "Comment",
+      "default": ""
+     },
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "id",
+     "created_at",
+     "updated_at"
+    ],
+    "title": "TemplateOut"
+   },
+   "TokenOut": {
+    "properties": {
+     "access_token": {
+      "type": "string",
+      "title": "Access Token"
+     },
+     "refresh_token": {
+      "type": "string",
+      "title": "Refresh Token"
+     },
+     "token_type": {
+      "type": "string",
+      "title": "Token Type",
+      "default": "bearer"
+     },
+     "expires_in": {
+      "type": "integer",
+      "title": "Expires In"
+     },
+     "role": {
+      "type": "string",
+      "title": "Role"
+     },
+     "user_id": {
+      "type": "string",
+      "title": "User Id"
+     }
+    },
+    "type": "object",
+    "required": [
+     "access_token",
+     "refresh_token",
+     "expires_in",
+     "role",
+     "user_id"
+    ],
+    "title": "TokenOut"
+   },
+   "TotpCodeIn": {
+    "properties": {
+     "code": {
+      "type": "string",
+      "maxLength": 8,
+      "minLength": 6,
+      "title": "Code"
+     }
+    },
+    "type": "object",
+    "required": [
+     "code"
+    ],
+    "title": "TotpCodeIn"
+   },
+   "TradeIn": {
+    "properties": {
+     "asset_type": {
+      "type": "string",
+      "enum": [
+       "stock",
+       "bond",
+       "etf",
+       "currency",
+       "crypto"
+      ],
+      "title": "Asset Type"
+     },
+     "ticker": {
+      "type": "string",
+      "maxLength": 30,
+      "minLength": 1,
+      "title": "Ticker"
+     },
+     "name": {
+      "type": "string",
+      "maxLength": 150,
+      "title": "Name",
+      "default": ""
+     },
+     "side": {
+      "type": "string",
+      "enum": [
+       "buy",
+       "sell"
+      ],
+      "title": "Side",
+      "default": "buy"
+     },
+     "quantity": {
+      "anyOf": [
+       {
+        "type": "number",
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Quantity"
+     },
+     "price": {
+      "anyOf": [
+       {
+        "type": "number",
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Price"
+     },
+     "fee": {
+      "anyOf": [
+       {
+        "type": "number",
+        "minimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Fee",
+      "default": "0"
+     },
+     "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "title": "Currency",
+      "default": "RUB"
+     },
+     "traded_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Traded At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "asset_type",
+     "ticker",
+     "quantity",
+     "price"
+    ],
+    "title": "TradeIn"
+   },
+   "TradeOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     },
+     "asset_type": {
+      "type": "string",
+      "title": "Asset Type"
+     },
+     "ticker": {
+      "type": "string",
+      "title": "Ticker"
+     },
+     "name": {
+      "type": "string",
+      "title": "Name",
+      "default": ""
+     },
+     "side": {
+      "type": "string",
+      "title": "Side"
+     },
+     "quantity": {
+      "type": "string",
+      "title": "Quantity"
+     },
+     "price": {
+      "type": "string",
+      "title": "Price"
+     },
+     "fee": {
+      "type": "string",
+      "title": "Fee"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "traded_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Traded At"
+     },
+     "locked": {
+      "type": "boolean",
+      "title": "Locked",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "created_at",
+     "updated_at",
+     "asset_type",
+     "ticker",
+     "side",
+     "quantity",
+     "price",
+     "fee",
+     "currency",
+     "traded_at"
+    ],
+    "title": "TradeOut"
+   },
+   "TransactionIn": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "enum": [
+       "income",
+       "expense",
+       "transfer"
+      ],
+      "title": "Kind"
+     },
+     "amount": {
+      "anyOf": [
+       {
+        "type": "number",
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "string"
+       }
+      ],
+      "title": "Amount"
+     },
+     "currency": {
+      "anyOf": [
+       {
+        "type": "string",
+        "pattern": "^[A-Z]{3}$"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Currency"
+     },
+     "account_id": {
+      "type": "string",
+      "title": "Account Id"
+     },
+     "to_account_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "To Account Id"
+     },
+     "amount_to": {
+      "anyOf": [
+       {
+        "type": "number",
+        "exclusiveMinimum": 0.0
+       },
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Amount To"
+     },
+     "category_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Id"
+     },
+     "occurred_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Occurred At"
+     },
+     "comment": {
+      "type": "string",
+      "maxLength": 500,
+      "title": "Comment",
+      "default": ""
+     },
+     "merchant": {
+      "type": "string",
+      "maxLength": 200,
+      "title": "Merchant",
+      "default": ""
+     },
+     "source": {
+      "type": "string",
+      "enum": [
+       "manual",
+       "template",
+       "receipt",
+       "voice",
+       "import",
+       "recurring"
+      ],
+      "title": "Source",
+      "default": "manual"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind",
+     "amount",
+     "account_id"
+    ],
+    "title": "TransactionIn"
+   },
+   "TransactionOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Updated At"
+     },
+     "deleted_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Deleted At"
+     },
+     "rev": {
+      "type": "integer",
+      "title": "Rev",
+      "default": 0
+     },
+     "kind": {
+      "type": "string",
+      "title": "Kind"
+     },
+     "amount": {
+      "type": "string",
+      "title": "Amount"
+     },
+     "currency": {
+      "type": "string",
+      "title": "Currency"
+     },
+     "account_id": {
+      "type": "string",
+      "title": "Account Id"
+     },
+     "to_account_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "To Account Id"
+     },
+     "amount_to": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Amount To"
+     },
+     "category_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Id"
+     },
+     "occurred_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Occurred At"
+     },
+     "comment": {
+      "type": "string",
+      "title": "Comment",
+      "default": ""
+     },
+     "merchant": {
+      "type": "string",
+      "title": "Merchant",
+      "default": ""
+     },
+     "source": {
+      "type": "string",
+      "title": "Source",
+      "default": "manual"
+     },
+     "receipt_file": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Receipt File"
+     },
+     "auto_categorized": {
+      "type": "boolean",
+      "title": "Auto Categorized",
+      "default": false
+     },
+     "category_confidence": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Category Confidence"
+     },
+     "external_id": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "External Id"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "created_at",
+     "updated_at",
+     "kind",
+     "amount",
+     "currency",
+     "account_id",
+     "occurred_at"
+    ],
+    "title": "TransactionOut"
+   },
+   "TransactionPage": {
+    "properties": {
+     "total": {
+      "type": "integer",
+      "title": "Total"
+     },
+     "items": {
+      "items": {
+       "$ref": "#/components/schemas/TransactionOut"
+      },
+      "type": "array",
+      "title": "Items"
+     }
+    },
+    "type": "object",
+    "required": [
+     "total",
+     "items"
+    ],
+    "title": "TransactionPage"
+   },
+   "UserCreateIn": {
+    "properties": {
+     "email": {
+      "type": "string",
+      "format": "email",
+      "title": "Email"
+     },
+     "display_name": {
+      "type": "string",
+      "maxLength": 100,
+      "title": "Display Name",
+      "default": ""
+     },
+     "role": {
+      "type": "string",
+      "title": "Role",
+      "default": "user"
+     },
+     "password": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 128,
+        "minLength": 8
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Password"
+     }
+    },
+    "type": "object",
+    "required": [
+     "email"
+    ],
+    "title": "UserCreateIn"
+   },
+   "UserUpdateIn": {
+    "properties": {
+     "role": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Role"
+     },
+     "display_name": {
+      "anyOf": [
+       {
+        "type": "string",
+        "maxLength": 100
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Display Name"
+     },
+     "expected_updated_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Expected Updated At"
+     }
+    },
+    "type": "object",
+    "title": "UserUpdateIn"
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   }
+  },
+  "securitySchemes": {
+   "HTTPBearer": {
+    "type": "http",
+    "scheme": "bearer"
+   }
+  }
+ }
+}

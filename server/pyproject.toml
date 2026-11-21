@@ -1,0 +1,18 @@
+[project]
+name = "finhelper-server"
+version = "1.0.0"
+description = "Серверная часть мобильного приложения «Финансовый помощник»"
+requires-python = ">=3.11"
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+# B008: вызов Depends() в значениях по умолчанию – штатный прием FastAPI
+ignore = ["B008"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
