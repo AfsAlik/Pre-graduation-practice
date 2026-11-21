@@ -21,6 +21,8 @@ class Sample(BaseModel):
     text: str
     kind: str = "expense"
     category: str
+    # Исходная строка, вариацией которой является пример (учитывается при оценке качества)
+    group: str | None = None
 
 
 class Item(BaseModel):

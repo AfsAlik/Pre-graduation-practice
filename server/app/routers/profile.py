@@ -127,6 +127,8 @@ def list_notifications(unread_only: bool = False, limit: int = 50,
     return {"items": [
         {"id": n.id, "kind": n.kind, "title": n.title, "body": n.body, "payload": n.payload,
          "important": n.important, "created_at": n.created_at.isoformat(),
+         "push_sent_at": n.push_sent_at.isoformat() if n.push_sent_at else None,
+         "email_sent_at": n.email_sent_at.isoformat() if n.email_sent_at else None,
          "read": n.read_at is not None} for n in items
     ]}
 

@@ -2,7 +2,7 @@
 
 Revision ID: 0001
 Revises: 
-Create Date: 2026-11-21 14:33:33.215460
+Create Date: 2026-11-21 15:10:45.258343
 """
 import sqlalchemy as sa
 from alembic import op
@@ -115,7 +115,7 @@ def upgrade() -> None:
     sa.Column('precision', sa.Float(), nullable=False),
     sa.Column('recall', sa.Float(), nullable=False),
     sa.Column('f1', sa.Float(), nullable=False),
-    sa.Column('forecast_mape', sa.Float(), nullable=False),
+    sa.Column('forecast_mape', sa.Float(), nullable=True),
     sa.Column('positive_feedback_share', sa.Float(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=False),
     sa.PrimaryKeyConstraint('id'),

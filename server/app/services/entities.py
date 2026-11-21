@@ -245,9 +245,10 @@ _PREPARE = {
 }
 
 
-def _after_save(db: Session, user: User, entity: str, obj, created: bool) -> None:
+def _after_save(db: Session, user: User, entity: str, obj, created: bool, bulk: bool) -> None:
     if entity == "transaction":
-        if obj.kind == "expense":
+        # При пакетной загрузке лимиты проверяются один раз после загрузки всех операций
+        if obj.kind == "expense" and not bulk:
             check_budgets_for_category(db, user, obj.category_id)
         if not obj.auto_categorized:
             remember_sample(db, user.id, obj)
@@ -277,8 +278,13 @@ def validate(entity: str, data: dict) -> dict:
 def save_entity(
     db: Session, user: User, entity: str, entity_id: str | None, data: dict | BaseModel, *,
     updated_at: datetime | None = None, request: Request | None = None,
+    suggestion: dict | None = None, bulk: bool = False,
 ):
-    """Создает или изменяет сущность пользователя и возвращает ее."""
+    """Создает или изменяет сущность пользователя и возвращает ее.
+
+    suggestion – заранее определенная категория транзакции (пакетный импорт);
+    bulk – пакетная загрузка: проверка бюджетных лимитов откладывается.
+    """
     if isinstance(data, BaseModel):
         data = data.model_dump()
     data = validate(entity, data)
@@ -287,9 +293,14 @@ def save_entity(
     if obj is not None and obj.user_id != user.id:
         raise HTTPException(404, f"{ENTITY_TITLES[entity]} не найден(а)")
     created = obj is None
+    if suggestion is not None and entity == "transaction" and not data.get("category_id"):
+        data.update(category_id=suggestion["category_id"], _suggested=suggestion["confidence"])
     prepare = _PREPARE.get(entity)
     if prepare is not None:
         data = prepare(db, user, obj, data)
+    confidence = data.pop("_suggested", None)
+    if confidence is not None:
+        data["auto_categorized"], data["category_confidence"] = True, confidence
     if created:
         obj = model(user_id=user.id, **data)
         if entity_id:
@@ -301,7 +312,7 @@ def save_entity(
         obj.deleted_at = None
     touch(db, obj, updated_at=_aware(updated_at))
     db.flush()
-    _after_save(db, user, entity, obj, created)
+    _after_save(db, user, entity, obj, created, bulk)
     if entity in AUDITED:
         audit(db, f"{entity}.{'create' if created else 'update'}", user=user, entity=entity,
               entity_id=obj.id, request=request)

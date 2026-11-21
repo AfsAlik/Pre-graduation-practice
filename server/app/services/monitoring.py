@@ -15,7 +15,7 @@ from sqlalchemy.orm import Session
 
 from ..db import SessionLocal
 from ..ml import client as ml_client
-from ..models import ErrorLog, HealthCheck, RequestStat, utcnow
+from ..models import ErrorLog, HealthCheck, Notification, RequestStat, utcnow
 from .currency import rates_info
 
 log = logging.getLogger(__name__)
@@ -119,6 +119,14 @@ def summary(db: Session, hours: int = 24) -> dict:
         chart[key][0] += 1
         chart[key][1] += 1 if ok(check) else 0
     last = checks[-1] if checks else None
+    # Время от наступления события до передачи уведомления в сервис доставки (п. 4.2.2.10 ТЗ)
+    delays = sorted(
+        (n.push_sent_at - n.event_at).total_seconds()
+        for n in db.query(Notification).filter(Notification.event_at >= since,
+                                               Notification.push_sent_at.is_not(None))
+    )
+    pending = db.query(func.count(Notification.id)).filter(
+        Notification.event_at >= since, Notification.push_sent_at.is_(None)).scalar() or 0
     logged_errors = db.query(func.count(ErrorLog.id)).filter(ErrorLog.at >= since).scalar() or 0
     return {
         "period_hours": hours,
@@ -134,6 +142,15 @@ def summary(db: Session, hours: int = 24) -> dict:
             "rates": last.rates_ok if last else False,
         },
         "last_check_at": last.at.isoformat() if last else None,
+        "health_checks": len(checks),
+        "push": {
+            "handed_over": len(delays),
+            "not_handed_over": int(pending),
+            "within_minute_percent": (
+                round(sum(1 for d in delays if d <= 60) / len(delays) * 100, 2) if delays else None),
+            "p95_seconds": round(delays[int(len(delays) * 0.95) - 1], 3) if delays else None,
+            "max_seconds": round(delays[-1], 3) if delays else None,
+        },
         "availability_chart": [
             {"hour": hour, "percent": round(good / total * 100, 1)}
             for hour, (total, good) in sorted(chart.items())

@@ -406,7 +406,7 @@ class QualitySnapshot(Base):
     precision: Mapped[float] = mapped_column(Float, default=0.0)
     recall: Mapped[float] = mapped_column(Float, default=0.0)
     f1: Mapped[float] = mapped_column(Float, default=0.0)
-    forecast_mape: Mapped[float] = mapped_column(Float, default=0.0)
+    forecast_mape: Mapped[float | None] = mapped_column(Float, nullable=True)
     positive_feedback_share: Mapped[float] = mapped_column(Float, default=0.0)
     created_at: Mapped[datetime] = mapped_column(UtcDateTime, default=utcnow)
 

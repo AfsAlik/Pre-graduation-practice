@@ -79,47 +79,64 @@ def remember_sample(db: Session, user_id: str, transaction: Transaction) -> None
         db.add(MlTrainingSample(text=text[:300], kind=transaction.kind, category_name=root.name))
 
 
-def suggest_category(db: Session, user_id: str, text: str, kind: str) -> dict | None:
-    """Определяет категорию операции.
+def suggest_categories(db: Session, user_id: str, items: list[tuple[str, str]]) -> list[dict | None]:
+    """Определяет категории нескольких операций; items – пары (текст, вид операции).
 
     Сначала используется история пользователя: категория его последней операции
-    с тем же текстом. Если такой операции нет, применяется модель классификации.
+    с тем же текстом, выбранная им самим. Для остальных операций одним запросом
+    применяется модель классификации.
     """
-    normalized = normalize(text)
-    if len(normalized) < 2 or kind == "transfer":
-        return None
+    results: list[dict | None] = [None] * len(items)
     history = (
         db.query(Transaction)
         .filter(
             Transaction.user_id == user_id, Transaction.deleted_at.is_(None),
-            Transaction.kind == kind, Transaction.category_id.is_not(None),
-            Transaction.auto_categorized.is_(False),
+            Transaction.category_id.is_not(None), Transaction.auto_categorized.is_(False),
         )
         .order_by(Transaction.occurred_at.desc())
         .limit(300)
         .all()
     )
+    known: dict[tuple[str, str], str] = {}
     for item in history:
-        if normalize(f"{item.merchant} {item.comment}") == normalized:
-            category = db.get(Category, item.category_id)
-            if category is not None and category.deleted_at is None:
-                return {"category_id": category.id, "category_name": category.name,
-                        "confidence": 1.0, "source": "history"}
+        known.setdefault((normalize(f"{item.merchant} {item.comment}"), item.kind), item.category_id)
+    for_model: list[int] = []
+    for index, (text, kind) in enumerate(items):
+        normalized = normalize(text)
+        if len(normalized) < 2 or kind == "transfer":
+            continue
+        category = db.get(Category, known[(normalized, kind)]) if (normalized, kind) in known else None
+        if category is not None and category.deleted_at is None:
+            results[index] = {"category_id": category.id, "category_name": category.name,
+                              "confidence": 1.0, "source": "history"}
+        else:
+            for_model.append(index)
     version = active_version(db)
-    if version is None:
-        return None
+    if not for_model or version is None:
+        return results
     try:
-        prediction = client.predict(version, [{"text": text, "kind": kind}])[0]
+        predictions = client.predict(
+            version, [{"text": items[i][0], "kind": items[i][1]} for i in for_model])
     except Exception:
         log.exception("Сервис машинного обучения недоступен")
-        return None
-    if prediction["confidence"] < MIN_CONFIDENCE:
-        return None
-    category = find_by_name(db, user_id, prediction["category"], kind)
-    if category is None:
-        return None
-    return {"category_id": category.id, "category_name": category.name,
-            "confidence": round(prediction["confidence"], 3), "source": "model"}
+        return results
+    categories: dict[tuple[str, str], Category | None] = {}
+    for index, prediction in zip(for_model, predictions, strict=True):
+        if prediction["confidence"] < MIN_CONFIDENCE:
+            continue
+        key = (prediction["category"], items[index][1])
+        if key not in categories:
+            categories[key] = find_by_name(db, user_id, *key)
+        category = categories[key]
+        if category is not None:
+            results[index] = {"category_id": category.id, "category_name": category.name,
+                              "confidence": round(prediction["confidence"], 3), "source": "model"}
+    return results
+
+
+def suggest_category(db: Session, user_id: str, text: str, kind: str) -> dict | None:
+    """Определяет категорию одной операции (см. suggest_categories)."""
+    return suggest_categories(db, user_id, [(text, kind)])[0]
 
 
 def start_training(db: Session, started_by: str) -> MlModel:

@@ -12,8 +12,10 @@ from ..db import get_db
 from ..models import Account, Transaction, User
 from ..security import get_current_user
 from ..services import entities, exporters, importers, reports
+from ..services.budget import check_budgets_for_category
 from ..services.categories import category_map
 from ..services.currency import get_rate, list_currencies, rates_info, refresh_rates
+from ..services.ml_registry import suggest_categories
 from ..services.periods import period_bounds
 
 router = APIRouter()
@@ -121,13 +123,19 @@ async def import_statement(
         row[0] for row in db.query(Transaction.external_id).filter(
             Transaction.user_id == user.id, Transaction.external_id.is_not(None))
     }
-    imported, skipped, preview = 0, 0, []
+    fresh = []
     for operation in operations:
         fingerprint = operation.fingerprint()
-        if fingerprint in known:
-            skipped += 1
-            continue
-        known.add(fingerprint)
+        if fingerprint not in known:
+            known.add(fingerprint)
+            fresh.append((operation, fingerprint))
+    skipped = len(operations) - len(fresh)
+    # Категории всех операций выписки определяются одним обращением к модели
+    suggestions = suggest_categories(db, user.id, [
+        (operation.description, "income" if operation.amount > 0 else "expense")
+        for operation, _ in fresh])
+    imported, preview, categories = 0, [], set()
+    for (operation, fingerprint), suggestion in zip(fresh, suggestions, strict=True):
         data = {
             "kind": "income" if operation.amount > 0 else "expense",
             "amount": abs(operation.amount), "account_id": account.id,
@@ -140,9 +148,13 @@ async def import_statement(
                             "occurred_at": operation.occurred_at.isoformat()})
             imported += 1
             continue
-        transaction = entities.save_entity(db, user, "transaction", None, data)
+        transaction = entities.save_entity(db, user, "transaction", None, data,
+                                           suggestion=suggestion, bulk=True)
         transaction.external_id = fingerprint
+        categories.add(transaction.category_id)
         imported += 1
+    for category_id in categories:
+        check_budgets_for_category(db, user, category_id)
     if not dry_run:
         audit(db, "import.statement", user=user, request=request,
               details={"file": file.filename, "imported": imported, "skipped": skipped})

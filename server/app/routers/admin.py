@@ -21,6 +21,7 @@ from ..services.periods import day_end, day_start
 from ..services.tasks import enqueue
 
 router = APIRouter(prefix="/admin", tags=["Администрирование"])
+JOB_NAMES = ("health_check", "recurring_reminders", "daily")
 CSV_HEADER = ["at", "journal", "user_email", "action", "entity", "entity_id", "ip", "details"]
 
 
@@ -273,6 +274,18 @@ def monitoring_summary(hours: int = Query(default=24, ge=1, le=24 * 31),
                        admin: User = Depends(require_admin), db: Session = Depends(get_db)) -> dict:
     """Доступность серверной части, среднее время ответа, ошибки, график доступности."""
     return monitoring.summary(db, hours)
+
+
+@router.post("/jobs/{name}/run", response_model=Message, status_code=202)
+def run_job(name: str, request: Request, admin: User = Depends(require_admin),
+            db: Session = Depends(get_db)):
+    """Запуск периодической задачи вне расписания (например, после восстановления сервера)."""
+    if name not in JOB_NAMES:
+        raise HTTPException(404, f"Неизвестная задача. Доступные задачи: {', '.join(JOB_NAMES)}")
+    enqueue(db, "run_job", job=name)
+    audit(db, "admin.job_run", user=admin, journal=JOURNAL_ADMIN, entity="job", entity_id=name,
+          request=request)
+    return Message(message=f"Задача {name} поставлена в очередь")
 
 
 @router.get("/settings")

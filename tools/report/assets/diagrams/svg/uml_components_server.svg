@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="930" viewBox="0 0 1180 930" font-family="Liberation Sans, Arial, sans-serif">
+<defs>
+<marker id="open" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto-start-reverse">
+  <path d="M1,1 L10,5 L1,9" fill="none" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="filled" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto-start-reverse">
+  <path d="M1,1 L10,5 L1,9 Z" fill="#1a1a1a" stroke="#1a1a1a"/></marker>
+<marker id="hollow" markerWidth="16" markerHeight="14" refX="14" refY="7" orient="auto-start-reverse">
+  <path d="M1,1 L14,7 L1,13 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="diamond" markerWidth="18" markerHeight="12" refX="17" refY="6" orient="auto-start-reverse">
+  <path d="M1,6 L9,1 L17,6 L9,11 Z" fill="#1a1a1a" stroke="#1a1a1a"/></marker>
+<marker id="odiamond" markerWidth="18" markerHeight="12" refX="17" refY="6" orient="auto-start-reverse">
+  <path d="M1,6 L9,1 L17,6 L9,11 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="dot" markerWidth="8" markerHeight="8" refX="4" refY="4">
+  <circle cx="4" cy="4" r="3" fill="#1a1a1a"/></marker>
+</defs>
+<rect width="1180" height="930" fill="#fff"/>
+<rect x="40" y="110" width="1100" height="142" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M40,110 h418.0 v14 l-8,8 h-410.0 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="48.0" y="125.0" font-size="12" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">app.routers – программный интерфейс REST (/api/v1)</text>
+<rect x="40" y="300" width="780" height="350" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M40,300 h322.96000000000004 v14 l-8,8 h-314.96000000000004 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="48.0" y="315.0" font-size="12" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">app.services – бизнес-логика подсистем</text>
+<rect x="860" y="300" width="280" height="194" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M860,300 h227.92000000000002 v14 l-8,8 h-219.92000000000002 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="868.0" y="315.0" font-size="12" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">app.ml – машинное обучение</text>
+<rect x="40" y="700" width="780" height="90" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M40,700 h220.0 v14 l-8,8 h-212.0 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="48.0" y="715.0" font-size="12" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">Инфраструктура приложения</text>
+<rect x="40" y="20" width="240" height="50" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="160.0" y="41.8" font-size="9.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«artifact»</text>
+<text xml:space="preserve" x="160.0" y="56.2" font-size="11.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Мобильное приложение</text>
+<rect x="50.0" y="144" width="262.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="181.2" y="163.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">auth</text>
+<text xml:space="preserve" x="181.2" y="176.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">вход, регистрация, 2FA</text>
+<rect x="288.5" y="151" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="284.5" y="153" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="284.5" y="158" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="322.5" y="144" width="262.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="453.8" y="163.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">profile</text>
+<text xml:space="preserve" x="453.8" y="176.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">профиль, уведомления, поддержка</text>
+<rect x="561.0" y="151" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="557.0" y="153" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="557.0" y="158" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="595.0" y="144" width="262.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="726.2" y="163.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">finance</text>
+<text xml:space="preserve" x="726.2" y="176.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">счета, операции, бюджет, цели, инвестиции</text>
+<rect x="833.5" y="151" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="829.5" y="153" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="829.5" y="158" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="867.5" y="144" width="262.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="998.8" y="163.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">analytics</text>
+<text xml:space="preserve" x="998.8" y="176.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">отчеты, импорт и экспорт</text>
+<rect x="1106.0" y="151" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="153" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="158" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="196" width="262.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="181.2" y="215.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">insights</text>
+<text xml:space="preserve" x="181.2" y="228.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">рекомендации, прогноз, риски</text>
+<rect x="288.5" y="203" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="284.5" y="205" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="284.5" y="210" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="322.5" y="196" width="262.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="453.8" y="215.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">sync</text>
+<text xml:space="preserve" x="453.8" y="228.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">синхронизация</text>
+<rect x="561.0" y="203" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="557.0" y="205" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="557.0" y="210" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="595.0" y="196" width="262.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="726.2" y="215.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">admin</text>
+<text xml:space="preserve" x="726.2" y="228.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">пользователи, журналы, мониторинг</text>
+<rect x="833.5" y="203" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="829.5" y="205" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="829.5" y="210" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="867.5" y="196" width="262.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="998.8" y="215.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ml</text>
+<text xml:space="preserve" x="998.8" y="228.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">качество и версии моделей</text>
+<rect x="1106.0" y="203" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="205" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="210" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="334" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="173.3" y="353.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">entities</text>
+<text xml:space="preserve" x="173.3" y="366.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">единые правила сохранения</text>
+<rect x="272.66666666666663" y="341" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="343" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="348" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="306.66666666666663" y="334" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="430.0" y="353.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">balances</text>
+<text xml:space="preserve" x="430.0" y="366.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">балансы счетов</text>
+<rect x="529.3333333333333" y="341" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="343" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="348" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="563.3333333333333" y="334" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="686.7" y="353.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">currency</text>
+<text xml:space="preserve" x="686.7" y="366.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">курсы валют</text>
+<rect x="785.9999999999999" y="341" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="343" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="348" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="386" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="173.3" y="405.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">budget</text>
+<text xml:space="preserve" x="173.3" y="418.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">контроль лимитов</text>
+<rect x="272.66666666666663" y="393" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="395" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="400" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="306.66666666666663" y="386" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="430.0" y="405.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">goals</text>
+<text xml:space="preserve" x="430.0" y="418.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">финансовые цели</text>
+<rect x="529.3333333333333" y="393" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="395" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="400" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="563.3333333333333" y="386" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="686.7" y="405.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">portfolio</text>
+<text xml:space="preserve" x="686.7" y="418.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">инвестиционный портфель</text>
+<rect x="785.9999999999999" y="393" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="395" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="400" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="438" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="173.3" y="457.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">quotes</text>
+<text xml:space="preserve" x="173.3" y="470.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">биржевые котировки</text>
+<rect x="272.66666666666663" y="445" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="447" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="452" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="306.66666666666663" y="438" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="430.0" y="457.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">reports</text>
+<text xml:space="preserve" x="430.0" y="470.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">отчеты, главный экран</text>
+<rect x="529.3333333333333" y="445" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="447" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="452" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="563.3333333333333" y="438" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="686.7" y="457.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">insights</text>
+<text xml:space="preserve" x="686.7" y="470.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">паттерны, риски, рекомендации</text>
+<rect x="785.9999999999999" y="445" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="447" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="452" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="490" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="173.3" y="509.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">notifier</text>
+<text xml:space="preserve" x="173.3" y="522.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">уведомления</text>
+<rect x="272.66666666666663" y="497" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="499" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="504" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="306.66666666666663" y="490" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="430.0" y="509.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">importers</text>
+<text xml:space="preserve" x="430.0" y="522.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">разбор CSV, OFX, QIF</text>
+<rect x="529.3333333333333" y="497" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="499" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="504" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="563.3333333333333" y="490" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="686.7" y="509.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">exporters</text>
+<text xml:space="preserve" x="686.7" y="522.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">PDF, XLSX, CSV</text>
+<rect x="785.9999999999999" y="497" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="499" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="504" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="542" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="173.3" y="561.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">textparse</text>
+<text xml:space="preserve" x="173.3" y="574.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">текст чека, голос</text>
+<rect x="272.66666666666663" y="549" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="551" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="556" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="306.66666666666663" y="542" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="430.0" y="561.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ml_registry</text>
+<text xml:space="preserve" x="430.0" y="574.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">версии модели</text>
+<rect x="529.3333333333333" y="549" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="551" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="556" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="563.3333333333333" y="542" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="686.7" y="561.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">monitoring</text>
+<text xml:space="preserve" x="686.7" y="574.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">метрики, проверки</text>
+<rect x="785.9999999999999" y="549" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="551" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="556" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="594" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="173.3" y="613.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">scheduler</text>
+<text xml:space="preserve" x="173.3" y="626.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">расписание</text>
+<rect x="272.66666666666663" y="601" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="603" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="268.66666666666663" y="608" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="306.66666666666663" y="594" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="430.0" y="613.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">tasks</text>
+<text xml:space="preserve" x="430.0" y="626.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">очередь задач</text>
+<rect x="529.3333333333333" y="601" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="603" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="525.3333333333333" y="608" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="563.3333333333333" y="594" width="246.66666666666666" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="686.7" y="613.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">storage</text>
+<text xml:space="preserve" x="686.7" y="626.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">файлы</text>
+<rect x="785.9999999999999" y="601" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="603" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="781.9999999999999" y="608" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="870.0" y="334" width="260.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1000.0" y="353.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">client</text>
+<text xml:space="preserve" x="1000.0" y="366.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">внутренний интерфейс</text>
+<rect x="1106.0" y="341" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="343" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="348" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="870.0" y="386" width="260.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1000.0" y="405.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">categorizer</text>
+<text xml:space="preserve" x="1000.0" y="418.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">классификатор операций</text>
+<rect x="1106.0" y="393" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="395" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="400" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="870.0" y="438" width="260.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1000.0" y="457.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">forecast</text>
+<text xml:space="preserve" x="1000.0" y="470.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">прогноз временных рядов</text>
+<rect x="1106.0" y="445" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="447" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="452" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="734" width="182.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="141.2" y="753.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">models</text>
+<text xml:space="preserve" x="141.2" y="766.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">модели данных (ORM)</text>
+<rect x="208.5" y="741" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="204.5" y="743" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="204.5" y="748" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="242.5" y="734" width="182.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="333.8" y="753.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">db</text>
+<text xml:space="preserve" x="333.8" y="766.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">сеансы и транзакции БД</text>
+<rect x="401.0" y="741" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="397.0" y="743" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="397.0" y="748" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="435.0" y="734" width="182.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="526.2" y="753.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">security</text>
+<text xml:space="preserve" x="526.2" y="766.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">JWT, роли, хеши паролей</text>
+<rect x="593.5" y="741" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="589.5" y="743" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="589.5" y="748" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="627.5" y="734" width="182.5" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="718.8" y="753.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">audit</text>
+<text xml:space="preserve" x="718.8" y="766.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">журналы аудита и ошибок</text>
+<rect x="786.0" y="741" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="782.0" y="743" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="782.0" y="748" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="860" y="540" width="280" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1000.0" y="560.1" font-size="9" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«service»</text>
+<text xml:space="preserve" x="1000.0" y="573.9" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ml_service – сервис</text>
+<text xml:space="preserve" x="1000.0" y="587.6" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">машинного обучения</text>
+<rect x="1116" y="547" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1112" y="549" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1112" y="554" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="860" y="640" width="280" height="56" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1000.0" y="665.0" font-size="9" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«process»</text>
+<text xml:space="preserve" x="1000.0" y="678.7" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">app.worker – фоновые задачи</text>
+<rect x="1116" y="647" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1112" y="649" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1112" y="654" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<path d="M170,849 v46 a110.0,9 0 0 0 220,0 v-46" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/><ellipse cx="280.0" cy="849" rx="110.0" ry="9" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="280.0" y="881.2" font-size="12" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">PostgreSQL</text>
+<path d="M470,849 v46 a110.0,9 0 0 0 220,0 v-46" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/><ellipse cx="580.0" cy="849" rx="110.0" ry="9" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="580.0" y="881.2" font-size="12" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Redis</text>
+<rect x="860" y="740" width="280" height="56" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4"/>
+<text xml:space="preserve" x="1000.0" y="765.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">Внешние сервисы: Банк России,</text>
+<text xml:space="preserve" x="1000.0" y="778.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">Московская биржа, FCM, SMTP</text>
+<polyline points="160.0,70.0 160.0,110.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="430.0,252.0 430.0,300.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="430.0,650.0 430.0,700.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="820.0,400.0 860.0,400.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="1000.0,500.0 1000.0,540.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="860.0,668.0 820.0,668.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="280.0,796.0 280.0,840.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="580.0,796.0 580.0,840.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="1000.0,696.0 1000.0,740.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<rect x="175.1" y="84.0" width="73.8" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="212.0" y="94.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">HTTPS, JSON</text>
+<rect x="438.5" y="270.0" width="43.0" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="460.0" y="280.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">вызовы</text>
+<rect x="1008.7" y="514.0" width="30.6" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="1024.0" y="524.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">HTTP</text>
+<rect x="287.8" y="812.0" width="24.5" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="300.0" y="822.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">SQL</text>
+<rect x="586.0" y="812.0" width="79.9" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="626.0" y="822.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">очередь, кеш</text>
+</svg>

@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="760" viewBox="0 0 1180 760" font-family="Liberation Sans, Arial, sans-serif">
+<defs>
+<marker id="open" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto-start-reverse">
+  <path d="M1,1 L10,5 L1,9" fill="none" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="filled" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto-start-reverse">
+  <path d="M1,1 L10,5 L1,9 Z" fill="#1a1a1a" stroke="#1a1a1a"/></marker>
+<marker id="hollow" markerWidth="16" markerHeight="14" refX="14" refY="7" orient="auto-start-reverse">
+  <path d="M1,1 L14,7 L1,13 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="diamond" markerWidth="18" markerHeight="12" refX="17" refY="6" orient="auto-start-reverse">
+  <path d="M1,6 L9,1 L17,6 L9,11 Z" fill="#1a1a1a" stroke="#1a1a1a"/></marker>
+<marker id="odiamond" markerWidth="18" markerHeight="12" refX="17" refY="6" orient="auto-start-reverse">
+  <path d="M1,6 L9,1 L17,6 L9,11 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="dot" markerWidth="8" markerHeight="8" refX="4" refY="4">
+  <circle cx="4" cy="4" r="3" fill="#1a1a1a"/></marker>
+</defs>
+<rect width="1180" height="760" fill="#fff"/>
+<path d="M40,60 l10,-10 h300 v330 l-10,10 M340,60 l10,-10" fill="#F4F4F4" stroke="#1a1a1a" stroke-width="1.2"/><path d="M40,60 l10,-10 h300 l-10,10 Z M340,60 l10,-10 v330 l-10,10 Z" fill="#DADADA" stroke="#1a1a1a" stroke-width="1.2"/><rect x="40" y="60" width="300" height="330" fill="#F4F4F4" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="190.0" y="77.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«device»</text>
+<text xml:space="preserve" x="190.0" y="92.0" font-size="12" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Смартфон пользователя</text>
+<text xml:space="preserve" x="190.0" y="107.0" font-size="12" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Android 8.0 (API 26) и выше</text>
+<path d="M430,60 l10,-10 h420 v440 l-10,10 M850,60 l10,-10" fill="#F4F4F4" stroke="#1a1a1a" stroke-width="1.2"/><path d="M430,60 l10,-10 h420 l-10,10 Z M850,60 l10,-10 v440 l-10,10 Z" fill="#DADADA" stroke="#1a1a1a" stroke-width="1.2"/><rect x="430" y="60" width="420" height="440" fill="#F4F4F4" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="640.0" y="77.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«execution environment»</text>
+<text xml:space="preserve" x="640.0" y="92.0" font-size="12" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Сервер приложений</text>
+<text xml:space="preserve" x="640.0" y="107.0" font-size="12" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Ubuntu Server 22.04, Docker Compose</text>
+<path d="M430,560 l10,-10 h420 v150 l-10,10 M850,560 l10,-10" fill="#F4F4F4" stroke="#1a1a1a" stroke-width="1.2"/><path d="M430,560 l10,-10 h420 l-10,10 Z M850,560 l10,-10 v150 l-10,10 Z" fill="#DADADA" stroke="#1a1a1a" stroke-width="1.2"/><rect x="430" y="560" width="420" height="150" fill="#F4F4F4" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="640.0" y="577.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«execution environment»</text>
+<text xml:space="preserve" x="640.0" y="592.0" font-size="12" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Сервер базы данных</text>
+<rect x="930" y="60" width="220" height="440" rx="0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4"/>
+<path d="M930,60 h140.8 v14 l-8,8 h-132.8 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="938.0" y="75.0" font-size="12" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">Внешние сервисы</text>
+<rect x="65" y="135" width="250" height="56" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="190.0" y="159.7" font-size="10" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«artifact»</text>
+<text xml:space="preserve" x="190.0" y="174.7" font-size="12" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">finhelper.apk</text>
+<rect x="291" y="142" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="287" y="144" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="287" y="149" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<path d="M65,224 v52 a125.0,9 0 0 0 250,0 v-52" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/><ellipse cx="190.0" cy="224" rx="125.0" ry="9" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="190.0" y="252.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Локальная БД</text>
+<text xml:space="preserve" x="190.0" y="265.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">Room + SQLCipher (AES-256)</text>
+<rect x="65" y="305" width="250" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="190.0" y="332.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">Android Keystore</text>
+<text xml:space="preserve" x="190.0" y="345.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">(ключ БД, токены доступа)</text>
+<rect x="455" y="138" width="370" height="46" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="640.0" y="164.8" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Обратный прокси (nginx), сертификат TLS</text>
+<rect x="801" y="145" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="797" y="147" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="797" y="152" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="455" y="206" width="175" height="80" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="542.5" y="236.1" font-size="9" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«container» api</text>
+<text xml:space="preserve" x="542.5" y="249.8" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Серверное приложение</text>
+<text xml:space="preserve" x="542.5" y="263.6" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">FastAPI, gunicorn</text>
+<rect x="606" y="213" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="602" y="215" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="602" y="220" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="650" y="206" width="175" height="80" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="737.5" y="236.1" font-size="9" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«container» worker</text>
+<text xml:space="preserve" x="737.5" y="249.8" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Фоновые задачи</text>
+<text xml:space="preserve" x="737.5" y="263.6" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">и планировщик</text>
+<rect x="801" y="213" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="797" y="215" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="797" y="220" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="455" y="308" width="175" height="80" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="542.5" y="338.1" font-size="9" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«container» ml</text>
+<text xml:space="preserve" x="542.5" y="351.9" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Сервис машинного</text>
+<text xml:space="preserve" x="542.5" y="365.6" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">обучения</text>
+<rect x="606" y="315" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="602" y="317" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="602" y="322" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="650" y="308" width="175" height="80" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="737.5" y="338.1" font-size="9" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«container» redis</text>
+<text xml:space="preserve" x="737.5" y="351.9" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Кеш и очередь</text>
+<text xml:space="preserve" x="737.5" y="365.6" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">задач (Redis 7)</text>
+<rect x="801" y="315" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="797" y="317" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="797" y="322" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="455" y="410" width="175" height="66" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="542.5" y="440.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">Том данных:</text>
+<text xml:space="preserve" x="542.5" y="453.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">модели, файлы чеков</text>
+<rect x="650" y="410" width="175" height="66" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="737.5" y="440.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Prometheus, Grafana</text>
+<text xml:space="preserve" x="737.5" y="453.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">(сбор метрик /metrics)</text>
+<rect x="801" y="417" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="797" y="419" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="797" y="424" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<path d="M470,624 v58 a80.0,9 0 0 0 160,0 v-58" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/><ellipse cx="550.0" cy="624" rx="80.0" ry="9" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="550.0" y="655.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">PostgreSQL 16</text>
+<text xml:space="preserve" x="550.0" y="668.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">основной узел</text>
+<path d="M670,624 v58 a80.0,9 0 0 0 160,0 v-58" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/><ellipse cx="750.0" cy="624" rx="80.0" ry="9" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="750.0" y="655.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">PostgreSQL 16</text>
+<text xml:space="preserve" x="750.0" y="668.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">резервный узел</text>
+<rect x="950" y="110" width="180" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1040.0" y="137.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Банк России</text>
+<text xml:space="preserve" x="1040.0" y="150.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">курсы валют (HTTPS)</text>
+<rect x="950" y="195" width="180" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1040.0" y="222.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Московская биржа</text>
+<text xml:space="preserve" x="1040.0" y="235.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">ISS MOEX (HTTPS)</text>
+<rect x="950" y="280" width="180" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1040.0" y="307.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Firebase Cloud</text>
+<text xml:space="preserve" x="1040.0" y="320.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">Messaging</text>
+<rect x="950" y="365" width="180" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1040.0" y="392.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Почтовый сервер</text>
+<text xml:space="preserve" x="1040.0" y="405.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">(SMTP)</text>
+<rect x="950" y="590" width="180" height="70" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1040.0" y="615.1" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">S3-совместимое</text>
+<text xml:space="preserve" x="1040.0" y="628.9" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">хранилище</text>
+<text xml:space="preserve" x="1040.0" y="642.6" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">(резервные копии)</text>
+<polyline points="340.0,162.3 455.0,161.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="547.5,184.0 542.5,206.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="542.5,286.0 542.5,308.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="603.8,286.0 603.8,297.0 680.0,297.0 679.8,308.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="737.5,286.0 737.5,308.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="542.5,388.0 542.5,410.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="455.0,262.0 442.0,262.0 442.0,540.0 550.0,540.0 550.0,615.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="630.0,653.0 670.0,653.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="825.0,230.0 950.0,140.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="825.0,246.0 950.0,225.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="825.0,262.0 950.0,310.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="825.0,278.0 900.0,278.0 900.0,395.0 950.0,395.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" marker-end="url(#open)"/>
+<polyline points="830.0,653.0 950.0,632.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<rect x="351.4" y="133.7" width="92.2" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="397.5" y="143.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">REST API, JSON</text>
+<rect x="345.2" y="146.8" width="104.6" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="397.5" y="156.8" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">HTTPS (TLS 1.2+)</text>
+<rect x="549.2" y="291.0" width="30.6" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="564.5" y="301.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">HTTP</text>
+<rect x="415.8" y="386.0" width="24.5" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="428.0" y="396.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">SQL</text>
+<rect x="616.2" y="638.0" width="67.6" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="650.0" y="648.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">репликация</text>
+<rect x="865.4" y="627.5" width="49.1" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="890.0" y="637.5" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">pg_dump</text>
+</svg>

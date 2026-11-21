@@ -202,3 +202,20 @@ def test_expired_data_is_purged(make_api, db):
     # Через 30 дней удаленная транзакция уничтожается, более свежая остается в корзине
     assert db.get(Transaction, old["id"]) is None
     assert db.get(Transaction, fresh["id"]) is not None
+
+
+def test_admin_runs_periodic_job_on_demand(make_api):
+    from datetime import date, timedelta
+
+    admin, user = make_api("admin"), make_api("user")
+    account = user.account()
+    user.post("/recurring-payments", {
+        "name": "Подписка", "amount": "199", "account_id": account["id"], "period": "month",
+        "next_date": (date.today() + timedelta(days=1)).isoformat(), "remind_days_before": 2})
+    admin.post("/admin/jobs/recurring_reminders/run", expected=202)
+    reminders = [n for n in user.get("/notifications")["items"] if n["kind"] == "recurring_payment"]
+    assert len(reminders) == 1 and reminders[0]["push_sent_at"] is not None
+    admin.post("/admin/jobs/unknown/run", expected=404)
+    user.post("/admin/jobs/daily/run", expected=403)
+    push = admin.get("/admin/monitoring", params={"hours": 1})["push"]
+    assert push["handed_over"] >= 1 and push["within_minute_percent"] == 100.0

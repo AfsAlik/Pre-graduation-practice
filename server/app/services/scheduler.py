@@ -34,6 +34,7 @@ from .currency import refresh_rates
 from .notifier import notify
 from .periods import add_months
 from .quotes import refresh_user_quotes
+from .tasks import task
 
 log = logging.getLogger(__name__)
 
@@ -77,16 +78,25 @@ def remind_recurring_payments(db: Session, today: date | None = None) -> int:
     return sent
 
 
-def daily_user_analysis(db: Session) -> None:
-    """Оценка рисков и формирование рекомендаций для всех пользователей."""
+def daily_user_analysis(db: Session) -> float | None:
+    """Оценка рисков и формирование рекомендаций для всех пользователей.
+
+    Возвращает среднюю по пользователям ошибку прогноза расходов (MAPE, %),
+    рассчитанную проверкой прогноза на последних месяцах истории.
+    """
+    errors: list[float] = []
     for user in active_users(db):
         try:
             insights.assess_risks(db, user)
             insights.generate_recommendations(db, user)
+            mape = insights.forecast(db, user)["expense"]["mape"]
+            if mape is not None:
+                errors.append(mape)
             db.commit()
         except Exception:
             db.rollback()
             log.exception("Ошибка анализа данных пользователя %s", user.id)
+    return round(sum(errors) / len(errors), 2) if errors else None
 
 
 def purge_expired(db: Session) -> dict:
@@ -115,9 +125,9 @@ def daily(db: Session) -> None:
     db.commit()
     refresh_user_quotes(db, force=True)
     db.commit()
-    daily_user_analysis(db)
+    forecast_error = daily_user_analysis(db)
     purge_expired(db)
-    ml_registry.save_snapshot(db)
+    ml_registry.save_snapshot(db, forecast_error)
 
 
 JOBS = [
@@ -125,6 +135,14 @@ JOBS = [
     ("recurring_reminders", 3600, remind_recurring_payments),
     ("daily", 24 * 3600, daily),
 ]
+
+
+@task("run_job")
+def run_job(db: Session, job: str) -> None:
+    """Фоновая задача: выполнение периодической задачи по запросу администратора."""
+    for job_name, _interval, func in JOBS:
+        if job_name == job:
+            func(db)
 
 
 class Scheduler:
