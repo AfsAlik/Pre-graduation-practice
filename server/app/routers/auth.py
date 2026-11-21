@@ -24,6 +24,7 @@ from ..security import (
     verify_password,
     verify_totp,
 )
+from ..services import settings_store
 from ..services.notifier import notify
 from ..services.tasks import enqueue
 
@@ -111,7 +112,8 @@ def register(data: RegisterIn, request: Request, db: Session = Depends(get_db)):
         consent_pd_at=utcnow(), base_currency=settings.default_base_currency,
         email_confirmed=not settings.require_email_confirmation,
         notification_settings=NotificationSettings(
-            budget_threshold_percent=settings.budget_warning_percent).model_dump(),
+            budget_threshold_percent=int(settings_store.get_value(db, "notifications").get(
+                "budget_warning_percent", settings.budget_warning_percent))).model_dump(),
     )
     db.add(user)
     db.flush()

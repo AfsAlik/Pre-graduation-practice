@@ -27,6 +27,8 @@ _pool = ThreadPoolExecutor(max_workers=4, thread_name_prefix="fh-task")
 _redis_client = None
 # В тестах задачи выполняются синхронно сразу после фиксации транзакции
 run_inline = False
+# Задачи, которые не выполняются (например, обращения к внешним источникам при загрузке данных)
+skipped: set[str] = set()
 
 
 def task(name: str):
@@ -69,6 +71,8 @@ def run_task(name: str, kwargs: dict) -> None:
 
 
 def _dispatch(name: str, kwargs: dict) -> None:
+    if name in skipped:
+        return
     if run_inline:
         run_task(name, kwargs)
         return

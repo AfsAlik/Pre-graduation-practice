@@ -14,27 +14,62 @@
     FH_LOAD_SHAPE=steps locust -f loadtest/locustfile.py --headless -H http://localhost:8000 \
            --csv var/load/steps --csv-full-history
 """
+import csv
 import itertools
 import os
 import random
+import time
 import uuid
 from datetime import UTC, datetime
 
-from locust import HttpUser, LoadTestShape, between, task
+from locust import HttpUser, LoadTestShape, between, events, task
 
 API = "/api/v1"
 PASSWORD = os.getenv("FH_LOAD_PASSWORD", "Demo-2026-pass")
 USERS = int(os.getenv("FH_LOAD_USERS", "200"))
 _numbers = itertools.cycle(range(1, USERS + 1))
+# Журнал запросов: время выполнения каждого запроса для расчета перцентилей (FH_LOAD_LOG)
+REQUEST_LOG = os.getenv("FH_LOAD_LOG", "")
+# Дополнительные экземпляры серверного приложения, между которыми распределяются пользователи
+EXTRA_HOSTS = [h for h in os.getenv("FH_LOAD_EXTRA_HOSTS", "").split(",") if h]
 MERCHANTS = ["Пятерочка", "Магнит", "Яндекс Такси", "Шоколадница", "Лукойл АЗС", "Аптека Ригла",
              "Ozon", "ВкусВилл", "Кинопоиск", "Додо Пицца"]
+
+
+if REQUEST_LOG:
+    os.makedirs(os.path.dirname(REQUEST_LOG) or ".", exist_ok=True)
+    _log_file = open(REQUEST_LOG, "w", newline="", encoding="utf-8")  # noqa: SIM115
+    _log = csv.writer(_log_file)
+    _log.writerow(["time", "name", "response_ms", "ok", "users"])
+
+    @events.request.add_listener
+    def _on_request(name, response_time, exception, context, **_kwargs):
+        runner = _environment.runner if _environment else None
+        _log.writerow([f"{time.time():.3f}", name, f"{response_time:.1f}", int(exception is None),
+                       runner.user_count if runner else 0])
+
+    @events.quitting.add_listener
+    def _on_quit(**_kwargs):
+        _log_file.close()
+
+_environment = None
+
+
+@events.init.add_listener
+def _on_init(environment, **_kwargs):
+    global _environment
+    _environment = environment
 
 
 class FinHelperUser(HttpUser):
     wait_time = between(8, 12)
 
     def on_start(self) -> None:
-        email = f"load{next(_numbers):03d}@example.com"
+        number = next(_numbers)
+        if EXTRA_HOSTS:  # распределение пользователей между экземплярами поровну
+            hosts = [self.host, *EXTRA_HOSTS]
+            self.client.base_url = hosts[number % len(hosts)]
+        email = f"load{number:03d}@example.com"
         response = self.client.post(f"{API}/auth/login", json={"email": email, "password": PASSWORD},
                                     name="POST /auth/login")
         response.raise_for_status()

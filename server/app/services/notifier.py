@@ -15,6 +15,7 @@ from sqlalchemy.orm import Session
 from ..config import get_settings
 from ..models import Device, Notification, User, utcnow
 from ..schemas import NotificationSettings
+from .settings_store import integration
 from .tasks import enqueue, task
 
 log = logging.getLogger(__name__)
@@ -61,9 +62,9 @@ def notify(
     return notification
 
 
-def send_push(tokens: list[str], title: str, body: str, data: dict) -> None:
+def send_push(tokens: list[str], title: str, body: str, data: dict, provider: str | None = None) -> None:
     settings = get_settings()
-    if settings.push_provider == "fcm" and settings.fcm_credentials_file:
+    if (provider or settings.push_provider) == "fcm" and settings.fcm_credentials_file:
         _send_fcm(tokens, title, body, data)
     else:
         outbox.append({"channel": "push", "tokens": tokens, "title": title, "body": body})
@@ -89,9 +90,9 @@ def _send_fcm(tokens: list[str], title: str, body: str, data: dict) -> None:
         messaging.send(message)
 
 
-def send_email(to: str, subject: str, body: str) -> None:
+def send_email(to: str, subject: str, body: str, provider: str | None = None) -> None:
     settings = get_settings()
-    if settings.email_provider == "smtp" and settings.smtp_host:
+    if (provider or settings.email_provider) == "smtp" and settings.smtp_host:
         message = EmailMessage()
         message["From"], message["To"], message["Subject"] = settings.smtp_from, to, subject
         message.set_content(body)
@@ -123,13 +124,15 @@ def deliver_notification(db: Session, notification_id: str) -> None:
         ]
         try:
             send_push(tokens, notification.title, notification.body,
-                      {"kind": notification.kind, "id": notification.id, **notification.payload})
+                      {"kind": notification.kind, "id": notification.id, **notification.payload},
+                      integration(db, "push_provider"))
             notification.push_sent_at = utcnow()
         except Exception:
             log.exception("Не удалось передать push-уведомление %s", notification.id)
     if settings.email_enabled and notification.important and notification.email_sent_at is None:
         try:
-            send_email(user.email, notification.title, notification.body)
+            send_email(user.email, notification.title, notification.body,
+                       integration(db, "email_provider"))
             notification.email_sent_at = utcnow()
         except Exception:
             log.exception("Не удалось отправить письмо для уведомления %s", notification.id)
@@ -137,4 +140,4 @@ def deliver_notification(db: Session, notification_id: str) -> None:
 
 @task("send_email")
 def send_email_task(db: Session, to: str, subject: str, body: str) -> None:
-    send_email(to, subject, body)
+    send_email(to, subject, body, integration(db, "email_provider"))

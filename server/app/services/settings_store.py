@@ -15,7 +15,7 @@ def defaults() -> dict:
             "email_provider": settings.email_provider,
         },
         "notifications": {"budget_warning_percent": settings.budget_warning_percent},
-        "backup": {"cron": settings.backup_cron, "keep_days": 92},
+        "backup": {"cron": settings.backup_cron, "keep_days": 92, "directory": "var/backups"},
         "maintenance": {"enabled": False, "message": ""},
     }
 
@@ -32,6 +32,11 @@ def get_all(db: Session) -> dict:
 
 def get_value(db: Session, key: str) -> dict:
     return get_all(db).get(key, {})
+
+
+def integration(db: Session, name: str) -> str:
+    """Действующее значение параметра интеграции: настройка администратора или параметр запуска."""
+    return str(get_value(db, "integrations").get(name) or getattr(get_settings(), name))
 
 
 def set_value(db: Session, key: str, value: dict, updated_by: str) -> None:

@@ -62,7 +62,13 @@ class Api:
         self.http.headers["Authorization"] = f"Bearer {data['access_token']}"
 
     def call(self, method: str, path: str, **kwargs) -> httpx.Response:
-        return self.http.request(method, f"{self.base}{API}{path}", **kwargs)
+        try:
+            return self.http.request(method, f"{self.base}{API}{path}", **kwargs)
+        except httpx.TransportError:
+            if method != "GET":
+                raise
+            # Сервер закрыл простаивавшее соединение: чтение безопасно повторить
+            return self.http.request(method, f"{self.base}{API}{path}", **kwargs)
 
     def get(self, path: str, **params):
         response = self.call("GET", path, params=params or None)

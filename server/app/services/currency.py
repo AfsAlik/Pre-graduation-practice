@@ -47,9 +47,9 @@ def parse_cbr_xml(content: bytes) -> tuple[date, dict[str, Decimal]]:
     return day, rates
 
 
-def fetch_rates() -> tuple[date, dict[str, Decimal], str]:
+def fetch_rates(provider: str | None = None) -> tuple[date, dict[str, Decimal], str]:
     settings = get_settings()
-    if settings.rates_provider == "static":
+    if (provider or settings.rates_provider) == "static":
         return date.today(), dict(STATIC_RATES), "static"
     response = httpx.get(
         settings.rates_url, timeout=settings.external_timeout_seconds, follow_redirects=True
@@ -61,8 +61,10 @@ def fetch_rates() -> tuple[date, dict[str, Decimal], str]:
 
 def refresh_rates(db: Session) -> dict:
     """Обновляет курсы валют. При сбое источника сохраненные курсы не изменяются."""
+    from .settings_store import integration  # локальный импорт: модуль настроек использует БД
+
     try:
-        day, rates, source = fetch_rates()
+        day, rates, source = fetch_rates(integration(db, "rates_provider"))
     except Exception as exc:  # сеть, формат ответа и т.п.
         log.warning("Источник курсов валют недоступен: %s", exc)
         return {"ok": False, "error": str(exc), **rates_info(db)}

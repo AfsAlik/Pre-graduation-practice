@@ -230,6 +230,12 @@ class Report:
         table.autofit = False
         total = sum(widths) if widths else columns
         column_widths = [TEXT_WIDTH_CM * (w / total) for w in (widths or [1] * columns)]
+        # Фиксированная ширина столбцов (иначе редакторы распределяют ее поровну)
+        layout = OxmlElement("w:tblLayout")
+        layout.set(qn("w:type"), "fixed")
+        table._tbl.tblPr.append(layout)
+        for column, width in zip(table.columns, column_widths, strict=True):
+            column.width = Cm(width)
         for r, row in enumerate(rows):
             tr = table.rows[r]._tr
             trpr = tr.get_or_add_trPr()

@@ -69,6 +69,17 @@ def backup(directory: str) -> Path:
     return path
 
 
+def remove_old_backups(directory: str, keep_days: int) -> int:
+    """Удаляет резервные копии старше срока хранения. Возвращает число удаленных файлов."""
+    border = datetime.now(UTC).timestamp() - keep_days * 86400
+    removed = 0
+    for path in Path(directory).glob("finhelper_*.dump"):
+        if path.stat().st_mtime < border:
+            path.unlink()
+            removed += 1
+    return removed
+
+
 def restore(path: str) -> None:
     """Восстанавливает базу данных из копии. Существующие объекты заменяются."""
     env, args = _pg_env()
@@ -145,21 +156,30 @@ def fill_demo_data(db, user, rng: random.Random) -> int:
 
 
 def seed_users(users: list[tuple[str, str, str]], password: str, seed: int = 2026) -> None:
-    """Создает учетные записи и заполняет их демонстрационными данными."""
+    """Создает учетные записи и заполняет их демонстрационными данными.
+
+    На время заполнения уведомления отключаются, чтобы исторические операции не
+    порождали поток сообщений; после заполнения настройки возвращаются.
+    """
     tasks.run_inline = True
+    # Котировки обновятся при первом открытии портфеля; при загрузке данных биржа не опрашивается
+    tasks.skipped.add("refresh_quote")
     rng = random.Random(seed)
     db = SessionLocal()
     try:
         for email, role, name in users:
             user = bootstrap.create_user(db, email, password, role, name)
             user.onboarding_done = True
-            # Тестовые данные не должны порождать поток уведомлений
-            user.notification_settings = {**(user.notification_settings or {}), "push_enabled": False}
-            db.commit()
             if db.query(Account).filter(Account.user_id == user.id).first() is not None:
                 print(f"{email}: данные уже существуют")
                 continue
-            print(f"{email}: создано операций – {fill_demo_data(db, user, rng)}")
+            settings = dict(user.notification_settings or {})
+            user.notification_settings = {**settings, "budget": False, "goals": False}
+            db.commit()
+            count = fill_demo_data(db, user, rng)
+            user.notification_settings = settings
+            db.commit()
+            print(f"{email}: создано операций – {count}")
     finally:
         db.close()
 

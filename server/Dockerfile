@@ -19,7 +19,7 @@ COPY app ./app
 COPY ml_service ./ml_service
 COPY scripts ./scripts
 RUN chmod +x scripts/*.sh && useradd --create-home finhelper \
-    && mkdir -p var && chown -R finhelper:finhelper /srv/finhelper
+    && mkdir -p var/models var/storage var/backups && chown -R finhelper:finhelper /srv/finhelper
 USER finhelper
 
 EXPOSE 8000

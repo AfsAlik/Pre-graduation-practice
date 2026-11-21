@@ -129,8 +129,10 @@ def fetch_moex_history(ticker: str, asset_type: str, start: date) -> list[tuple[
 
 def fetch_quote(db: Session, ticker: str, asset_type: str) -> tuple[Decimal, str, str, str]:
     """Возвращает (цена, валюта, название, источник) из внешнего источника."""
+    from .settings_store import integration
+
     ticker = ticker.upper()
-    if get_settings().quotes_provider == "static":
+    if integration(db, "quotes_provider") == "static":
         if ticker not in STATIC_QUOTES:
             raise QuoteUnavailable(f"Нет цены для {ticker}")
         return STATIC_QUOTES[ticker], "RUB", ticker, "static"

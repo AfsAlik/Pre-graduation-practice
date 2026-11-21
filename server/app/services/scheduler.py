@@ -130,7 +130,38 @@ def daily(db: Session) -> None:
     ml_registry.save_snapshot(db, forecast_error)
 
 
+_last_backup_day: date | None = None
+
+
+def backup_if_due(db: Session) -> None:
+    """Создает резервную копию БД по расписанию из системных настроек.
+
+    Расписание задается в формате cron; учитываются минуты и часы (время UTC),
+    копия создается один раз в сутки. Копии старше срока хранения удаляются.
+    """
+    global _last_backup_day
+    from . import settings_store
+
+    if not get_settings().database_url.startswith("postgresql"):
+        return
+    schedule = settings_store.get_value(db, "backup")
+    try:
+        minute, hour = (int(part) for part in str(schedule.get("cron", "")).split()[:2])
+    except ValueError:
+        return
+    now = utcnow()
+    if _last_backup_day == now.date() or (now.hour, now.minute) < (hour, minute):
+        return
+    _last_backup_day = now.date()
+    from .. import manage
+
+    directory = str(schedule.get("directory", "var/backups"))
+    manage.backup(directory)
+    manage.remove_old_backups(directory, int(schedule.get("keep_days", 92)))
+
+
 JOBS = [
+    ("backup", 60, backup_if_due),
     ("health_check", 60, monitoring.run_health_check),
     ("recurring_reminders", 3600, remind_recurring_payments),
     ("daily", 24 * 3600, daily),

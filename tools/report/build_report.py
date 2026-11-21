@@ -287,7 +287,8 @@ def locate_headings(pdf: str, headings: list[tuple[int, str]]) -> tuple[dict[str
         probe = norm(text)[:45]
         first_words = norm(text.split("(")[0])[:45]
         for page_index in range(current, len(pages)):
-            if any((line.startswith(probe) or (first_words and line == first_words))
+            if any((line.startswith(probe) or (first_words and line == first_words)
+                    or (len(line) >= 20 and probe.startswith(line)))
                    and "...." not in line for line in normalized[page_index]):
                 result[text] = page_index + 1
                 current = page_index
