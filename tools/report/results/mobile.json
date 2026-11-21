@@ -1,0 +1,14 @@
+{
+ "placeholder": true,
+ "build_ok": null,
+ "unit_tests_total": null,
+ "unit_tests_failed": null,
+ "screenshot_tests": null,
+ "screens": null,
+ "lint_errors": null,
+ "lint_warnings": null,
+ "apk_size_mb": null,
+ "min_sdk": null,
+ "target_sdk": null,
+ "notes": []
+}
