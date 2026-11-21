@@ -40,7 +40,9 @@ async def lifespan(_: FastAPI):
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
     scheduler = None
     if settings.environment != "test":
-        bootstrap.init_db(create_tables=_flag("FH_AUTO_CREATE_TABLES", "true"))
+        # При развертывании в контейнерах подготовку выполняет scripts/start-api.sh
+        if _flag("FH_INIT_ON_START", "true"):
+            bootstrap.init_db(create_tables=_flag("FH_AUTO_CREATE_TABLES", "true"))
         # Без Redis периодические задачи выполняет поток серверного приложения
         if _flag("FH_RUN_SCHEDULER", "false" if settings.redis_url else "true"):
             scheduler = Scheduler()

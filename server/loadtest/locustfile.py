@@ -34,7 +34,7 @@ class FinHelperUser(HttpUser):
     wait_time = between(8, 12)
 
     def on_start(self) -> None:
-        email = f"load{next(_numbers):03d}@finhelper.local"
+        email = f"load{next(_numbers):03d}@example.com"
         response = self.client.post(f"{API}/auth/login", json={"email": email, "password": PASSWORD},
                                     name="POST /auth/login")
         response.raise_for_status()

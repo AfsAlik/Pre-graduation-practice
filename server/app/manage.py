@@ -28,10 +28,10 @@ from .services.periods import add_months, month_start
 
 DEMO_PASSWORD = "Demo-2026-pass"
 DEMO_USERS = [
-    ("user@finhelper.local", "user", "Анна Петрова"),
-    ("investor@finhelper.local", "user", "Сергей Иванов"),
-    ("analyst@finhelper.local", "analyst", "Елена Волкова"),
-    ("admin@finhelper.local", "admin", "Игорь Зайцев"),
+    ("user@example.com", "user", "Анна Петрова"),
+    ("investor@example.com", "user", "Сергей Иванов"),
+    ("analyst@example.com", "analyst", "Елена Волкова"),
+    ("admin@example.com", "admin", "Игорь Зайцев"),
 ]
 MONTHLY_EXPENSES = [
     ("Жилье", "Аренда квартиры", 30000, 30000, 1),
@@ -172,7 +172,7 @@ def seed_demo() -> None:
 
 def seed_load(count: int) -> None:
     """Учетные записи виртуальных пользователей для нагрузочного тестирования."""
-    users = [(f"load{i:03d}@finhelper.local", "user", f"Нагрузка {i:03d}") for i in range(1, count + 1)]
+    users = [(f"load{i:03d}@example.com", "user", f"Нагрузка {i:03d}") for i in range(1, count + 1)]
     seed_users(users, DEMO_PASSWORD, seed=7)
 
 

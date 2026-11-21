@@ -3,6 +3,7 @@
 set -e
 alembic upgrade head
 FH_AUTO_CREATE_TABLES=false python -m app.manage init
+export FH_INIT_ON_START=false
 exec gunicorn app.main:app \
     --worker-class uvicorn.workers.UvicornWorker \
     --workers "${FH_WEB_WORKERS:-2}" \

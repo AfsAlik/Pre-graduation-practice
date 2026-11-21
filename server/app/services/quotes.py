@@ -23,7 +23,7 @@ log = logging.getLogger(__name__)
 # Тип актива -> (рынок, режимы торгов в порядке проверки)
 MOEX_BOARDS = {
     "stock": ("shares", ["TQBR"]),
-    "etf": ("shares", ["TQTF"]),
+    "etf": ("shares", ["TQBR", "TQTF"]),  # биржевые фонды торгуются в режиме TQBR
     "bond": ("bonds", ["TQOB", "TQCB"]),
 }
 CRYPTO_IDS = {
