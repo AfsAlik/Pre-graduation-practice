@@ -1,0 +1,10 @@
+{
+ "started_at": "2026-11-21T19:15:54.829000+00:00",
+ "finished_at": "2026-11-21T19:25:53.712000+00:00",
+ "planned_users": 200,
+ "active_users": 175,
+ "requests": 10941,
+ "server_errors": 27,
+ "cause": "исчерпание соединений PostgreSQL: пул 20 + 20 соединений на процесс при max_connections = 100",
+ "fix": "размер пула задан параметрами FH_DB_POOL_SIZE и FH_DB_MAX_OVERFLOW, по умолчанию 5 + 5 соединений на процесс"
+}

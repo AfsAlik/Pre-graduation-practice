@@ -444,6 +444,16 @@ def concurrency(d: Doc, r: rd.Results) -> None:
         rows.append(load_row(label, name, r.request(two, name)))
     d.table("res_steps", "Время выполнения запросов при ступенчатой нагрузке", rows, LOAD_WIDTHS, font=9,
             align="l,l,r,r,r,r,r,r")
+    a = r.attempt
+    if a:
+        started = rd.local(rd.parse_dt(a["started_at"]))
+        d.p(f"Первая попытка теста с двумя экземплярами ({started:%d.%m.%Y %H:%M}) выявила дефект: "
+            f"из {a['planned_users']} виртуальных пользователей начали работу только "
+            f"{a['active_users']}, на {num(a['requests'], 0)} запросов пришлось {a['server_errors']} "
+            f"ответов с кодом 500. Причина – {a['cause']}. Дефект устранен: {a['fix']}. "
+            "После исправления все нагрузочные тесты повторены с одинаковыми параметрами; в "
+            "таблицах {tab:res_main} и {tab:res_steps} приведены результаты повторного прогона. "
+            "Правило расчета размера пула приведено в руководстве администратора (подраздел 4.1.3).")
     t = (r.main or {}).get("retraining")
     if t:
         d.p(f"Во время основного теста выполнено повторное обучение модели категоризации "
@@ -504,12 +514,45 @@ def summary(d: Doc, r: rd.Results) -> None:
         "доработок и проведения непроведенных проверок с положительным результатом.")
 
 
+def conclusion_paragraph(r: rd.Results) -> str:
+    """Абзац заключения об итогах испытаний (content/conclusion_tests.md)."""
+    items = [i for s in r.stages for i in s.items]
+    count = {v: sum(1 for i in items if i.verdict == v) for v in (FULL, PARTIAL, FAIL, NOT_DONE)}
+    period = r.period
+    when = f" {period[0]:%d.%m.%Y}" if period and period[0] == period[1] else (
+        f" с {period[0]:%d.%m.%Y} по {period[1]:%d.%m.%Y}" if period else "")
+    text = (f"Предварительные комплексные испытания проведены{when} на тестовом стенде по "
+            f"{len(r.stages)} этапам программы испытаний. Из {len(items)} пунктов методик "
+            f"полностью соответствуют требованиям {count[FULL]}, частично – {count[PARTIAL]}, "
+            f"не соответствуют – {count[FAIL]}; {count[NOT_DONE]} пунктов не проводились из-за "
+            "отсутствия мобильных устройств и части инфраструктуры стенда.")
+    check = r.check(5, "в")
+    if check:
+        text += (f" Точность автоматической категоризации на контрольной выборке составила "
+                 f"{pct(check['accuracy'] * 100)} при требуемых 80 %.")
+    main = r.level(r.main, 100)
+    basic = r.request(main, BASIC)
+    if main and basic:
+        every = r.request(main, ALL)
+        text += (f" При нагрузке 100 пользователей в течение {num(main['minutes'], 0)} мин 95 % "
+                 f"основных запросов выполнялись не дольше {num(basic['p95_ms'], 0)} мс при "
+                 f"допустимых 2 с, доля ошибок – {pct(every['errors_percent'], 2)}.")
+    if r.attempt:
+        text += (" Нагрузочное тестирование выявило и позволило устранить дефект настройки пула "
+                 "соединений с базой данных.")
+    text += (f" Результаты оформлены протоколом (приложение Б), в котором приведен перечень из "
+             f"{len(r.improvements)} необходимых доработок с рекомендуемыми сроками выполнения.")
+    return text
+
+
 def write_results_chapter(strict: bool = False, path: str = TARGET) -> str:
-    """Формирует content/ch3_results.md; возвращает путь к файлу."""
+    """Формирует content/ch3_results.md и абзац заключения; возвращает путь к файлу."""
     results = rd.load(strict=strict)
     text = "\n".join(build(results)).rstrip() + "\n"
     with open(path, "w", encoding="utf-8") as target:
         target.write(text)
+    with open(os.path.join(os.path.dirname(path), "conclusion_tests.md"), "w", encoding="utf-8") as target:
+        target.write(conclusion_paragraph(results) + "\n")
     if results.is_sample:
         print("ПРЕДУПРЕЖДЕНИЕ: подраздел 3.6 сформирован с пробными данными и помечен в тексте",
               file=sys.stderr)

@@ -222,6 +222,7 @@ class Results:
         self.main = self._load("load_main.json", timestamps=True)
         self.two = self._load("load_two.json", timestamps=True)
         self.mobile = self._load("mobile.json")
+        self.attempt, _ = _read("load_attempt1.json")  # первая попытка теста с двумя экземплярами
         if strict and (self.samples or self.missing):
             raise SampleDataError(
                 "Строгий режим: результаты испытаний неполные. Пробные данные: "
@@ -1011,6 +1012,11 @@ class Results:
         add("Обеспечить непрерывный мониторинг доступности серверной части в течение всего периода "
             "повторных испытаний и проверить по журналам формирование предупреждений о рисках и "
             "ежесуточное обновление цен (п. 4.1.4 д, 4.1.14 г ПМИ)", D_FEB)
+        training = (self.main or {}).get("retraining") or {}
+        if training.get("p95_change_percent") is not None and training["p95_change_percent"] > 10:
+            add("Разместить сервис машинного обучения на отдельном узле (на стенде обучение модели "
+                "выполнялось на той же виртуальной машине, что и серверное приложение) и повторить "
+                "проверку влияния повторного обучения на время ответа (п. 4.1.15 г ПМИ)", D_JAN)
         if self.stage(15).items[2].verdict in (PARTIAL, NOT_DONE):
             add("Проверить горизонтальное масштабирование с размещением экземпляров серверного "
                 "приложения на отдельных серверах", D_FEB)
