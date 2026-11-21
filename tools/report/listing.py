@@ -13,7 +13,7 @@ SERVER_GROUPS = [
     ("Серверное приложение: пакет app", "server/app", False),
     ("Программный интерфейс: пакет app.routers", "server/app/routers", False),
     ("Бизнес-логика подсистем: пакет app.services", "server/app/services", False),
-    ("Машинное обучение: пакеты app.ml и ml_service", "server/app/ml", False),
+    ("Машинное обучение: пакет app.ml", "server/app/ml", False),
     ("Сервис машинного обучения: пакет ml_service", "server/ml_service", False),
 ]
 # Порядок файлов внутри пакета: сначала основные модули

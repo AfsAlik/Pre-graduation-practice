@@ -127,7 +127,7 @@ def register(data: RegisterIn, request: Request, db: Session = Depends(get_db)):
 def confirm_email(token: str, db: Session = Depends(get_db)):
     user = consume_token(db, token, "email_confirm")
     if user is None:
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Ссылка недействительна или устарела")
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Код недействителен или устарел. Запросите новый код")
     user.email_confirmed = True
     audit(db, "auth.email_confirmed", user=user, journal=JOURNAL_AUTH)
     return "<h3>Адрес электронной почты подтвержден. Вернитесь в приложение и выполните вход.</h3>"
@@ -204,7 +204,7 @@ def logout(request: Request, user: User = Depends(get_current_user), db: Session
 
 @router.post("/password/forgot", response_model=Message)
 def forgot_password(data: ForgotIn, request: Request, db: Session = Depends(get_db)):
-    """Отправляет временную ссылку для восстановления пароля."""
+    """Отправляет на адрес пользователя временный код для восстановления пароля."""
     settings = get_settings()
     user = db.query(User).filter(User.email == data.email.lower(), User.deleted_at.is_(None)).first()
     if user is not None and not user.is_blocked:
@@ -215,7 +215,7 @@ def forgot_password(data: ForgotIn, request: Request, db: Session = Depends(get_
                      f"Код действителен {settings.password_reset_minutes} минут.")
         audit(db, "auth.password_reset_requested", user=user, journal=JOURNAL_AUTH, request=request)
     # Ответ одинаков независимо от существования адреса (защита от перебора адресов)
-    return Message(message="Если адрес зарегистрирован, на него отправлена ссылка для восстановления пароля")
+    return Message(message="Если адрес зарегистрирован, на него отправлен код для восстановления пароля")
 
 
 @router.post("/password/reset", response_model=Message)
@@ -223,7 +223,7 @@ def reset_password(data: ResetIn, request: Request, db: Session = Depends(get_db
     validate_password_strength(data.new_password)
     user = consume_token(db, data.token, "password_reset")
     if user is None:
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Ссылка недействительна или устарела")
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Код недействителен или устарел. Запросите новый код")
     user.password_hash = hash_password(data.new_password)
     user.failed_logins, user.locked_until = 0, None
     revoke_tokens(db, user, "refresh")
