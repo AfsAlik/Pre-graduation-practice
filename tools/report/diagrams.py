@@ -6,7 +6,7 @@
 import os
 import sys
 
-from diagram_kit import APPLICATION, BUSINESS, TECHNOLOGY, WHITE, Diagram
+from diagram_kit import APPLICATION, BUSINESS, TECHNOLOGY, WHITE, Box, Diagram
 
 
 # ---------------------------------------------------------------------------
@@ -552,8 +552,87 @@ def sync_sequence() -> Diagram:
     return d
 
 
+def mobile_components() -> Diagram:
+    """UML: диаграмма компонентов мобильного приложения."""
+    d = Diagram(1180, 860)
+
+    def group(x, y, w, title, names, columns, item_h=44, size=10.5):
+        rows = -(-len(names) // columns)
+        h = 34 + rows * (item_h + 8) + 4
+        d.frame(x, y, w, h, title, fill="#FAFAFA", size=11.5)
+        gap = 10
+        item_w = (w - gap * (columns + 1)) / columns
+        for index, name in enumerate(names):
+            col, row = index % columns, index // columns
+            d.component(x + gap + col * (item_w + gap), y + 34 + row * (item_h + 8), item_w, item_h,
+                        name.split(" – "), size=size)
+        return Box(x, y, w, h)
+
+    ui = group(40, 20, 860, "ui – экраны Jetpack Compose и модели представления (ViewModel)",
+               ["auth – вход, регистрация", "dashboard – главный экран",
+                "transactions – операции, справочники", "budget – бюджетные лимиты",
+                "goals – финансовые цели", "investments – портфель, актив", "reports – отчеты, экспорт",
+                "recommendations – советы, прогноз", "profile – профиль, безопасность",
+                "admin – администрирование"], 5)
+    activity = d.component(930, 20, 210, 56, ["«activity»", "MainActivity"], size=11)
+    container = d.component(930, 96, 210, 66, ["«container»", "di.AppContainer", "создание зависимостей"],
+                            size=10.5)
+    domain = group(40, 210, 420, "domain – расчеты на устройстве",
+                   ["BalanceCalculator – балансы счетов", "BudgetCalculator – исполнение лимитов",
+                    "GoalCalculator – прогресс и прогноз", "PortfolioCalculator – позиции, доходность",
+                    "ReportBuilder – отчеты, главный экран", "CategorySuggester – категория по истории",
+                    "ReceiptParser – разбор текста чека", "VoiceParser – разбор голосовой фразы"], 2)
+    repo = group(480, 210, 420, "data.repo – репозитории",
+                 ["FinanceRepository – учетные данные", "AuthRepository – вход, выход",
+                  "ProfileRepository – профиль, настройки", "InvestmentRepository – котировки",
+                  "InsightsRepository – рекомендации", "FileRepository – импорт, экспорт",
+                  "CacheStore – копии ответов сервера", "ReceiptRecognizer – ML Kit"], 2)
+    notify = group(930, 210, 210, "notify – уведомления",
+                   ["LocalAlerts – правила на устройстве", "ServerNotifications – уведомления сервера",
+                    "Notifier – каналы Android", "PushService – FCM"], 1)
+    remote = group(40, 510, 200, "data.remote",
+                   ["FinHelperApi – Retrofit, /api/v1", "NetworkModule – OkHttp, токены",
+                    "ApiError – тексты ошибок"], 1)
+    sync = group(260, 510, 420, "data.sync – синхронизация",
+                 ["SyncQueue – очередь операций", "SyncEngine – сеанс обмена",
+                  "SyncManager – запуск, индикатор", "SyncWorker – фоновая задача",
+                  "SyncAdapters – виды записей", "ConnectivityObserver – состояние сети"], 2)
+    local = group(700, 510, 200, "data.local",
+                  ["AppDatabase – Room, 13 таблиц", "Daos – запросы к таблицам",
+                   "DatabaseFactory – SQLCipher"], 1)
+    prefs = group(930, 510, 210, "data.prefs",
+                  ["SecureStore – шифрование AES-GCM", "SessionStore – токены, роль",
+                   "SettingsStore – настройки"], 1)
+
+    server = d.node(40, 770, 200, 60, ["Серверное приложение", "REST, /api/v1"], size=11)
+    system = d.node(290, 770, 360, 60, ["WorkManager, ConnectivityManager", "(службы Android)"],
+                    size=11, bold=False, dash=True)
+    db = d.cylinder(700, 765, 200, 74, ["finhelper.db", "SQLCipher, AES-256"], size=11)
+    keystore = d.node(930, 770, 210, 60, ["Android Keystore", "ключ AES-256"], size=11)
+
+    d.edge([activity.left(0.5), (ui.x + ui.w, activity.cy)], "dep")
+    d.edge([container.left(0.5), (ui.x + ui.w, container.cy)], "dep")
+    d.edge([(250, ui.y + ui.h), (250, domain.y)], "dep", "расчеты", label_dx=34, label_dy=4)
+    d.edge([(690, ui.y + ui.h), (690, repo.y)], "dep", "вызовы", label_dx=30, label_dy=4)
+    d.edge([(repo.x, 330), (domain.x + domain.w, 330)], "dep")
+    d.edge([(notify.x, 330), (repo.x + repo.w, 330)], "dep")
+    d.edge([(500, repo.y + repo.h), (500, 483), (140, 483), (140, remote.y)], "dep")
+    d.edge([(560, repo.y + repo.h), (560, sync.y)], "dep")
+    d.edge([(800, repo.y + repo.h), (800, local.y)], "dep")
+    d.edge([(sync.x, 600), (remote.x + remote.w, 600)], "dep")
+    d.edge([(sync.x + sync.w, 600), (local.x, 600)], "dep")
+    d.edge([(local.x + local.w, 600), (prefs.x, 600)], "dep")
+    d.edge([(140, remote.y + remote.h), (140, server.y)], "dep", "HTTPS, JSON", label_dx=42, label_dy=4)
+    d.edge([(470, sync.y + sync.h), (470, system.y)], "dep")
+    d.edge([(800, local.y + local.h), (800, db.y)], "dep")
+    d.edge([(1035, prefs.y + prefs.h), (1035, keystore.y)], "dep")
+    return d
+
+
+# ---------------------------------------------------------------------------
 DIAGRAMS = {
     "archimate_layers": archimate,
+    "uml_components_mobile": mobile_components,
     "sysml_bdd": sysml_bdd,
     "sysml_ibd": sysml_ibd,
     "uml_use_cases": use_cases,

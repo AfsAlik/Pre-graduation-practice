@@ -20,8 +20,11 @@ def _make_engine(url: str):
         if ":memory:" in url:
             kwargs["poolclass"] = StaticPool
     else:
-        kwargs["pool_size"] = 20
-        kwargs["max_overflow"] = 20
+        # Число соединений одного процесса; суммарно по всем процессам серверного приложения
+        # и исполнителя фоновых задач оно не должно превышать max_connections PostgreSQL
+        settings = get_settings()
+        kwargs["pool_size"] = settings.db_pool_size
+        kwargs["max_overflow"] = settings.db_max_overflow
     return create_engine(url, **kwargs)
 
 

@@ -1,0 +1,264 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="860" viewBox="0 0 1180 860" font-family="Liberation Sans, Arial, sans-serif">
+<defs>
+<marker id="open" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto-start-reverse">
+  <path d="M1,1 L10,5 L1,9" fill="none" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="filled" markerWidth="12" markerHeight="10" refX="10" refY="5" orient="auto-start-reverse">
+  <path d="M1,1 L10,5 L1,9 Z" fill="#1a1a1a" stroke="#1a1a1a"/></marker>
+<marker id="hollow" markerWidth="16" markerHeight="14" refX="14" refY="7" orient="auto-start-reverse">
+  <path d="M1,1 L14,7 L1,13 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="diamond" markerWidth="18" markerHeight="12" refX="17" refY="6" orient="auto-start-reverse">
+  <path d="M1,6 L9,1 L17,6 L9,11 Z" fill="#1a1a1a" stroke="#1a1a1a"/></marker>
+<marker id="odiamond" markerWidth="18" markerHeight="12" refX="17" refY="6" orient="auto-start-reverse">
+  <path d="M1,6 L9,1 L17,6 L9,11 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/></marker>
+<marker id="dot" markerWidth="8" markerHeight="8" refX="4" refY="4">
+  <circle cx="4" cy="4" r="3" fill="#1a1a1a"/></marker>
+</defs>
+<rect width="1180" height="860" fill="#fff"/>
+<rect x="40" y="20" width="860" height="142" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M40,20 h492.58000000000004 v14 l-8,8 h-484.58000000000004 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="48.0" y="35.0" font-size="11.5" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">ui – экраны Jetpack Compose и модели представления (ViewModel)</text>
+<rect x="40" y="210" width="420" height="246" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M40,210 h249.70000000000002 v14 l-8,8 h-241.70000000000002 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="48.0" y="225.0" font-size="11.5" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">domain – расчеты на устройстве</text>
+<rect x="480" y="210" width="420" height="246" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M480,210 h196.57000000000002 v14 l-8,8 h-188.57000000000002 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="488.0" y="225.0" font-size="11.5" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">data.repo – репозитории</text>
+<rect x="930" y="210" width="210" height="246" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M930,210 h173.8 v14 l-8,8 h-165.8 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="938.0" y="225.0" font-size="11.5" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">notify – уведомления</text>
+<rect x="40" y="510" width="200" height="194" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M40,510 h105.49000000000001 v14 l-8,8 h-97.49000000000001 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="48.0" y="525.0" font-size="11.5" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">data.remote</text>
+<rect x="260" y="510" width="420" height="194" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M260,510 h211.75 v14 l-8,8 h-203.75 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="268.0" y="525.0" font-size="11.5" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">data.sync – синхронизация</text>
+<rect x="700" y="510" width="200" height="194" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M700,510 h97.9 v14 l-8,8 h-89.9 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="708.0" y="525.0" font-size="11.5" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">data.local</text>
+<rect x="930" y="510" width="210" height="194" rx="0" fill="#FAFAFA" stroke="#1a1a1a" stroke-width="1.2"/>
+<path d="M930,510 h97.9 v14 l-8,8 h-89.9 Z" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="938.0" y="525.0" font-size="11.5" text-anchor="start" font-weight="bold" font-style="normal" fill="#1a1a1a">data.prefs</text>
+<rect x="50.0" y="54" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="130.0" y="73.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">auth</text>
+<text xml:space="preserve" x="130.0" y="86.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">вход, регистрация</text>
+<rect x="186.0" y="61" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="182.0" y="63" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="182.0" y="68" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="220.0" y="54" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="300.0" y="73.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">dashboard</text>
+<text xml:space="preserve" x="300.0" y="86.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">главный экран</text>
+<rect x="356.0" y="61" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="352.0" y="63" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="352.0" y="68" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="390.0" y="54" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="470.0" y="73.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">transactions</text>
+<text xml:space="preserve" x="470.0" y="86.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">операции, справочники</text>
+<rect x="526.0" y="61" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="522.0" y="63" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="522.0" y="68" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="560.0" y="54" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="640.0" y="73.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">budget</text>
+<text xml:space="preserve" x="640.0" y="86.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">бюджетные лимиты</text>
+<rect x="696.0" y="61" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="692.0" y="63" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="692.0" y="68" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="730.0" y="54" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="810.0" y="73.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">goals</text>
+<text xml:space="preserve" x="810.0" y="86.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">финансовые цели</text>
+<rect x="866.0" y="61" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="63" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="68" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="106" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="130.0" y="125.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">investments</text>
+<text xml:space="preserve" x="130.0" y="138.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">портфель, актив</text>
+<rect x="186.0" y="113" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="182.0" y="115" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="182.0" y="120" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="220.0" y="106" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="300.0" y="125.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">reports</text>
+<text xml:space="preserve" x="300.0" y="138.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">отчеты, экспорт</text>
+<rect x="356.0" y="113" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="352.0" y="115" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="352.0" y="120" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="390.0" y="106" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="470.0" y="125.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">recommendations</text>
+<text xml:space="preserve" x="470.0" y="138.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">советы, прогноз</text>
+<rect x="526.0" y="113" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="522.0" y="115" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="522.0" y="120" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="560.0" y="106" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="640.0" y="125.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">profile</text>
+<text xml:space="preserve" x="640.0" y="138.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">профиль, безопасность</text>
+<rect x="696.0" y="113" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="692.0" y="115" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="692.0" y="120" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="730.0" y="106" width="160.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="810.0" y="125.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">admin</text>
+<text xml:space="preserve" x="810.0" y="138.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">администрирование</text>
+<rect x="866.0" y="113" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="115" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="120" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="930" y="20" width="210" height="56" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="45.0" font-size="9" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«activity»</text>
+<text xml:space="preserve" x="1035.0" y="58.7" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">MainActivity</text>
+<rect x="1116" y="27" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1112" y="29" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1112" y="34" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="930" y="96" width="210" height="66" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="119.5" font-size="8.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">«container»</text>
+<text xml:space="preserve" x="1035.0" y="132.7" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">di.AppContainer</text>
+<text xml:space="preserve" x="1035.0" y="145.8" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">создание зависимостей</text>
+<rect x="1116" y="103" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1112" y="105" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1112" y="110" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="244" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="147.5" y="263.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">BalanceCalculator</text>
+<text xml:space="preserve" x="147.5" y="276.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">балансы счетов</text>
+<rect x="221.0" y="251" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="217.0" y="253" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="217.0" y="258" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="255.0" y="244" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="352.5" y="263.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">BudgetCalculator</text>
+<text xml:space="preserve" x="352.5" y="276.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">исполнение лимитов</text>
+<rect x="426.0" y="251" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="422.0" y="253" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="422.0" y="258" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="296" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="147.5" y="315.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">GoalCalculator</text>
+<text xml:space="preserve" x="147.5" y="328.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">прогресс и прогноз</text>
+<rect x="221.0" y="303" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="217.0" y="305" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="217.0" y="310" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="255.0" y="296" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="352.5" y="315.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">PortfolioCalculator</text>
+<text xml:space="preserve" x="352.5" y="328.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">позиции, доходность</text>
+<rect x="426.0" y="303" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="422.0" y="305" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="422.0" y="310" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="348" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="147.5" y="367.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ReportBuilder</text>
+<text xml:space="preserve" x="147.5" y="380.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">отчеты, главный экран</text>
+<rect x="221.0" y="355" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="217.0" y="357" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="217.0" y="362" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="255.0" y="348" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="352.5" y="367.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">CategorySuggester</text>
+<text xml:space="preserve" x="352.5" y="380.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">категория по истории</text>
+<rect x="426.0" y="355" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="422.0" y="357" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="422.0" y="362" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="400" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="147.5" y="419.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ReceiptParser</text>
+<text xml:space="preserve" x="147.5" y="432.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">разбор текста чека</text>
+<rect x="221.0" y="407" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="217.0" y="409" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="217.0" y="414" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="255.0" y="400" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="352.5" y="419.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">VoiceParser</text>
+<text xml:space="preserve" x="352.5" y="432.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">разбор голосовой фразы</text>
+<rect x="426.0" y="407" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="422.0" y="409" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="422.0" y="414" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="490.0" y="244" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="587.5" y="263.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">FinanceRepository</text>
+<text xml:space="preserve" x="587.5" y="276.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">учетные данные</text>
+<rect x="661.0" y="251" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="657.0" y="253" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="657.0" y="258" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="695.0" y="244" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="792.5" y="263.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">AuthRepository</text>
+<text xml:space="preserve" x="792.5" y="276.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">вход, выход</text>
+<rect x="866.0" y="251" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="253" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="258" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="490.0" y="296" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="587.5" y="315.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ProfileRepository</text>
+<text xml:space="preserve" x="587.5" y="328.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">профиль, настройки</text>
+<rect x="661.0" y="303" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="657.0" y="305" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="657.0" y="310" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="695.0" y="296" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="792.5" y="315.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">InvestmentRepository</text>
+<text xml:space="preserve" x="792.5" y="328.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">котировки</text>
+<rect x="866.0" y="303" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="305" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="310" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="490.0" y="348" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="587.5" y="367.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">InsightsRepository</text>
+<text xml:space="preserve" x="587.5" y="380.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">рекомендации</text>
+<rect x="661.0" y="355" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="657.0" y="357" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="657.0" y="362" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="695.0" y="348" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="792.5" y="367.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">FileRepository</text>
+<text xml:space="preserve" x="792.5" y="380.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">импорт, экспорт</text>
+<rect x="866.0" y="355" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="357" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="362" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="490.0" y="400" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="587.5" y="419.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">CacheStore</text>
+<text xml:space="preserve" x="587.5" y="432.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">копии ответов сервера</text>
+<rect x="661.0" y="407" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="657.0" y="409" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="657.0" y="414" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="695.0" y="400" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="792.5" y="419.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ReceiptRecognizer</text>
+<text xml:space="preserve" x="792.5" y="432.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">ML Kit</text>
+<rect x="866.0" y="407" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="409" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="414" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="940.0" y="244" width="190.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="263.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">LocalAlerts</text>
+<text xml:space="preserve" x="1035.0" y="276.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">правила на устройстве</text>
+<rect x="1106.0" y="251" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="253" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="258" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="940.0" y="296" width="190.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="315.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ServerNotifications</text>
+<text xml:space="preserve" x="1035.0" y="328.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">уведомления сервера</text>
+<rect x="1106.0" y="303" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="305" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="310" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="940.0" y="348" width="190.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="367.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Notifier</text>
+<text xml:space="preserve" x="1035.0" y="380.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">каналы Android</text>
+<rect x="1106.0" y="355" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="357" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="362" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="940.0" y="400" width="190.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="419.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">PushService</text>
+<text xml:space="preserve" x="1035.0" y="432.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">FCM</text>
+<rect x="1106.0" y="407" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="409" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="414" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="544" width="180.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="140.0" y="563.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">FinHelperApi</text>
+<text xml:space="preserve" x="140.0" y="576.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">Retrofit, /api/v1</text>
+<rect x="206.0" y="551" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="202.0" y="553" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="202.0" y="558" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="596" width="180.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="140.0" y="615.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">NetworkModule</text>
+<text xml:space="preserve" x="140.0" y="628.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">OkHttp, токены</text>
+<rect x="206.0" y="603" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="202.0" y="605" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="202.0" y="610" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="50.0" y="648" width="180.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="140.0" y="667.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ApiError</text>
+<text xml:space="preserve" x="140.0" y="680.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">тексты ошибок</text>
+<rect x="206.0" y="655" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="202.0" y="657" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="202.0" y="662" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="270.0" y="544" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="367.5" y="563.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">SyncQueue</text>
+<text xml:space="preserve" x="367.5" y="576.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">очередь операций</text>
+<rect x="441.0" y="551" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="437.0" y="553" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="437.0" y="558" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="475.0" y="544" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="572.5" y="563.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">SyncEngine</text>
+<text xml:space="preserve" x="572.5" y="576.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">сеанс обмена</text>
+<rect x="646.0" y="551" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="642.0" y="553" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="642.0" y="558" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="270.0" y="596" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="367.5" y="615.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">SyncManager</text>
+<text xml:space="preserve" x="367.5" y="628.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">запуск, индикатор</text>
+<rect x="441.0" y="603" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="437.0" y="605" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="437.0" y="610" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="475.0" y="596" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="572.5" y="615.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">SyncWorker</text>
+<text xml:space="preserve" x="572.5" y="628.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">фоновая задача</text>
+<rect x="646.0" y="603" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="642.0" y="605" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="642.0" y="610" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="270.0" y="648" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="367.5" y="667.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">SyncAdapters</text>
+<text xml:space="preserve" x="367.5" y="680.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">виды записей</text>
+<rect x="441.0" y="655" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="437.0" y="657" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="437.0" y="662" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="475.0" y="648" width="195.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="572.5" y="667.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">ConnectivityObserver</text>
+<text xml:space="preserve" x="572.5" y="680.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">состояние сети</text>
+<rect x="646.0" y="655" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="642.0" y="657" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="642.0" y="662" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="710.0" y="544" width="180.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="800.0" y="563.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">AppDatabase</text>
+<text xml:space="preserve" x="800.0" y="576.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">Room, 13 таблиц</text>
+<rect x="866.0" y="551" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="553" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="558" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="710.0" y="596" width="180.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="800.0" y="615.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Daos</text>
+<text xml:space="preserve" x="800.0" y="628.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">запросы к таблицам</text>
+<rect x="866.0" y="603" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="605" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="610" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="710.0" y="648" width="180.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="800.0" y="667.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">DatabaseFactory</text>
+<text xml:space="preserve" x="800.0" y="680.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">SQLCipher</text>
+<rect x="866.0" y="655" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="657" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="862.0" y="662" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="940.0" y="544" width="190.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="563.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">SecureStore</text>
+<text xml:space="preserve" x="1035.0" y="576.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">шифрование AES-GCM</text>
+<rect x="1106.0" y="551" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="553" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="558" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="940.0" y="596" width="190.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="615.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">SessionStore</text>
+<text xml:space="preserve" x="1035.0" y="628.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">токены, роль</text>
+<rect x="1106.0" y="603" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="605" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="610" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="940.0" y="648" width="190.0" height="44" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="667.1" font-size="10.5" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">SettingsStore</text>
+<text xml:space="preserve" x="1035.0" y="680.2" font-size="10.5" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">настройки</text>
+<rect x="1106.0" y="655" width="15" height="12" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="657" width="8" height="3" fill="#fff" stroke="#1a1a1a"/><rect x="1102.0" y="662" width="8" height="3" fill="#fff" stroke="#1a1a1a"/>
+<rect x="40" y="770" width="200" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="140.0" y="797.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Серверное приложение</text>
+<text xml:space="preserve" x="140.0" y="810.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">REST, /api/v1</text>
+<rect x="290" y="770" width="360" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4"/>
+<text xml:space="preserve" x="470.0" y="797.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">WorkManager, ConnectivityManager</text>
+<text xml:space="preserve" x="470.0" y="810.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">(службы Android)</text>
+<path d="M700,774 v56 a100.0,9 0 0 0 200,0 v-56" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/><ellipse cx="800.0" cy="774" rx="100.0" ry="9" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="800.0" y="804.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">finhelper.db</text>
+<text xml:space="preserve" x="800.0" y="817.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">SQLCipher, AES-256</text>
+<rect x="930" y="770" width="210" height="60" rx="0" fill="#FFFFFF" stroke="#1a1a1a" stroke-width="1.2"/>
+<text xml:space="preserve" x="1035.0" y="797.0" font-size="11" text-anchor="middle" font-weight="bold" font-style="normal" fill="#1a1a1a">Android Keystore</text>
+<text xml:space="preserve" x="1035.0" y="810.7" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">ключ AES-256</text>
+<polyline points="930.0,48.0 900.0,48.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="930.0,129.0 900.0,129.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="250.0,162.0 250.0,210.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="690.0,162.0 690.0,210.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="480.0,330.0 460.0,330.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="930.0,330.0 900.0,330.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="500.0,456.0 500.0,483.0 140.0,483.0 140.0,510.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="560.0,456.0 560.0,510.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="800.0,456.0 800.0,510.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="260.0,600.0 240.0,600.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="680.0,600.0 700.0,600.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="900.0,600.0 930.0,600.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="140.0,704.0 140.0,770.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="470.0,704.0 470.0,770.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="800.0,704.0 800.0,765.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<polyline points="1035.0,704.0 1035.0,770.0" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-dasharray="6,4" marker-end="url(#open)"/>
+<rect x="259.4" y="180.0" width="49.1" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="284.0" y="190.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">расчеты</text>
+<rect x="698.5" y="180.0" width="43.0" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="720.0" y="190.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">вызовы</text>
+<rect x="145.1" y="731.0" width="73.8" height="14" fill="#fff" fill-opacity="0.9"/>
+<text xml:space="preserve" x="182.0" y="741.0" font-size="11" text-anchor="middle" font-weight="normal" font-style="normal" fill="#1a1a1a">HTTPS, JSON</text>
+</svg>

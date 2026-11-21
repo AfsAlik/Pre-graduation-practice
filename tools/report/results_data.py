@@ -523,9 +523,7 @@ class Results:
         same = date.fromisoformat(found.group(1)) == expected
         return (text + f"; контрольный расчет по формуле (2) – {expected:%d.%m.%Y} "
                 f"({'совпадает' if same else 'НЕ совпадает'}); рекомендуемая сумма равна остатку "
-                f"60 000 руб., деленному на {num(months, 1)} мес. до срока (срок задан как "
-                "183 сут.); значение 10 000 руб. для срока ровно 6 месяцев "
-                f"{M_TEST} test_goal_scenario_from_test_program")
+                f"60 000 руб., деленному на {num(months, 0)} мес. до срока")
 
     def _stage_7(self) -> Stage:
         s = Stage(7, "Функции подсистемы инвестиционного учета", "4.1.1.3, 4.2.1.3", "4.1.7")
