@@ -5591,6 +5591,54 @@
     }
    }
   },
+  "/api/v1/admin/jobs/{name}/run": {
+   "post": {
+    "tags": [
+     "Администрирование"
+    ],
+    "summary": "Run Job",
+    "description": "Запуск периодической задачи вне расписания (например, после восстановления сервера).",
+    "operationId": "run_job_api_v1_admin_jobs__name__run_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "name",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Name"
+      }
+     }
+    ],
+    "responses": {
+     "202": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Message"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/api/v1/admin/settings": {
    "get": {
     "tags": [
