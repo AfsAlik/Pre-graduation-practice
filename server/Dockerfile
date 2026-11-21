@@ -1,6 +1,6 @@
 # Образ серверной части «Финансового помощника»: серверное приложение,
 # исполнитель фоновых задач и сервис машинного обучения (команда задается в compose).
-FROM python:3.12-slim
+FROM python:3.12-slim-trixie
 
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
 
@@ -19,6 +19,7 @@ COPY app ./app
 COPY ml_service ./ml_service
 COPY scripts ./scripts
 RUN chmod +x scripts/*.sh && useradd --create-home finhelper \
+    && sed -i 's/\r$//' scripts/*.sh \
     && mkdir -p var/models var/storage var/backups && chown -R finhelper:finhelper /srv/finhelper
 USER finhelper
 

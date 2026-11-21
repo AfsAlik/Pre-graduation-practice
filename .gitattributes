@@ -1,0 +1,9 @@
+# Сценарии оболочки должны сохранять окончания строк Unix и при получении репозитория в Windows
+*.sh text eol=lf
+gradlew text eol=lf
+*.bat text eol=crlf
+*.png binary
+*.docx binary
+*.doc binary
+*.pdf binary
+*.jar binary
