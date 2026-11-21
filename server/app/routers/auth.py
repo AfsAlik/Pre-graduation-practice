@@ -120,14 +120,15 @@ def register(data: RegisterIn, request: Request, db: Session = Depends(get_db)):
     if settings.require_email_confirmation:
         send_confirmation(db, user)
     audit(db, "auth.register", user=user, journal=JOURNAL_AUTH, request=request)
-    return Message(message="Учетная запись создана. Подтвердите адрес электронной почты по ссылке из письма")
+    return Message(message="Учетная запись создана. Подтвердите адрес электронной почты "
+                           "по ссылке из письма")
 
 
 @router.get("/confirm-email", response_class=HTMLResponse)
 def confirm_email(token: str, db: Session = Depends(get_db)):
     user = consume_token(db, token, "email_confirm")
     if user is None:
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Код недействителен или устарел. Запросите новый код")
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Ссылка недействительна или устарела")
     user.email_confirmed = True
     audit(db, "auth.email_confirmed", user=user, journal=JOURNAL_AUTH)
     return "<h3>Адрес электронной почты подтвержден. Вернитесь в приложение и выполните вход.</h3>"
@@ -215,7 +216,8 @@ def forgot_password(data: ForgotIn, request: Request, db: Session = Depends(get_
                      f"Код действителен {settings.password_reset_minutes} минут.")
         audit(db, "auth.password_reset_requested", user=user, journal=JOURNAL_AUTH, request=request)
     # Ответ одинаков независимо от существования адреса (защита от перебора адресов)
-    return Message(message="Если адрес зарегистрирован, на него отправлен код для восстановления пароля")
+    return Message(message="Если адрес зарегистрирован, на него отправлен код "
+                           "для восстановления пароля")
 
 
 @router.post("/password/reset", response_model=Message)
@@ -223,7 +225,8 @@ def reset_password(data: ResetIn, request: Request, db: Session = Depends(get_db
     validate_password_strength(data.new_password)
     user = consume_token(db, data.token, "password_reset")
     if user is None:
-        raise HTTPException(status.HTTP_400_BAD_REQUEST, "Код недействителен или устарел. Запросите новый код")
+        raise HTTPException(status.HTTP_400_BAD_REQUEST,
+                            "Код недействителен или устарел. Запросите новый код")
     user.password_hash = hash_password(data.new_password)
     user.failed_logins, user.locked_until = 0, None
     revoke_tokens(db, user, "refresh")

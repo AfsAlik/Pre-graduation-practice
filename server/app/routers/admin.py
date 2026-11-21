@@ -221,10 +221,10 @@ def export_logs(request: Request, date_from: date | None = None, date_to: date |
 
 
 @router.post("/logs/import")
-async def import_logs(request: Request, file: UploadFile = File(...),
-                      admin: User = Depends(require_admin), db: Session = Depends(get_db)) -> dict:
+def import_logs(request: Request, file: UploadFile = File(...),
+                admin: User = Depends(require_admin), db: Session = Depends(get_db)) -> dict:
     """Импорт внешнего журнала из файла CSV для анализа (записи помечаются origin=import)."""
-    content = (await file.read()).decode("utf-8-sig", errors="replace")
+    content = file.file.read().decode("utf-8-sig", errors="replace")
     reader = csv.DictReader(io.StringIO(content), delimiter=";")
     if not reader.fieldnames or "at" not in reader.fieldnames or "action" not in reader.fieldnames:
         raise HTTPException(422, "Файл должен содержать столбцы at и action")

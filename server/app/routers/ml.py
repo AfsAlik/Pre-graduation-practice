@@ -124,9 +124,9 @@ def export_model(model_id: str, analyst: User = Depends(require_analyst),
 
 
 @router.post("/models/import", status_code=201)
-async def import_model(request: Request, file: UploadFile = File(...),
-                       analyst: User = Depends(require_analyst),
-                       db: Session = Depends(get_db)) -> dict:
+def import_model(request: Request, file: UploadFile = File(...),
+                 analyst: User = Depends(require_analyst),
+                 db: Session = Depends(get_db)) -> dict:
     """Импорт файла модели как новой версии (без автоматической активации)."""
     last = db.query(func.max(MlModel.version)).scalar() or 0
     version = last + 1

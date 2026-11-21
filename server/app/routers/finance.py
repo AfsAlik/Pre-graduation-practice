@@ -186,7 +186,7 @@ def suggest(data: ParseTextIn, kind: str = "expense", user: User = Depends(get_c
 
 
 @router.post("/transactions/parse-receipt", response_model=ParsedTransactionOut, tags=["Транзакции"])
-async def parse_receipt(
+def parse_receipt(
     text: str = Form(..., max_length=20000), photo: UploadFile | None = File(default=None),
     user: User = Depends(get_current_user), db: Session = Depends(get_db),
 ):
@@ -194,7 +194,7 @@ async def parse_receipt(
     parsed = textparse.parse_receipt(text)
     receipt_file = None
     if photo is not None:
-        content = await photo.read()
+        content = photo.file.read()
         if len(content) > 10 * 1024 * 1024:
             raise HTTPException(413, "Размер фотографии не должен превышать 10 МБ")
         receipt_file = storage.save(f"receipts/{user.id}", photo.filename or "receipt.jpg", content)

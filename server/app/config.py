@@ -18,8 +18,8 @@ class Settings(BaseSettings):
 
     # --- База данных и кеш ---
     database_url: str = "postgresql+psycopg://finhelper:finhelper@localhost:5432/finhelper"
-    db_pool_size: int = 5
-    db_max_overflow: int = 5
+    db_pool_size: int = 10
+    db_max_overflow: int = 10
     redis_url: str = ""  # пустая строка – кеш в памяти процесса, задачи выполняются в потоке
 
     # --- Безопасность (п. 4.4.4, 4.4.7 ТЗ) ---

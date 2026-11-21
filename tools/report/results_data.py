@@ -222,7 +222,8 @@ class Results:
         self.main = self._load("load_main.json", timestamps=True)
         self.two = self._load("load_two.json", timestamps=True)
         self.mobile = self._load("mobile.json")
-        self.attempt, _ = _read("load_attempt1.json")  # первая попытка теста с двумя экземплярами
+        defects, _ = _read("load_defects.json")  # дефекты, выявленные нагрузочными тестами
+        self.defects = (defects or {}).get("defects", [])
         if strict and (self.samples or self.missing):
             raise SampleDataError(
                 "Строгий режим: результаты испытаний неполные. Пробные данные: "

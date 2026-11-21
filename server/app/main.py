@@ -13,6 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 from sqlalchemy import text
+from starlette.concurrency import run_in_threadpool
 
 from . import bootstrap
 from .audit import log_error
@@ -84,7 +85,11 @@ async def observe(request: Request, call_next):
     started = time.monotonic()
     path = request.url.path
     if path.startswith(API_PREFIX) and not path.startswith(_MAINTENANCE_ALLOWED):
-        state = maintenance_state()
+        # Обращения к базе данных выполняются в пуле потоков: синхронный вызов в цикле событий
+        # при занятом пуле соединений останавливает обработку всех запросов процесса
+        if time.monotonic() - _maintenance["at"] > 15:
+            await run_in_threadpool(maintenance_state)
+        state = _maintenance
         if state["enabled"]:
             return JSONResponse(
                 {"detail": state["message"] or "Выполняются технические работы. Функции "
@@ -95,22 +100,29 @@ async def observe(request: Request, call_next):
         status = response.status_code
     except Exception as exc:
         log.exception("Необработанная ошибка запроса %s %s", request.method, path)
-        db = SessionLocal()
-        try:
-            log_error(db, str(exc), kind=type(exc).__name__, level="critical",
-                      context={"method": request.method, "path": path})
-            db.commit()
-        except Exception:
-            db.rollback()
-        finally:
-            db.close()
+        await run_in_threadpool(_save_error, str(exc), type(exc).__name__,
+                                {"method": request.method, "path": path})
         response = JSONResponse({"detail": "Внутренняя ошибка сервера"}, status_code=500)
         status = 500
     route = request.scope.get("route")
     template = getattr(route, "path", path) if route else "unmatched"
     if not path.startswith(("/metrics", "/health")):
-        monitoring.record_request(request.method, template, status, time.monotonic() - started)
+        finished = monitoring.record_request(request.method, template, status,
+                                             time.monotonic() - started)
+        if finished:
+            await run_in_threadpool(monitoring.save_bucket, finished)
     return response
+
+
+def _save_error(message: str, kind: str, context: dict) -> None:
+    db = SessionLocal()
+    try:
+        log_error(db, message, kind=kind, level="critical", context=context)
+        db.commit()
+    except Exception:
+        db.rollback()
+    finally:
+        db.close()
 
 
 for module in (auth, profile, finance, analytics, insights, sync, admin, ml):

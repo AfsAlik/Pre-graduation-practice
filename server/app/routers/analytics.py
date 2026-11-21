@@ -100,7 +100,7 @@ def export_transactions(
 
 
 @router.post("/import/statement", tags=["Импорт и экспорт"])
-async def import_statement(
+def import_statement(
     request: Request, account_id: str = Form(...), dry_run: bool = Form(default=False),
     file: UploadFile = File(...),
     user: User = Depends(get_current_user), db: Session = Depends(get_db),
@@ -112,7 +112,7 @@ async def import_statement(
     При dry_run=true возвращается предварительный просмотр без сохранения.
     """
     account = entities.get_owned(db, user, "account", account_id)
-    content = await file.read()
+    content = file.file.read()
     if len(content) > 5 * 1024 * 1024:
         raise HTTPException(413, "Размер файла выписки не должен превышать 5 МБ")
     try:

@@ -47,8 +47,12 @@ def _flush(bucket: dict) -> None:
         db.close()
 
 
-def record_request(method: str, path: str, status: int, seconds: float) -> None:
-    """Учитывает обработанный запрос в метриках и поминутной статистике."""
+def record_request(method: str, path: str, status: int, seconds: float) -> dict | None:
+    """Учитывает обработанный запрос в метриках и поминутной статистике.
+
+    Возвращает статистику завершившейся минуты, которую вызывающая сторона сохраняет
+    функцией save_bucket вне цикла событий (сохранение обращается к базе данных).
+    """
     REQUESTS.labels(method, path, str(status)).inc()
     LATENCY.labels(method, path).observe(seconds)
     minute = datetime.now(UTC).replace(second=0, microsecond=0)
@@ -61,8 +65,12 @@ def record_request(method: str, path: str, status: int, seconds: float) -> None:
         _bucket["errors"] += 1 if status >= 500 else 0
         _bucket["total_ms"] += seconds * 1000
         _bucket["max_ms"] = max(_bucket["max_ms"], seconds * 1000)
-    if to_flush:
-        _flush(to_flush)
+    return to_flush
+
+
+def save_bucket(bucket: dict) -> None:
+    """Сохраняет поминутную статистику запросов в базе данных."""
+    _flush(bucket)
 
 
 def flush_now() -> None:
