@@ -1,5 +1,7 @@
 package ru.finhelper.app.data
 
+import java.math.BigDecimal
+import java.util.UUID
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonObject
 import org.junit.Assert.assertEquals
@@ -16,8 +18,6 @@ import ru.finhelper.app.data.remote.ApiError
 import ru.finhelper.app.data.remote.AppJson
 import ru.finhelper.app.data.remote.SyncResponse
 import ru.finhelper.app.data.sync.SyncAdapter
-import java.math.BigDecimal
-import java.util.UUID
 
 /** Проверка соответствия формата обмена программному интерфейсу сервера. */
 class SerializationTest {

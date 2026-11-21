@@ -37,6 +37,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import java.math.BigDecimal
+import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -70,8 +72,6 @@ import ru.finhelper.app.ui.components.StatusChip
 import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.components.TooltipIconButton
 import ru.finhelper.app.ui.transactions.Option
-import java.math.BigDecimal
-import java.time.LocalDate
 
 /** Состояние экрана «Цели». */
 data class GoalsUiState(

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
@@ -45,10 +46,10 @@ import ru.finhelper.app.R
 import ru.finhelper.app.ui.components.AppScaffold
 import ru.finhelper.app.ui.components.AppTextField
 import ru.finhelper.app.ui.components.LocalSnackbarHost
+import ru.finhelper.app.ui.components.LocalSyncStatus
 import ru.finhelper.app.ui.components.NoticeBanner
 import ru.finhelper.app.ui.components.PrimaryButton
 import ru.finhelper.app.ui.components.SyncStatusBar
-import ru.finhelper.app.ui.components.LocalSyncStatus
 import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.components.toneColor
 
@@ -89,11 +90,12 @@ fun LoginScreen(
     onLogin: () -> Unit = {},
     onRegister: () -> Unit = {},
     onForgot: () -> Unit = {},
+    serverInitiallyVisible: Boolean = false,
 ) {
-    var serverVisible by rememberSaveable { mutableStateOf(false) }
+    var serverVisible by rememberSaveable { mutableStateOf(serverInitiallyVisible) }
     Scaffold(
         snackbarHost = { SnackbarHost(LocalSnackbarHost.current) },
-        topBar = { SyncStatusBar(LocalSyncStatus.current, onClick = {}) },
+        topBar = { SyncStatusBar(LocalSyncStatus.current, onClick = {}, modifier = Modifier.statusBarsPadding()) },
     ) { padding ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,

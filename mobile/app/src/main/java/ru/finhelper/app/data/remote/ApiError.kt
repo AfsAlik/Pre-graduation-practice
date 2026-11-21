@@ -1,12 +1,12 @@
 package ru.finhelper.app.data.remote
 
+import java.io.IOException
 import kotlinx.coroutines.CancellationException
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.jsonObject
 import retrofit2.HttpException
-import java.io.IOException
 
 /**
  * Ошибка обращения к серверу в виде, пригодном для показа пользователю.

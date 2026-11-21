@@ -2,6 +2,7 @@ package ru.finhelper.app.ui.investments
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import java.math.BigDecimal
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -24,7 +25,6 @@ import ru.finhelper.app.di.AppMessages
 import ru.finhelper.app.domain.Portfolio
 import ru.finhelper.app.domain.PortfolioCalculator
 import ru.finhelper.app.domain.Position
-import java.math.BigDecimal
 
 /** Данные формы «Добавить сделку». */
 data class TradeInput(

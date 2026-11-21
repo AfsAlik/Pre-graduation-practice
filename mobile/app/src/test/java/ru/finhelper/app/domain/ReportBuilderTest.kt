@@ -1,5 +1,8 @@
 package ru.finhelper.app.domain
 
+import java.math.BigDecimal
+import java.time.LocalDate
+import java.time.ZoneOffset
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
@@ -9,9 +12,6 @@ import ru.finhelper.app.core.Dates
 import ru.finhelper.app.data.local.AccountEntity
 import ru.finhelper.app.data.local.SystemCategories
 import ru.finhelper.app.data.local.TransactionEntity
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.ZoneOffset
 
 /** Проверка балансов, отчетов и прогноза остатка (п. 4.2.1.1 е, 4.2.1.4 ТЗ). */
 class ReportBuilderTest {

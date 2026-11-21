@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -76,7 +77,6 @@ import ru.finhelper.app.ui.dashboard.budgetTone
 import ru.finhelper.app.ui.theme.parseColor
 import ru.finhelper.app.ui.transactions.Option
 import ru.finhelper.app.ui.transactions.categoryOptions
-import java.time.LocalDate
 
 /** Готовые периоды отчета. */
 enum class ReportPeriod(val title: Int) {

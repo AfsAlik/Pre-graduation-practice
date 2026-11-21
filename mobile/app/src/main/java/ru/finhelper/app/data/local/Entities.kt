@@ -3,11 +3,11 @@ package ru.finhelper.app.data.local
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.math.BigDecimal
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import ru.finhelper.app.data.remote.DecimalSerializer
 import ru.finhelper.app.data.remote.InstantMillisSerializer
-import java.math.BigDecimal
 
 /**
  * Общие служебные поля записей, участвующих в синхронизации (п. 4.2.1.6 ТЗ).

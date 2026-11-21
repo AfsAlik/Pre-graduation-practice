@@ -1,5 +1,6 @@
 package ru.finhelper.app.data
 
+import java.math.BigDecimal
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -17,7 +18,6 @@ import ru.finhelper.app.data.local.NotificationEntity
 import ru.finhelper.app.data.local.PendingOperationEntity
 import ru.finhelper.app.data.local.SystemCategories
 import ru.finhelper.app.data.local.TransactionEntity
-import java.math.BigDecimal
 
 /** Проверка запросов к локальной базе данных Room (база создается в памяти). */
 @RunWith(RobolectricTestRunner::class)

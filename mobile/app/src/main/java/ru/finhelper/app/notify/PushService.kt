@@ -6,11 +6,11 @@ import com.google.firebase.FirebaseOptions
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import kotlin.coroutines.resume
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import ru.finhelper.app.BuildConfig
 import ru.finhelper.app.FinHelperApp
-import kotlin.coroutines.resume
 
 /**
  * Подключение Firebase Cloud Messaging без файла google-services.json.

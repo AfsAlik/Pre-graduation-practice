@@ -3,6 +3,8 @@ package ru.finhelper.app.ui.transactions
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import java.math.BigDecimal
+import java.time.LocalDate
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.filter
@@ -29,8 +31,6 @@ import ru.finhelper.app.domain.BalanceCalculator
 import ru.finhelper.app.domain.CategorySuggester
 import ru.finhelper.app.domain.ReceiptParser
 import ru.finhelper.app.domain.VoiceParser
-import java.math.BigDecimal
-import java.time.LocalDate
 
 /** Состояние формы «Добавить транзакцию» / «Изменить транзакцию». */
 data class TransactionFormState(

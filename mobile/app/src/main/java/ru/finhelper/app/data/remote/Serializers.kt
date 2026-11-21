@@ -1,5 +1,6 @@
 package ru.finhelper.app.data.remote
 
+import java.math.BigDecimal
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
@@ -10,7 +11,6 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonDecoder
 import kotlinx.serialization.json.jsonPrimitive
 import ru.finhelper.app.core.Dates
-import java.math.BigDecimal
 
 /**
  * Десятичные числа передаются строками («1234.56»), чтобы исключить ошибки

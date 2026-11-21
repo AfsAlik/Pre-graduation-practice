@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.HelpOutline
 import androidx.compose.material.icons.automirrored.filled.TrendingDown
 import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.AccountBalanceWallet
@@ -25,7 +26,6 @@ import androidx.compose.material.icons.filled.Category
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.EventRepeat
 import androidx.compose.material.icons.filled.FileCopy
-import androidx.compose.material.icons.filled.HelpOutline
 import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
@@ -366,7 +366,7 @@ private fun MainMenu(state: DashboardUiState, onSelect: (String) -> Unit) {
             MenuItem(Icons.Filled.EventRepeat, R.string.recurring_title) { onSelect(Routes.RECURRING) }
             HorizontalDivider(Modifier.padding(vertical = 8.dp))
             MenuItem(Icons.Filled.AccountCircle, R.string.profile_title) { onSelect(Routes.PROFILE) }
-            MenuItem(Icons.Filled.HelpOutline, R.string.help_title) { onSelect(Routes.HELP) }
+            MenuItem(Icons.AutoMirrored.Filled.HelpOutline, R.string.help_title) { onSelect(Routes.HELP) }
             if (state.showAdminMenu) {
                 HorizontalDivider(Modifier.padding(vertical = 8.dp))
                 MenuItem(Icons.Filled.AdminPanelSettings, R.string.admin_title) { onSelect(Routes.ADMIN) }

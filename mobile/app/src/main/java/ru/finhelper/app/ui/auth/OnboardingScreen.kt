@@ -17,10 +17,10 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ReceiptLong
 import androidx.compose.material.icons.filled.CloudOff
 import androidx.compose.material.icons.filled.Insights
 import androidx.compose.material.icons.filled.PieChart
-import androidx.compose.material.icons.filled.ReceiptLong
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -42,7 +42,7 @@ import ru.finhelper.app.ui.components.PrimaryButton
 private class OnboardingPage(val icon: ImageVector, @StringRes val title: Int, @StringRes val text: Int)
 
 private val PAGES = listOf(
-    OnboardingPage(Icons.Filled.ReceiptLong, R.string.onboarding_title_1, R.string.onboarding_text_1),
+    OnboardingPage(Icons.AutoMirrored.Filled.ReceiptLong, R.string.onboarding_title_1, R.string.onboarding_text_1),
     OnboardingPage(Icons.Filled.PieChart, R.string.onboarding_title_2, R.string.onboarding_text_2),
     OnboardingPage(Icons.Filled.Insights, R.string.onboarding_title_3, R.string.onboarding_text_3),
     OnboardingPage(Icons.Filled.CloudOff, R.string.onboarding_title_4, R.string.onboarding_text_4),

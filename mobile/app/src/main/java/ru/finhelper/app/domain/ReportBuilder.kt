@@ -1,16 +1,16 @@
 package ru.finhelper.app.domain
 
-import ru.finhelper.app.core.Dates
-import ru.finhelper.app.core.Money
-import ru.finhelper.app.data.local.AccountEntity
-import ru.finhelper.app.data.local.CategoryEntity
-import ru.finhelper.app.data.local.TransactionEntity
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.temporal.ChronoUnit
+import ru.finhelper.app.core.Dates
+import ru.finhelper.app.core.Money
+import ru.finhelper.app.data.local.AccountEntity
+import ru.finhelper.app.data.local.CategoryEntity
+import ru.finhelper.app.data.local.TransactionEntity
 
 /** Сумма по категории верхнего уровня и ее доля в общей сумме. */
 data class CategoryAmount(val categoryId: String?, val name: String, val color: String, val amount: BigDecimal, val share: Double)

@@ -9,11 +9,14 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ReceiptLong
+import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.CloudDone
 import androidx.compose.material.icons.filled.CloudOff
@@ -21,8 +24,6 @@ import androidx.compose.material.icons.filled.CloudSync
 import androidx.compose.material.icons.filled.Flag
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.PieChart
-import androidx.compose.material.icons.filled.ReceiptLong
-import androidx.compose.material.icons.filled.ShowChart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -65,10 +66,10 @@ val LocalTabNavigator = staticCompositionLocalOf<(MainTab) -> Unit> { {} }
 /** Разделы нижней панели навигации – не более пяти (п. 4.4.5.8 ТЗ). */
 enum class MainTab(val route: String, @StringRes val title: Int, val icon: ImageVector) {
     DASHBOARD("dashboard", R.string.tab_dashboard, Icons.Filled.Home),
-    TRANSACTIONS("transactions", R.string.tab_transactions, Icons.Filled.ReceiptLong),
+    TRANSACTIONS("transactions", R.string.tab_transactions, Icons.AutoMirrored.Filled.ReceiptLong),
     BUDGET("budget", R.string.tab_budget, Icons.Filled.PieChart),
     GOALS("goals", R.string.tab_goals, Icons.Filled.Flag),
-    INVESTMENTS("investments", R.string.tab_investments, Icons.Filled.ShowChart),
+    INVESTMENTS("investments", R.string.tab_investments, Icons.AutoMirrored.Filled.ShowChart),
 }
 
 /**
@@ -113,7 +114,8 @@ fun AppScaffold(
         snackbarHost = { SnackbarHost(LocalSnackbarHost.current) },
         floatingActionButton = floatingActionButton,
         bottomBar = {
-            Column {
+            // Панель навигации сама учитывает системные отступы; для кнопок формы они добавляются здесь
+            Column(if (tab == null) Modifier.navigationBarsPadding() else Modifier) {
                 bottomBar()
                 if (tab != null) MainBottomBar(tab, navigateToTab)
             }

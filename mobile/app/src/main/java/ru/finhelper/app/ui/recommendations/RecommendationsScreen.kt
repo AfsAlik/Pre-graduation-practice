@@ -1,7 +1,6 @@
 package ru.finhelper.app.ui.recommendations
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -35,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import java.time.YearMonth
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -62,7 +62,6 @@ import ru.finhelper.app.ui.components.StatusChip
 import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.components.TooltipIconButton
 import ru.finhelper.app.ui.components.toneColor
-import java.time.YearMonth
 
 /** Состояние экрана «Рекомендации». */
 data class RecommendationsUiState(

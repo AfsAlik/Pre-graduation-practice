@@ -11,8 +11,8 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import ru.finhelper.app.FinHelperApp
 import java.util.concurrent.TimeUnit
+import ru.finhelper.app.FinHelperApp
 
 /**
  * Фоновая синхронизация средствами WorkManager (п. 4.2.2.11 ТЗ): выполняется при

@@ -1,13 +1,13 @@
 package ru.finhelper.app.domain
 
-import ru.finhelper.app.core.Dates
-import ru.finhelper.app.data.local.GoalContributionEntity
-import ru.finhelper.app.data.local.GoalEntity
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
+import ru.finhelper.app.core.Dates
+import ru.finhelper.app.data.local.GoalContributionEntity
+import ru.finhelper.app.data.local.GoalEntity
 
 /** Показатели финансовой цели (п. 4.2.1.2 д–ж ТЗ). */
 data class GoalProgress(

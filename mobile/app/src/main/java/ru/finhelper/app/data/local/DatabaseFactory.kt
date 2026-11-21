@@ -2,9 +2,9 @@ package ru.finhelper.app.data.local
 
 import android.content.Context
 import androidx.room.Room
+import java.security.SecureRandom
 import net.zetetic.database.sqlcipher.SupportOpenHelperFactory
 import ru.finhelper.app.data.prefs.SecureStore
-import java.security.SecureRandom
 
 /** Способ создания локальной базы данных. В тестах подменяется незашифрованной базой в памяти. */
 fun interface DatabaseFactory {

@@ -1,5 +1,8 @@
 package ru.finhelper.app.domain
 
+import java.math.BigDecimal
+import java.time.LocalDate
+import java.time.ZoneOffset
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -13,9 +16,6 @@ import ru.finhelper.app.data.local.GoalContributionEntity
 import ru.finhelper.app.data.local.GoalEntity
 import ru.finhelper.app.data.local.SystemCategories
 import ru.finhelper.app.data.local.TransactionEntity
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.ZoneOffset
 
 /** Проверка расчета исполнения бюджета и прогресса целей (п. 4.2.1.2 ТЗ). */
 class BudgetAndGoalTest {

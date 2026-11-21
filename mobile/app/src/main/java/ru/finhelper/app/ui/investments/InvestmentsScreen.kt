@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.automirrored.filled.TrendingDown
 import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.Add
@@ -21,7 +22,6 @@ import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.ShowChart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
@@ -42,6 +42,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import java.math.BigDecimal
 import ru.finhelper.app.R
 import ru.finhelper.app.core.Dates
 import ru.finhelper.app.core.Money
@@ -66,7 +67,6 @@ import ru.finhelper.app.ui.components.StatusChip
 import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.components.TooltipIconButton
 import ru.finhelper.app.ui.components.toneColor
-import java.math.BigDecimal
 
 @Composable
 fun InvestmentsRoute(viewModel: InvestmentsViewModel, onOpenAsset: (String) -> Unit) {
@@ -128,7 +128,7 @@ fun InvestmentsScreen(
     ) { padding ->
         when {
             state.loading || portfolio == null -> LoadingBox(Modifier.padding(padding))
-            portfolio.positions.isEmpty() -> EmptyState(stringResource(R.string.investments_empty), Modifier.padding(padding), Icons.Filled.ShowChart)
+            portfolio.positions.isEmpty() -> EmptyState(stringResource(R.string.investments_empty), Modifier.padding(padding), Icons.AutoMirrored.Filled.ShowChart)
             else -> LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 contentPadding = PaddingValues(16.dp),

@@ -1,5 +1,6 @@
 package ru.finhelper.app.data.remote
 
+import java.util.concurrent.TimeUnit
 import kotlinx.serialization.encodeToString
 import okhttp3.Authenticator
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -14,7 +15,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import ru.finhelper.app.data.prefs.SessionStore
-import java.util.concurrent.TimeUnit
 
 /**
  * Создание клиента программного интерфейса сервера.

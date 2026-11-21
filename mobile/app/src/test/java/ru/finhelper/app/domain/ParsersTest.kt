@@ -1,12 +1,12 @@
 package ru.finhelper.app.domain
 
+import java.math.BigDecimal
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
 import ru.finhelper.app.core.Dates
 import ru.finhelper.app.data.local.SystemCategories
 import ru.finhelper.app.data.local.TransactionEntity
-import java.math.BigDecimal
 
 /** Проверка разбора голосовой фразы и текста чека, а также подбора категории (п. 4.2.1.1 б–г ТЗ). */
 class ParsersTest {

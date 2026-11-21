@@ -46,9 +46,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
     buildFeatures {
         compose = true
         buildConfig = true
@@ -69,6 +66,8 @@ android {
                     layout.buildDirectory.dir("outputs/screenshots").get().asFile
                 }
                 it.systemProperty("screenshots.dir", target.absolutePath)
+                // Адрес запущенного сервера для проверки совместимости (-PliveServer=http://127.0.0.1:8000/)
+                it.systemProperty("liveServer", (project.findProperty("liveServer") as String?).orEmpty())
                 it.systemProperty("roborazzi.test.record", "true")
                 it.systemProperty("robolectric.graphicsMode", "NATIVE")
             }
@@ -77,6 +76,12 @@ android {
     lint {
         abortOnError = true
         warningsAsErrors = false
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
     }
 }
 

@@ -3,6 +3,9 @@ package ru.finhelper.app.ui
 import androidx.compose.material3.Text
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import java.math.BigDecimal
+import java.time.LocalDate
+import java.time.ZoneOffset
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -27,9 +30,6 @@ import ru.finhelper.app.ui.investments.buildAssetState
 import ru.finhelper.app.ui.transactions.PeriodPreset
 import ru.finhelper.app.ui.transactions.TransactionFilter
 import ru.finhelper.app.ui.transactions.buildTransactionsState
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.ZoneOffset
 
 /** Проверка построения состояния экранов, локальных уведомлений и индикатора синхронизации. */
 @RunWith(RobolectricTestRunner::class)

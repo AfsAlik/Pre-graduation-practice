@@ -1,8 +1,8 @@
 package ru.finhelper.app.domain
 
+import java.math.BigDecimal
 import ru.finhelper.app.data.local.AccountEntity
 import ru.finhelper.app.data.local.TransactionEntity
-import java.math.BigDecimal
 
 /** Расчет балансов счетов (п. 4.2.1.1 е ТЗ). */
 object BalanceCalculator {

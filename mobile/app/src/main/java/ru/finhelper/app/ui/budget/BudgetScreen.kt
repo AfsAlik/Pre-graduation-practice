@@ -35,6 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import java.math.BigDecimal
+import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -65,14 +67,11 @@ import ru.finhelper.app.ui.components.PercentBar
 import ru.finhelper.app.ui.components.SectionCard
 import ru.finhelper.app.ui.components.SelectField
 import ru.finhelper.app.ui.components.StatusChip
-import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.components.TooltipIconButton
 import ru.finhelper.app.ui.dashboard.budgetTone
 import ru.finhelper.app.ui.transactions.Option
 import ru.finhelper.app.ui.transactions.categoryOptions
 import ru.finhelper.app.ui.transactions.periodOptions
-import java.math.BigDecimal
-import java.time.LocalDate
 
 /** Состояние экрана «Бюджет». */
 data class BudgetUiState(

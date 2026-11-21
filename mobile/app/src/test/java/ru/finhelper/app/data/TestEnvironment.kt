@@ -3,6 +3,7 @@ package ru.finhelper.app.data
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
+import java.io.IOException
 import kotlinx.serialization.json.JsonNull
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
@@ -18,7 +19,6 @@ import ru.finhelper.app.data.sync.SyncAdapters
 import ru.finhelper.app.data.sync.SyncEngine
 import ru.finhelper.app.data.sync.SyncQueue
 import ru.finhelper.app.data.sync.SyncTransport
-import java.io.IOException
 
 /** Шифрование-заглушка для тестов: хранилище ключей Android в среде JVM недоступно. */
 object PlainCipher : SecretCipher {

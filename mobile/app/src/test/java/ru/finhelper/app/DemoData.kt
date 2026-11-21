@@ -1,5 +1,7 @@
 package ru.finhelper.app
 
+import java.math.BigDecimal
+import java.time.LocalDate
 import ru.finhelper.app.core.Dates
 import ru.finhelper.app.data.local.AccountEntity
 import ru.finhelper.app.data.local.BudgetEntity
@@ -14,8 +16,6 @@ import ru.finhelper.app.data.remote.NotificationSettingsDto
 import ru.finhelper.app.data.remote.ProfileDto
 import ru.finhelper.app.data.repo.FinanceSnapshot
 import ru.finhelper.app.domain.CurrencyConverter
-import java.math.BigDecimal
-import java.time.LocalDate
 
 /**
  * Демонстрационный набор данных: используется для снимков экранов руководства

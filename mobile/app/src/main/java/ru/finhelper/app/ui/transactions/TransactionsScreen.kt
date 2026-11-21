@@ -19,12 +19,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ReceiptLong
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.ReceiptLong
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -144,7 +144,7 @@ fun TransactionsScreen(
             FilterPanel(state, filtersExpanded, { filtersExpanded = !filtersExpanded }, onFilterChange)
             when {
                 state.loading -> LoadingBox()
-                state.groups.isEmpty() -> EmptyState(stringResource(R.string.transactions_empty), icon = Icons.Filled.ReceiptLong)
+                state.groups.isEmpty() -> EmptyState(stringResource(R.string.transactions_empty), icon = Icons.AutoMirrored.Filled.ReceiptLong)
                 else -> LazyColumn(Modifier.fillMaxSize()) {
                     item {
                         Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 4.dp)) {

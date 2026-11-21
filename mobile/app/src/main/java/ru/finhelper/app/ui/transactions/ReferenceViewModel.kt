@@ -2,6 +2,9 @@ package ru.finhelper.app.ui.transactions
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import java.math.BigDecimal
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -22,9 +25,6 @@ import ru.finhelper.app.data.repo.ValidationError
 import ru.finhelper.app.di.AppMessages
 import ru.finhelper.app.domain.BalanceCalculator
 import ru.finhelper.app.domain.CategoryTree
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 
 /** Счет с рассчитанным балансом в валюте счета и в базовой валюте. */
 data class AccountRow(val account: AccountEntity, val balance: BigDecimal, val balanceBase: BigDecimal)

@@ -3,6 +3,8 @@ package ru.finhelper.app.ui.transactions
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import java.math.BigDecimal
+import java.time.LocalDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -25,8 +27,6 @@ import ru.finhelper.app.data.sync.SyncManager
 import ru.finhelper.app.di.AppMessages
 import ru.finhelper.app.domain.BalanceCalculator
 import ru.finhelper.app.domain.CategoryTree
-import java.math.BigDecimal
-import java.time.LocalDate
 
 /** Готовые периоды фильтра истории операций. */
 enum class PeriodPreset(val title: Int) {

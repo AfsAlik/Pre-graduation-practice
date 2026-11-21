@@ -44,6 +44,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
+import java.time.YearMonth
 import ru.finhelper.app.R
 import ru.finhelper.app.core.Dates
 import ru.finhelper.app.core.Money
@@ -64,7 +65,6 @@ import ru.finhelper.app.ui.components.StatusChip
 import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.components.TooltipIconButton
 import ru.finhelper.app.ui.navigation.Routes
-import java.time.YearMonth
 
 /** Требуемая доля положительных оценок рекомендаций (п. 4.3.1.5 ТЗ). */
 private const val FEEDBACK_TARGET = 0.75

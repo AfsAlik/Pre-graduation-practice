@@ -2,6 +2,10 @@ package ru.finhelper.app.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import java.math.BigDecimal
+import java.math.MathContext
+import java.time.LocalDate
+import java.time.YearMonth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -23,10 +27,6 @@ import ru.finhelper.app.domain.GoalCalculator
 import ru.finhelper.app.domain.GoalProgress
 import ru.finhelper.app.domain.PortfolioCalculator
 import ru.finhelper.app.domain.ReportBuilder
-import java.math.BigDecimal
-import java.math.MathContext
-import java.time.LocalDate
-import java.time.YearMonth
 
 /** Сводный индикатор исполнения бюджета по всем лимитам. */
 data class BudgetSummary(val limit: BigDecimal, val spent: BigDecimal, val percent: Double, val level: BudgetLevel, val exceeded: Int)

@@ -54,6 +54,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import java.io.File
 import ru.finhelper.app.R
 import ru.finhelper.app.core.Money
 import ru.finhelper.app.data.local.TemplateEntity
@@ -72,7 +73,6 @@ import ru.finhelper.app.ui.components.SectionCard
 import ru.finhelper.app.ui.components.SelectField
 import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.components.TooltipIconButton
-import java.io.File
 
 /** Создает во временном каталоге файл для снимка чека и возвращает его адрес для приложения камеры. */
 private fun newReceiptUri(context: Context): Uri {

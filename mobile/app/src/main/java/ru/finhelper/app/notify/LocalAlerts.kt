@@ -1,5 +1,7 @@
 package ru.finhelper.app.notify
 
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import ru.finhelper.app.core.Dates
 import ru.finhelper.app.core.Money
 import ru.finhelper.app.data.local.NotificationDao
@@ -11,8 +13,6 @@ import ru.finhelper.app.data.repo.FinanceSnapshot
 import ru.finhelper.app.domain.BudgetCalculator
 import ru.finhelper.app.domain.GoalCalculator
 import ru.finhelper.app.domain.Periods
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 
 /** Локальное уведомление, сформированное на устройстве. */
 data class LocalAlert(

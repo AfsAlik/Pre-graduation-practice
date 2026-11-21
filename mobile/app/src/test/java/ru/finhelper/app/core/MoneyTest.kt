@@ -1,10 +1,10 @@
 package ru.finhelper.app.core
 
+import java.math.BigDecimal
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
-import java.math.BigDecimal
 
 /** Проверка форматирования и разбора денежных сумм (п. 4.4.5.17, 4.4.5.18 ТЗ). */
 class MoneyTest {

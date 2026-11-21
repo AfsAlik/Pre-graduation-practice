@@ -1,5 +1,6 @@
 package ru.finhelper.app.data.repo
 
+import java.math.BigDecimal
 import ru.finhelper.app.data.local.AccountEntity
 import ru.finhelper.app.data.local.BudgetEntity
 import ru.finhelper.app.data.local.CategoryEntity
@@ -10,7 +11,6 @@ import ru.finhelper.app.data.local.TransactionEntity
 import ru.finhelper.app.data.remote.ProfileDto
 import ru.finhelper.app.domain.BalanceCalculator
 import ru.finhelper.app.domain.CurrencyConverter
-import java.math.BigDecimal
 
 /**
  * Согласованный срез учетных данных пользователя из локальной базы.

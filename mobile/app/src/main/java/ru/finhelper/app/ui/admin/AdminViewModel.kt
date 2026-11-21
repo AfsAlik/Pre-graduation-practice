@@ -3,6 +3,7 @@ package ru.finhelper.app.ui.admin
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import java.time.LocalDate
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,7 +27,6 @@ import ru.finhelper.app.data.remote.apiCall
 import ru.finhelper.app.data.remote.userMessage
 import ru.finhelper.app.data.repo.FileRepository
 import ru.finhelper.app.di.AppMessages
-import java.time.LocalDate
 
 /** Состояние экрана «Аналитика ИИ». */
 data class AiAnalyticsUiState(val loading: Boolean = true, val quality: QualityDto? = null, val error: String? = null)

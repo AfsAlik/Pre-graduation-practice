@@ -52,6 +52,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 import ru.finhelper.app.R
 import ru.finhelper.app.core.Dates
 import ru.finhelper.app.core.Money
@@ -73,7 +74,6 @@ import ru.finhelper.app.ui.components.SelectField
 import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.navigation.Routes
 import ru.finhelper.app.ui.transactions.Option
-import kotlin.math.roundToInt
 
 /** Переключатель с подписью: вся строка является областью нажатия (не менее 48 dp). */
 @Composable

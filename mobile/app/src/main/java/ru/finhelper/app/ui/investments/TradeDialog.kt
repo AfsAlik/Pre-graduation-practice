@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import java.math.BigDecimal
 import ru.finhelper.app.R
 import ru.finhelper.app.core.Dates
 import ru.finhelper.app.core.Money
@@ -35,7 +36,6 @@ import ru.finhelper.app.ui.components.NoticeBanner
 import ru.finhelper.app.ui.components.SelectField
 import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.transactions.Option
-import java.math.BigDecimal
 
 @Composable
 fun assetTypeOptions(): List<Option> = listOf(

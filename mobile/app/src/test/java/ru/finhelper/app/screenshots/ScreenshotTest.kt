@@ -7,6 +7,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.github.takahirom.roborazzi.captureRoboImage
+import java.io.File
+import java.math.BigDecimal
+import java.time.ZoneOffset
+import kotlin.math.sin
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive
 import org.junit.Before
@@ -88,10 +92,6 @@ import ru.finhelper.app.ui.transactions.buildAccountsState
 import ru.finhelper.app.ui.transactions.buildTemplatesState
 import ru.finhelper.app.ui.transactions.buildTransactionsState
 import ru.finhelper.app.ui.transactions.categoryOptions
-import java.io.File
-import java.math.BigDecimal
-import java.time.ZoneOffset
-import kotlin.math.sin
 
 /**
  * Снимки экранов приложения для руководства пользователя.
@@ -141,7 +141,10 @@ class ScreenshotTest {
 
     @Test
     fun login() = capture("01_login") {
-        LoginScreen(LoginUiState(email = "anna@example.com", password = "password1", serverUrl = "http://10.0.2.2:8000/"))
+        LoginScreen(
+            LoginUiState(email = "anna@example.com", password = "password1", serverUrl = "http://192.168.1.10:8000/"),
+            serverInitiallyVisible = true,
+        )
     }
 
     @Test
@@ -212,7 +215,7 @@ class ScreenshotTest {
     fun goals() = capture("06_goals") { GoalsScreen(buildGoalsState(snapshot, today)) }
 
     @Test
-    fun goalsFull() = capture("06_goals_full", height = 1500) { GoalsScreen(buildGoalsState(snapshot, today)) }
+    fun goalsFull() = capture("06_goals_full", height = 1420) { GoalsScreen(buildGoalsState(snapshot, today)) }
 
     private val dynamics = (0..30).map { day ->
         val value = 268_000 + day * 1_450 + 5_200 * sin(day / 3.0)
@@ -312,7 +315,7 @@ class ScreenshotTest {
     fun adminMenu() = capture("12_admin_menu") { AdminMenuScreen(isAdmin = true) }
 
     @Test
-    fun adminAi() = capture("12_admin_ai", height = 1500) {
+    fun adminAi() = capture("12_admin_ai", height = 1140) {
         AiAnalyticsScreen(
             AiAnalyticsUiState(
                 loading = false,
@@ -330,7 +333,7 @@ class ScreenshotTest {
     }
 
     @Test
-    fun adminModels() = capture("13_admin_models", height = 1300) {
+    fun adminModels() = capture("13_admin_models", height = 940) {
         ModelsScreen(
             ModelsUiState(
                 loading = false,
@@ -415,7 +418,7 @@ class ScreenshotTest {
     }
 
     @Test
-    fun adminSettings() = capture("17_admin_settings", height = 1500) {
+    fun adminSettings() = capture("17_admin_settings", height = 1250) {
         fun section(vararg fields: Pair<String, JsonPrimitive>) = JsonObject(mapOf(*fields))
         SystemSettingsScreen(
             SystemSettingsUiState(

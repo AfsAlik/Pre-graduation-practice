@@ -16,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ShowChart
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.Add
@@ -26,7 +27,6 @@ import androidx.compose.material.icons.filled.EventRepeat
 import androidx.compose.material.icons.filled.FileCopy
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Restore
-import androidx.compose.material.icons.filled.ShowChart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -53,6 +53,9 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import java.math.BigDecimal
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 import ru.finhelper.app.R
 import ru.finhelper.app.core.Dates
 import ru.finhelper.app.core.Money
@@ -78,9 +81,6 @@ import ru.finhelper.app.ui.components.Tone
 import ru.finhelper.app.ui.components.TooltipIconButton
 import ru.finhelper.app.ui.components.toneColor
 import ru.finhelper.app.ui.theme.parseColor
-import java.math.BigDecimal
-import java.time.LocalDate
-import java.time.temporal.ChronoUnit
 
 private const val FIELD_REQUIRED = "Заполните поле"
 private const val AMOUNT_REQUIRED = "Введите сумму больше нуля"
@@ -111,7 +111,7 @@ fun accountTypeOptions(): List<Option> = listOf(
 private fun accountIcon(type: String): ImageVector = when (type) {
     "bank" -> Icons.Filled.AccountBalance
     "credit" -> Icons.Filled.CreditCard
-    "investment" -> Icons.Filled.ShowChart
+    "investment" -> Icons.AutoMirrored.Filled.ShowChart
     else -> Icons.Filled.AccountBalanceWallet
 }
 

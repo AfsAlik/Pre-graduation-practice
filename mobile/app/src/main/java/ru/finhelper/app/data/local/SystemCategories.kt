@@ -1,7 +1,7 @@
 package ru.finhelper.app.data.local
 
-import ru.finhelper.app.core.Ids
 import java.util.UUID
+import ru.finhelper.app.core.Ids
 
 /**
  * Системный справочник категорий (п. 4.3.2.3 ТЗ).

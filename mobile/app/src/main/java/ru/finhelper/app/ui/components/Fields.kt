@@ -1,7 +1,5 @@
 package ru.finhelper.app.ui.components
 
-import ru.finhelper.app.R
-import androidx.compose.ui.res.stringResource
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +26,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -35,12 +34,13 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import ru.finhelper.app.core.Dates
-import ru.finhelper.app.core.Money
-import ru.finhelper.app.core.MoneyVisualTransformation
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneOffset
+import ru.finhelper.app.R
+import ru.finhelper.app.core.Dates
+import ru.finhelper.app.core.Money
+import ru.finhelper.app.core.MoneyVisualTransformation
 
 /**
  * Текстовое поле с подписью. Ошибка ввода выводится под полем вместе с
@@ -128,7 +128,7 @@ fun <T> SelectField(
     modifier: Modifier = Modifier,
     error: String? = null,
     enabled: Boolean = true,
-    placeholder: String = stringResource(R.string.not_selected),
+    placeholder: String = stringResource(R.string.option_not_selected),
 ) {
     var expanded by remember { mutableStateOf(false) }
     var query by remember { mutableStateOf("") }

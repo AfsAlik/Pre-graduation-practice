@@ -1,9 +1,9 @@
 package ru.finhelper.app.data.remote
 
+import java.math.BigDecimal
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonObject
-import java.math.BigDecimal
 
 // Модели запросов и ответов программного интерфейса серверной части (/api/v1).
 // Имена полей JSON соответствуют спецификации OpenAPI сервера.

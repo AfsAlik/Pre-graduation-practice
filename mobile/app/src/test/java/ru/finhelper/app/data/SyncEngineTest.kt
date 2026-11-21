@@ -1,5 +1,7 @@
 package ru.finhelper.app.data
 
+import java.io.IOException
+import java.math.BigDecimal
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.JsonObject
@@ -17,8 +19,6 @@ import org.robolectric.RobolectricTestRunner
 import ru.finhelper.app.data.local.AccountEntity
 import ru.finhelper.app.data.local.SystemCategories
 import ru.finhelper.app.data.sync.SyncEngine
-import java.io.IOException
-import java.math.BigDecimal
 
 /**
  * Проверка очереди несинхронизированных операций и синхронизации с имитацией

@@ -1,5 +1,6 @@
 package ru.finhelper.app.domain
 
+import java.math.BigDecimal
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -7,7 +8,6 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import ru.finhelper.app.DemoData
 import ru.finhelper.app.data.local.TradeEntity
-import java.math.BigDecimal
 
 /** Контрольный расчет инвестиционного портфеля (п. 4.2.1.3 в, е; 4.3.1.1 ТЗ). */
 class PortfolioCalculatorTest {

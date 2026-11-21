@@ -1,10 +1,10 @@
 package ru.finhelper.app.domain
 
-import ru.finhelper.app.data.local.TradeEntity
 import java.math.BigDecimal
 import java.math.MathContext
 import java.math.RoundingMode
 import java.util.ArrayDeque
+import ru.finhelper.app.data.local.TradeEntity
 
 /** Состояние позиции по одному активу, рассчитанное по сделкам. */
 data class PositionState(
