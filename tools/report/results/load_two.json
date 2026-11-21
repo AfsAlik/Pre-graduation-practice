@@ -1,0 +1,161 @@
+{
+ "smoke_sample": true,
+ "total_requests": 233,
+ "duration_minutes": 0.7,
+ "users_200": {
+  "minutes": 0.7,
+  "requests_per_second": 5.29,
+  "by_request": {
+   "POST /auth/login": {
+    "requests": 30,
+    "mean_ms": 1489.3,
+    "p95_ms": 2048.6,
+    "p99_ms": 2050.3,
+    "max_ms": 2050.3,
+    "limit_ms": 2000,
+    "within_limit_percent": 83.33,
+    "errors_percent": 0.0
+   },
+   "все запросы": {
+    "requests": 233,
+    "mean_ms": 358.0,
+    "p95_ms": 1544.4,
+    "p99_ms": 2020.9,
+    "max_ms": 2050.3,
+    "limit_ms": 2000,
+    "within_limit_percent": 97.85,
+    "errors_percent": 0.0
+   },
+   "GET /accounts": {
+    "requests": 30,
+    "mean_ms": 277.0,
+    "p95_ms": 591.5,
+    "p99_ms": 691.7,
+    "max_ms": 691.7,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "основные запросы (п. 4.2.2.2)": {
+    "requests": 156,
+    "mean_ms": 212.6,
+    "p95_ms": 827.0,
+    "p99_ms": 1573.3,
+    "max_ms": 1821.7,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /sync/status": {
+    "requests": 30,
+    "mean_ms": 187.1,
+    "p95_ms": 462.0,
+    "p99_ms": 468.0,
+    "max_ms": 468.0,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /dashboard": {
+    "requests": 23,
+    "mean_ms": 351.4,
+    "p95_ms": 1573.3,
+    "p99_ms": 1821.7,
+    "max_ms": 1821.7,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /goals/progress": {
+    "requests": 8,
+    "mean_ms": 71.0,
+    "p95_ms": 331.7,
+    "p99_ms": 331.7,
+    "max_ms": 331.7,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /transactions": {
+    "requests": 17,
+    "mean_ms": 87.3,
+    "p95_ms": 827.0,
+    "p99_ms": 827.0,
+    "max_ms": 827.0,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /budgets/status": {
+    "requests": 11,
+    "mean_ms": 109.6,
+    "p95_ms": 830.0,
+    "p99_ms": 830.0,
+    "max_ms": 830.0,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "POST /transactions": {
+    "requests": 30,
+    "mean_ms": 180.5,
+    "p95_ms": 941.1,
+    "p99_ms": 1266.8,
+    "max_ms": 1266.8,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /reports": {
+    "requests": 15,
+    "mean_ms": 189.2,
+    "p95_ms": 1330.5,
+    "p99_ms": 1330.5,
+    "max_ms": 1330.5,
+    "limit_ms": 5000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /recommendations": {
+    "requests": 16,
+    "mean_ms": 73.7,
+    "p95_ms": 386.2,
+    "p99_ms": 386.2,
+    "max_ms": 386.2,
+    "limit_ms": 10000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "POST /sync": {
+    "requests": 7,
+    "mean_ms": 355.2,
+    "p95_ms": 739.0,
+    "p99_ms": 739.0,
+    "max_ms": 739.0,
+    "limit_ms": 2000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /forecast": {
+    "requests": 10,
+    "mean_ms": 146.8,
+    "p95_ms": 670.2,
+    "p99_ms": 670.2,
+    "max_ms": 670.2,
+    "limit_ms": 10000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   },
+   "GET /investments/portfolio": {
+    "requests": 6,
+    "mean_ms": 13.3,
+    "p95_ms": 19.3,
+    "p99_ms": 19.3,
+    "max_ms": 19.3,
+    "limit_ms": 3000,
+    "within_limit_percent": 100.0,
+    "errors_percent": 0.0
+   }
+  }
+ }
+}

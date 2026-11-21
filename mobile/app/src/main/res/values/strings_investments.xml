@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Инвестиционный портфель -->
+<resources>
+    <string name="investments_title">Инвестиции</string>
+    <string name="investments_refresh">Обновить котировки</string>
+    <string name="investments_empty">В портфеле пока нет активов. Нажмите «Добавить сделку»</string>
+    <string name="investments_total_value">Стоимость портфеля</string>
+    <string name="investments_invested">Вложено</string>
+    <string name="investments_quotes_at">Котировки на %1$s</string>
+    <string name="investments_no_quotes">Котировки еще не загружены: позиции оценены по цене покупки</string>
+    <string name="investments_offline">Показаны сохраненные данные: %1$s</string>
+    <string name="investments_dynamics">Динамика стоимости</string>
+    <string name="investments_dynamics_description">График динамики стоимости портфеля за выбранный период</string>
+    <string name="investments_no_dynamics">Нет данных за период. График появится после загрузки котировок</string>
+    <string name="investments_day">День</string>
+    <string name="investments_structure">Структура портфеля</string>
+    <string name="investments_structure_description">Диаграмма структуры портфеля по типам активов</string>
+    <string name="investments_positions">Позиции</string>
+    <string name="chart_min">Минимум: %1$s</string>
+
+    <string name="position_quantity_price">Количество × средняя цена</string>
+    <string name="position_current_price">Текущая цена</string>
+    <string name="position_no_price">нет котировки</string>
+
+    <string name="asset_type_stock">Акция</string>
+    <string name="asset_type_bond">Облигация</string>
+    <string name="asset_type_etf">Фонд (ETF)</string>
+    <string name="asset_type_currency">Валюта</string>
+    <string name="asset_type_crypto">Криптовалюта</string>
+    <string name="asset_price_history">История цены</string>
+    <string name="asset_price_history_description">График исторических цен актива %1$s</string>
+    <string name="asset_no_history">История цен появится после загрузки котировок с сервера</string>
+    <string name="asset_returns">Доходность за период</string>
+    <string name="asset_quarter">Квартал</string>
+    <string name="asset_no_data">нет данных</string>
+    <string name="asset_position">Позиция</string>
+    <string name="asset_average_price">Средняя цена покупки</string>
+    <string name="asset_value">Текущая стоимость</string>
+    <string name="asset_fees">Комиссии</string>
+    <string name="asset_realized">Реализованный результат</string>
+    <string name="asset_trades">Сделки</string>
+
+    <string name="trade_add_title">Добавить сделку</string>
+    <string name="trade_edit_title">Изменить сделку</string>
+    <string name="trade_added">Сделка добавлена, доходность пересчитана</string>
+    <string name="trade_saved">Сделка сохранена</string>
+    <string name="trade_deleted">Сделка удалена</string>
+    <string name="trade_asset_type">Тип актива</string>
+    <string name="trade_ticker">Тикер</string>
+    <string name="trade_name">Название актива</string>
+    <string name="trade_buy">Покупка</string>
+    <string name="trade_sell">Продажа</string>
+    <string name="trade_quantity">Количество</string>
+    <string name="trade_price">Цена</string>
+    <string name="trade_fee">Комиссия</string>
+    <string name="trade_fee_value">Комиссия: %1$s</string>
+    <string name="trade_date">Дата сделки</string>
+    <string name="trade_locked">Количество и цену покупки нельзя изменить спустя 7 дней после фиксации позиции. Оформите корректировку новой сделкой.</string>
+    <string name="trade_locked_short">изменение количества и цены недоступно (прошло более 7 дней)</string>
+    <string name="trade_delete_title">Удалить сделку?</string>
+    <string name="trade_delete_text">Сделка будет удалена, позиция и доходность будут пересчитаны.</string>
+</resources>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Транзакции, счета, категории, шаблоны, регулярные платежи -->
+<resources>
+    <string name="period_this_month">Этот месяц</string>
+    <string name="period_last_month">Прошлый месяц</string>
+    <string name="period_three_months">3 месяца</string>
+    <string name="period_this_year">Этот год</string>
+    <string name="period_all">Все время</string>
+    <string name="period_custom">Свой период</string>
+    <string name="date_from">Дата с</string>
+    <string name="date_to">Дата по</string>
+
+    <string name="transactions_search">Поиск по описанию и категории</string>
+    <string name="transactions_empty">Операций не найдено. Измените фильтры или добавьте транзакцию кнопкой «+»</string>
+    <string name="transactions_count">Операций: %1$d</string>
+    <string name="filters">Фильтры</string>
+    <string name="filters_count">Фильтры: %1$d</string>
+    <string name="filter_kind">Вид операции</string>
+    <string name="filter_amount_from">Сумма от</string>
+    <string name="filter_amount_to">Сумма до</string>
+    <string name="field_category">Категория</string>
+    <string name="field_account">Счет</string>
+    <string name="field_amount">Сумма</string>
+    <string name="field_date">Дата</string>
+    <string name="field_comment">Комментарий</string>
+    <string name="field_name">Название</string>
+
+    <string name="transaction_edit_title">Изменить транзакцию</string>
+    <string name="transaction_added">Транзакция добавлена</string>
+    <string name="transaction_saved">Транзакция сохранена</string>
+    <string name="transaction_deleted">Транзакция удалена. Ее можно восстановить в корзине в течение 30 дней</string>
+    <string name="transaction_restored">Транзакция восстановлена</string>
+    <string name="transaction_delete_title">Удалить транзакцию?</string>
+    <string name="transaction_delete_text">Транзакция будет перемещена в корзину. Восстановить ее можно в течение 30 дней.</string>
+    <string name="transaction_auto_category">Категория определена автоматически</string>
+    <string name="transaction_to_account">Счет зачисления</string>
+    <string name="transaction_amount_to">Сумма зачисления</string>
+    <string name="transaction_amount_to_hint">Если поле пустое, сумма рассчитывается по курсу</string>
+    <string name="transaction_merchant">Описание (магазин, получатель)</string>
+    <string name="transaction_quick_input">Быстрый ввод</string>
+    <string name="transaction_from_template">Шаблон</string>
+    <string name="transaction_from_receipt">Фото чека</string>
+    <string name="transaction_from_voice">Голос</string>
+    <string name="transaction_take_photo">Сфотографировать чек</string>
+    <string name="transaction_pick_photo">Выбрать фото из галереи</string>
+    <string name="transaction_no_templates">Шаблонов пока нет. Создайте их в разделе «Шаблоны»</string>
+    <string name="transaction_voice_prompt">Скажите, например: «Потратил 500 рублей на кафе»</string>
+    <string name="transaction_voice_unavailable">Распознавание речи недоступно на этом устройстве</string>
+    <string name="transaction_camera_unavailable">Приложение камеры недоступно на этом устройстве</string>
+    <string name="transaction_recognizing">Распознавание чека…</string>
+    <string name="transaction_receipt_done">Чек распознан. Проверьте сумму и категорию</string>
+    <string name="transaction_receipt_failed">Не удалось распознать чек. Введите сумму вручную</string>
+    <string name="transaction_voice_done">Фраза распознана: «%1$s»</string>
+    <string name="transaction_voice_failed">Не удалось определить сумму. Введите ее вручную</string>
+    <string name="transaction_default_account">Наличные</string>
+    <string name="transaction_default_account_hint">Счетов пока нет: при сохранении будет создан счет «Наличные»</string>
+
+    <string name="import_statement">Импорт выписки</string>
+    <string name="import_action">Импортировать</string>
+    <string name="import_hint">Поддерживаются выписки банков в форматах CSV, OFX и QIF. Выберите счет, на который будут добавлены операции.</string>
+    <string name="import_done">Импортировано операций: %1$d, пропущено дубликатов: %2$d</string>
+    <string name="export_pdf">Экспорт в PDF</string>
+    <string name="export_xlsx">Экспорт в Excel (XLSX)</string>
+
+    <string name="trash_title">Корзина</string>
+    <string name="trash_empty">Корзина пуста</string>
+    <string name="trash_hint">Удаленные транзакции хранятся 30 дней, после чего удаляются окончательно</string>
+    <string name="trash_days_left">Осталось дней: %1$d</string>
+
+    <string name="accounts_total">Всего в базовой валюте</string>
+    <string name="accounts_add">Добавить счет</string>
+    <string name="accounts_edit">Изменить счет</string>
+    <string name="accounts_empty">Счетов пока нет. Добавьте счет кнопкой «+»</string>
+    <string name="accounts_type">Тип счета</string>
+    <string name="accounts_currency">Валюта</string>
+    <string name="accounts_initial_balance">Начальный остаток</string>
+    <string name="accounts_archived">Счет в архиве</string>
+    <string name="accounts_archived_label">в архиве</string>
+    <string name="accounts_delete_title">Удалить счет?</string>
+    <string name="accounts_delete_text">Счет «%1$s» будет удален. Счет с операциями удалить нельзя – переведите его в архив.</string>
+    <string name="accounts_saved">Счет сохранен</string>
+    <string name="accounts_deleted">Счет удален</string>
+    <string name="accounts_rates_as_of">Пересчет по курсам на %1$s</string>
+    <string name="accounts_rates_default">Пересчет по курсам по умолчанию: курсы сервера еще не загружены</string>
+    <string name="accounts_in_base">≈ %1$s</string>
+
+    <string name="categories_add">Добавить категорию</string>
+    <string name="categories_edit">Изменить категорию</string>
+    <string name="categories_parent">Родительская категория</string>
+    <string name="categories_no_parent">Нет (категория верхнего уровня)</string>
+    <string name="categories_system">системная</string>
+    <string name="categories_delete_title">Удалить категорию?</string>
+    <string name="categories_delete_text">Категория «%1$s» будет удалена. Операции с этой категорией сохранятся.</string>
+    <string name="categories_saved">Категория сохранена</string>
+    <string name="categories_deleted">Категория удалена</string>
+    <string name="categories_expenses">Расходы</string>
+    <string name="categories_income">Доходы</string>
+
+    <string name="templates_add">Добавить шаблон</string>
+    <string name="templates_edit">Изменить шаблон</string>
+    <string name="templates_empty">Шаблонов пока нет. Шаблон позволяет добавить типовую операцию одним нажатием</string>
+    <string name="templates_saved">Шаблон сохранен</string>
+    <string name="templates_deleted">Шаблон удален</string>
+    <string name="templates_delete_title">Удалить шаблон?</string>
+    <string name="templates_delete_text">Шаблон «%1$s» будет удален.</string>
+
+    <string name="recurring_add">Добавить платеж</string>
+    <string name="recurring_edit">Изменить платеж</string>
+    <string name="recurring_empty">Регулярных платежей пока нет. Добавьте платеж, чтобы получать напоминания</string>
+    <string name="recurring_period">Периодичность</string>
+    <string name="recurring_next_date">Дата следующего платежа</string>
+    <string name="recurring_remind_days">Напомнить за, дней</string>
+    <string name="recurring_next">Следующий платеж: %1$s</string>
+    <string name="recurring_paid">Оплачено</string>
+    <string name="recurring_paid_done">Платеж учтен, дата следующего платежа перенесена</string>
+    <string name="recurring_saved">Платеж сохранен</string>
+    <string name="recurring_deleted">Платеж удален</string>
+    <string name="recurring_delete_title">Удалить платеж?</string>
+    <string name="recurring_delete_text">Регулярный платеж «%1$s» будет удален.</string>
+    <string name="recurring_due_today">сегодня</string>
+    <string name="recurring_overdue">просрочен</string>
+</resources>

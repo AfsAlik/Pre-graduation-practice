@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Профиль, настройки уведомлений, безопасность, справка -->
+<resources>
+    <string name="settings_saved">Настройки сохранены</string>
+    <string name="role_user">Пользователь</string>
+    <string name="role_analyst">Аналитик</string>
+    <string name="role_admin">Администратор</string>
+    <string name="profile_role">Роль: %1$s</string>
+    <string name="profile_finance">Финансовые настройки</string>
+    <string name="profile_base_currency">Базовая валюта</string>
+    <string name="profile_risk">Риск-профиль</string>
+    <string name="risk_conservative">Консервативный</string>
+    <string name="risk_moderate">Умеренный</string>
+    <string name="risk_aggressive">Агрессивный</string>
+    <string name="profile_horizon">Инвестиционный горизонт, лет</string>
+    <string name="profile_costing">Метод расчета себестоимости</string>
+    <string name="costing_average">Средняя себестоимость</string>
+    <string name="costing_fifo">FIFO (первым куплен – первым продан)</string>
+    <string name="profile_theme">Цветовая тема</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="theme_system">Как в системе</string>
+    <string name="profile_logout">Выйти</string>
+    <string name="profile_logout_title">Выйти из учетной записи?</string>
+    <string name="profile_logout_text">Данные будут удалены с устройства и останутся на сервере.</string>
+    <string name="profile_logout_pending">Не синхронизировано операций: %1$d. При выходе они будут потеряны. Данные будут удалены с устройства.</string>
+
+    <string name="notification_settings_title">Настройки уведомлений</string>
+    <string name="notification_channels">Каналы</string>
+    <string name="notification_push">Push-уведомления</string>
+    <string name="notification_email">Уведомления по электронной почте</string>
+    <string name="notification_email_hint">Важные уведомления дублируются на адрес учетной записи</string>
+    <string name="notification_threshold">Порог предупреждения о бюджете</string>
+    <string name="notification_threshold_value">Предупреждать при достижении %1$d %% лимита</string>
+    <string name="notification_frequency">Частота уведомлений</string>
+    <string name="notification_instant">Сразу после события</string>
+    <string name="notification_daily">Раз в день одной сводкой</string>
+    <string name="notification_kinds">Виды уведомлений</string>
+    <string name="notification_kind_budget">Бюджетные лимиты</string>
+    <string name="notification_kind_recurring">Регулярные платежи</string>
+    <string name="notification_kind_goals">Финансовые цели</string>
+    <string name="notification_kind_recommendations">Новые рекомендации</string>
+    <string name="notification_kind_risks">Финансовые риски</string>
+
+    <string name="security_title">Безопасность</string>
+    <string name="security_2fa">Двухфакторная аутентификация</string>
+    <string name="security_2fa_on">Включена: при входе запрашивается код из приложения-аутентификатора.</string>
+    <string name="security_2fa_off">Отключена. Включите ее, чтобы дополнительно защитить учетную запись.</string>
+    <string name="security_2fa_enable">Включить</string>
+    <string name="security_2fa_disable">Отключить</string>
+    <string name="security_2fa_confirm">Подтвердить</string>
+    <string name="security_2fa_secret">Добавьте в приложение-аутентификатор ключ %1$s и введите код из приложения.</string>
+    <string name="security_2fa_enabled">Двухфакторная аутентификация включена</string>
+    <string name="security_2fa_disabled">Двухфакторная аутентификация отключена</string>
+    <string name="security_code">Код из приложения-аутентификатора</string>
+    <string name="security_password">Смена пароля</string>
+    <string name="security_current_password">Текущий пароль</string>
+    <string name="security_password_changed">Пароль изменен</string>
+    <string name="security_delete">Удалить учетную запись</string>
+    <string name="security_delete_text">Учетная запись и персональные данные будут удалены с сервера в течение 30 дней.</string>
+    <string name="security_delete_title">Удалить учетную запись?</string>
+    <string name="security_delete_confirm">Действие необратимо. Для подтверждения введите пароль.</string>
+    <string name="security_account_deleted">Учетная запись будет удалена в течение 30 дней</string>
+
+    <string name="help_faq">Частые вопросы</string>
+    <string name="help_support">Обращение в службу поддержки</string>
+    <string name="help_subject">Тема</string>
+    <string name="help_message">Сообщение</string>
+    <string name="help_request_sent">Обращение отправлено в службу поддержки</string>
+</resources>

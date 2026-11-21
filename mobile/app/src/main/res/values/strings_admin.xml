@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Административный модуль -->
+<resources>
+    <string name="admin_ai_title">Аналитика ИИ</string>
+    <string name="admin_ai_hint">Качество категоризации, прогноза и рекомендаций</string>
+    <string name="admin_models_title">Управление моделями ML</string>
+    <string name="admin_models_hint">Версии модели, запуск обучения, выбор активной версии</string>
+    <string name="admin_users_title">Пользователи</string>
+    <string name="admin_users_hint">Учетные записи, роли, блокировка, сброс пароля</string>
+    <string name="admin_logs_title">Логи</string>
+    <string name="admin_logs_hint">Журнал аудита, экспорт и импорт CSV</string>
+    <string name="admin_monitoring_title">Мониторинг</string>
+    <string name="admin_monitoring_hint">Доступность, время ответа, ошибки</string>
+    <string name="admin_settings_title">Настройки системы</string>
+    <string name="admin_settings_hint">Интеграции, уведомления, резервное копирование</string>
+
+    <string name="ai_categorization">Автоматическая категоризация</string>
+    <string name="ai_no_model">Активная модель отсутствует. Запустите обучение в разделе «Управление моделями ML»</string>
+    <string name="ai_model_version">Активная версия: v%1$d · примеров в обучающей выборке: %2$d</string>
+    <string name="ai_accuracy_ok">точность не ниже требуемых %1$s</string>
+    <string name="ai_accuracy_low">точность ниже требуемых %1$s</string>
+    <string name="ai_forecast_and_feedback">Прогноз и обратная связь</string>
+    <string name="ai_forecast_mape">Ошибка прогноза (MAPE)</string>
+    <string name="ai_positive_feedback">Доля положительных оценок</string>
+    <string name="ai_feedback_target">Целевое значение – не менее %1$s</string>
+    <string name="ai_rated">Оценено рекомендаций</string>
+    <string name="ai_applied">Применено рекомендаций</string>
+    <string name="ai_training_samples">Обезличенных примеров</string>
+    <string name="ai_history">Динамика за три месяца</string>
+    <string name="ai_history_description">Столбчатая диаграмма показателей качества по месяцам</string>
+    <string name="ai_history_row">A %1$s · P %2$s · R %3$s · F1 %4$s</string>
+
+    <string name="models_data">Данные для обучения</string>
+    <string name="models_categories">Категорий в выборке</string>
+    <string name="models_train">Запустить новое обучение</string>
+    <string name="models_training_note">Идет обучение модели. Состояние обновляется автоматически</string>
+    <string name="models_training_started">Обучение запущено. Процесс выполняется в фоновом режиме</string>
+    <string name="models_training_finished">Обучение модели завершено</string>
+    <string name="models_versions">Версии модели</string>
+    <string name="models_version">Версия v%1$d</string>
+    <string name="models_trained_at">Обучена</string>
+    <string name="models_status_active">активная</string>
+    <string name="models_status_ready">готова</string>
+    <string name="models_status_training">обучается</string>
+    <string name="models_status_failed">ошибка обучения</string>
+    <string name="models_activate">Сделать активной</string>
+    <string name="models_activated">Активная версия модели изменена</string>
+
+    <string name="users_add">Добавить пользователя</string>
+    <string name="users_search">Поиск по имени или адресу</string>
+    <string name="users_role">Роль</string>
+    <string name="users_password_hint">Если поле пустое, будет выдан временный пароль</string>
+    <string name="users_last_login">Последний вход: %1$s</string>
+    <string name="users_never">не выполнялся</string>
+    <string name="users_status_blocked">заблокирован</string>
+    <string name="users_block">Блокировать</string>
+    <string name="users_unblock">Разблокировать</string>
+    <string name="users_reset_password">Сбросить пароль</string>
+    <string name="users_created">Учетная запись создана</string>
+    <string name="users_blocked">Учетная запись заблокирована</string>
+    <string name="users_unblocked">Учетная запись разблокирована</string>
+    <string name="users_password_reset">Временный пароль отправлен на адрес пользователя</string>
+    <string name="users_block_title">Заблокировать учетную запись?</string>
+    <string name="users_block_text">Пользователь %1$s не сможет войти в приложение до разблокировки.</string>
+    <string name="users_reset_title">Сбросить пароль?</string>
+    <string name="users_reset_text">Пользователю %1$s будет назначен временный пароль и отправлено письмо.</string>
+    <string name="users_temporary_password">Временный пароль</string>
+    <string name="users_temporary_password_text">Учетная запись: %1$s\nВременный пароль: %2$s\nПередайте пароль пользователю; после входа его следует сменить.</string>
+
+    <string name="logs_user">Пользователь (адрес электронной почты)</string>
+    <string name="logs_action">Тип действия</string>
+    <string name="logs_action_hint">Например: auth.login, transaction, admin</string>
+    <string name="logs_total">Найдено записей: %1$d</string>
+    <string name="logs_empty">Записей не найдено. Измените условия отбора</string>
+    <string name="logs_export">Экспорт CSV</string>
+    <string name="logs_import">Импорт CSV</string>
+    <string name="logs_imported">Импортировано записей журнала: %1$d</string>
+    <string name="logs_imported_mark">импорт</string>
+
+    <string name="monitoring_day">24 часа</string>
+    <string name="monitoring_week">7 дней</string>
+    <string name="monitoring_month">30 дней</string>
+    <string name="monitoring_availability">Доступность</string>
+    <string name="monitoring_response">Среднее время ответа</string>
+    <string name="monitoring_ms">%1$s мс</string>
+    <string name="monitoring_errors">Ошибок</string>
+    <string name="monitoring_requests">Запросов</string>
+    <string name="monitoring_components">Состояние компонентов</string>
+    <string name="monitoring_database">База данных</string>
+    <string name="monitoring_ml">Сервис машинного обучения</string>
+    <string name="monitoring_rates">Курсы валют</string>
+    <string name="monitoring_ok">работает</string>
+    <string name="monitoring_failed">сбой</string>
+    <string name="monitoring_last_check">Последняя проверка: %1$s</string>
+    <string name="monitoring_chart">График доступности</string>
+    <string name="monitoring_chart_description">График доступности серверной части по часам за выбранный период</string>
+    <string name="monitoring_last_errors">Последние ошибки</string>
+    <string name="monitoring_no_errors">За выбранный период ошибок не зарегистрировано</string>
+
+    <string name="system_integrations">Параметры интеграций</string>
+    <string name="system_notifications">Уведомления по умолчанию</string>
+    <string name="system_backup">Резервное копирование</string>
+    <string name="system_maintenance">Техническое обслуживание</string>
+    <string name="system_rates_provider">Источник курсов валют</string>
+    <string name="system_quotes_provider">Источник биржевых котировок</string>
+    <string name="system_push_provider">Сервис push-уведомлений</string>
+    <string name="system_email_provider">Сервис электронной почты</string>
+    <string name="system_budget_percent">Порог предупреждения о бюджете, %</string>
+    <string name="system_backup_cron">Расписание (формат cron)</string>
+    <string name="system_backup_keep">Срок хранения копий, дней</string>
+    <string name="system_maintenance_enabled">Режим технического обслуживания включен</string>
+    <string name="system_maintenance_message">Сообщение для пользователей</string>
+</resources>

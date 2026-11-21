@@ -1,0 +1,19 @@
+# Результаты сборки и служебные каталоги
+build/
+.gradle/
+.kotlin/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+# Локальные настройки (путь к Android SDK, ключи)
+local.properties
+google-services.json
+*.jks
+*.keystore
+# Файлы Android Studio
+.idea/
+*.iml
+.DS_Store

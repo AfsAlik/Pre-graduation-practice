@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Общие строки интерфейса. Строки отдельных разделов находятся в файлах strings_*.xml. -->
+<resources>
+    <string name="app_name">Финансовый помощник</string>
+
+    <!-- Нижняя панель навигации -->
+    <string name="tab_dashboard">Главная</string>
+    <string name="tab_transactions">Транзакции</string>
+    <string name="tab_budget">Бюджет</string>
+    <string name="tab_goals">Цели</string>
+    <string name="tab_investments">Инвестиции</string>
+
+    <!-- Стандартные действия -->
+    <string name="action_back">Назад</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_edit">Изменить</string>
+    <string name="action_add">Добавить</string>
+    <string name="action_retry">Повторить</string>
+    <string name="action_search">Поиск</string>
+    <string name="action_select">Выбрать</string>
+    <string name="action_apply">Применить</string>
+    <string name="action_close">Закрыть</string>
+    <string name="action_refresh">Обновить</string>
+    <string name="action_export">Экспорт</string>
+    <string name="action_more">Дополнительные действия</string>
+    <string name="action_restore">Восстановить</string>
+    <string name="action_send">Отправить</string>
+    <string name="loading">Загрузка…</string>
+    <string name="not_selected">Не выбрано</string>
+    <string name="pick_date">Выбрать дату</string>
+    <string name="all_items">Все</string>
+    <string name="session_expired">Сеанс завершен. Выполните вход повторно</string>
+    <string name="online_only">Раздел доступен при подключении к сети</string>
+    <string name="cached_notice">Нет связи с сервером. Показаны данные, сохраненные %1$s</string>
+    <string name="file_saved">Файл сохранен</string>
+
+    <!-- Индикатор синхронизации -->
+    <string name="sync_done">Онлайн · синхронизировано</string>
+    <string name="sync_in_progress">Онлайн · синхронизация…</string>
+    <string name="sync_online">Онлайн · %1$s</string>
+    <string name="sync_offline">Офлайн · %1$s</string>
+    <string name="sync_maintenance">Технические работы · %1$s</string>
+    <string name="sync_error">Онлайн · ошибка синхронизации</string>
+    <string name="sync_error_pending">Онлайн · ошибка синхронизации, %1$s</string>
+    <string name="sync_saved_on_device">данные сохранены на устройстве</string>
+    <string name="sync_now">Синхронизировать сейчас</string>
+    <string name="sync_pending_one">ожидает %1$d операция</string>
+    <string name="sync_pending_few">ожидает %1$d операции</string>
+    <string name="sync_pending_many">ожидает %1$d операций</string>
+
+    <!-- Каналы уведомлений -->
+    <string name="channel_budget">Бюджет</string>
+    <string name="channel_goals">Финансовые цели</string>
+    <string name="channel_payments">Регулярные платежи</string>
+    <string name="channel_general">Рекомендации и прочие уведомления</string>
+
+    <!-- Виды операций, счетов, периодов -->
+    <string name="kind_expense">Расход</string>
+    <string name="kind_income">Доход</string>
+    <string name="kind_transfer">Перевод</string>
+    <string name="period_week">Неделя</string>
+    <string name="period_month">Месяц</string>
+    <string name="period_year">Год</string>
+    <string name="account_type_cash">Наличные</string>
+    <string name="account_type_bank">Банковский счет</string>
+    <string name="account_type_credit">Кредитный счет</string>
+    <string name="account_type_investment">Инвестиционный счет</string>
+</resources>

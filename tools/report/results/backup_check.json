@@ -1,0 +1,119 @@
+{
+ "backup_bytes": 919438,
+ "backup_seconds": 0.2,
+ "restore_seconds": 0.32,
+ "identical": true,
+ "tables": {
+  "users": {
+   "source": {
+    "rows": 41,
+    "checksum": "7186"
+   },
+   "restored": {
+    "rows": 41,
+    "checksum": "7186"
+   }
+  },
+  "accounts": {
+   "source": {
+    "rows": 36,
+    "checksum": "1754200.00"
+   },
+   "restored": {
+    "rows": 36,
+    "checksum": "1754200.00"
+   }
+  },
+  "categories": {
+   "source": {
+    "rows": 43,
+    "checksum": "0"
+   },
+   "restored": {
+    "rows": 43,
+    "checksum": "0"
+   }
+  },
+  "transactions": {
+   "source": {
+    "rows": 7029,
+    "checksum": "113897166.00"
+   },
+   "restored": {
+    "rows": 7029,
+    "checksum": "113897166.00"
+   }
+  },
+  "budgets": {
+   "source": {
+    "rows": 37,
+    "checksum": "0"
+   },
+   "restored": {
+    "rows": 37,
+    "checksum": "0"
+   }
+  },
+  "goals": {
+   "source": {
+    "rows": 10,
+    "checksum": "0"
+   },
+   "restored": {
+    "rows": 10,
+    "checksum": "0"
+   }
+  },
+  "goal_contributions": {
+   "source": {
+    "rows": 16,
+    "checksum": "540000.00"
+   },
+   "restored": {
+    "rows": 16,
+    "checksum": "540000.00"
+   }
+  },
+  "investment_trades": {
+   "source": {
+    "rows": 32,
+    "checksum": "0"
+   },
+   "restored": {
+    "rows": 32,
+    "checksum": "0"
+   }
+  },
+  "recommendations": {
+   "source": {
+    "rows": 14,
+    "checksum": "0"
+   },
+   "restored": {
+    "rows": 14,
+    "checksum": "0"
+   }
+  },
+  "notifications": {
+   "source": {
+    "rows": 33,
+    "checksum": "0"
+   },
+   "restored": {
+    "rows": 33,
+    "checksum": "0"
+   }
+  },
+  "audit_log": {
+   "source": {
+    "rows": 7321,
+    "checksum": "0"
+   },
+   "restored": {
+    "rows": 7321,
+    "checksum": "0"
+   }
+  }
+ },
+ "rows_total": 14612
+}

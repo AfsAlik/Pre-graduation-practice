@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Главный экран и боковое меню -->
+<resources>
+    <string name="menu_open">Открыть меню</string>
+    <string name="dashboard_total_balance">Общий баланс</string>
+    <string name="dashboard_month">%1$s</string>
+    <string name="dashboard_income">Доходы</string>
+    <string name="dashboard_expense">Расходы</string>
+    <string name="dashboard_expense_chart">Расходы за месяц</string>
+    <string name="dashboard_expense_chart_description">График расходов по дням месяца. Всего израсходовано %1$s</string>
+    <string name="chart_max">Максимум: %1$s</string>
+    <string name="dashboard_by_category">Расходы по категориям</string>
+    <string name="dashboard_no_expenses">В этом месяце расходов пока нет</string>
+    <string name="dashboard_budget">Исполнение бюджета</string>
+    <string name="dashboard_no_budget">Лимиты не установлены. Нажмите, чтобы установить лимит</string>
+    <string name="dashboard_budget_exceeded">Превышено лимитов: %1$d</string>
+    <string name="dashboard_goal">Финансовая цель</string>
+    <string name="dashboard_no_goal">Целей пока нет. Нажмите, чтобы поставить цель</string>
+    <string name="dashboard_portfolio">Инвестиционный портфель</string>
+    <string name="dashboard_no_portfolio">Сделок пока нет. Нажмите, чтобы добавить сделку</string>
+    <string name="dashboard_positions">Позиций в портфеле: %1$d</string>
+    <string name="dashboard_forecast">Прогноз остатка на конец месяца</string>
+    <string name="dashboard_forecast_income">Ожидаемые доходы</string>
+    <string name="dashboard_forecast_expense">Ожидаемые расходы</string>
+    <string name="dashboard_forecast_note">Оценка по среднедневным оборотам за 90 дней; до конца месяца дней: %1$d</string>
+    <string name="dashboard_recommendations_hint">Советы по экономии, прогноз и оценка рисков</string>
+    <string name="dashboard_rates_as_of">Курсы валют на %1$s</string>
+
+    <string name="budget_spent_of">Израсходовано %1$s из %2$s</string>
+    <string name="goal_saved_of">Накоплено %1$s из %2$s</string>
+
+    <!-- Названия разделов (заголовок экрана совпадает с пунктом навигации, п. 4.4.5.6 ТЗ) -->
+    <string name="reports_title">Отчеты</string>
+    <string name="recommendations_title">Рекомендации</string>
+    <string name="accounts_title">Счета</string>
+    <string name="categories_title">Категории</string>
+    <string name="templates_title">Шаблоны</string>
+    <string name="recurring_title">Регулярные платежи</string>
+    <string name="profile_title">Профиль</string>
+    <string name="help_title">Справка</string>
+    <string name="admin_title">Администрирование</string>
+    <string name="notifications_title">Уведомления</string>
+    <string name="transaction_add_title">Добавить транзакцию</string>
+</resources>

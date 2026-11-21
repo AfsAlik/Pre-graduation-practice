@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Отчеты, рекомендации, уведомления -->
+<resources>
+    <string name="reports_period">Период: %1$s – %2$s</string>
+    <string name="reports_totals">Итоги за период</string>
+    <string name="reports_balance">Разница</string>
+    <string name="reports_operations">Число операций</string>
+    <string name="reports_no_expenses">За выбранный период расходов нет</string>
+    <string name="reports_category_chart_description">Диаграмма расходов по категориям за выбранный период</string>
+    <string name="reports_dynamics">Динамика доходов и расходов</string>
+    <string name="reports_dynamics_description">Столбчатая диаграмма доходов и расходов по дням или месяцам</string>
+    <string name="reports_summary">Сводка</string>
+
+    <string name="recommendations_loading">Формирование рекомендаций…</string>
+    <string name="recommendations_empty">Рекомендаций пока нет. Они появятся после накопления истории операций</string>
+    <string name="recommendation_explanation">Пояснение: %1$s</string>
+    <string name="recommendation_saving">Возможная экономия: %1$s в месяц</string>
+    <string name="recommendation_useful">Полезно</string>
+    <string name="recommendation_not_useful">Не полезно</string>
+    <string name="recommendation_rated">Спасибо, оценка учтена</string>
+    <string name="recommendation_applied">Рекомендация применена</string>
+    <string name="recommendation_applied_status">рекомендация применена</string>
+    <string name="forecast_title">Прогноз на %1$s</string>
+    <string name="forecast_interval">от %1$s до %2$s</string>
+    <string name="forecast_confidence">Интервал уверенности %1$d %%. Прогноз рассчитан по истории операций</string>
+    <string name="risk_warning">Финансовый риск: предупреждение</string>
+    <string name="risk_critical">Финансовый риск: критический уровень</string>
+
+    <string name="notifications_empty">Уведомлений пока нет</string>
+</resources>
