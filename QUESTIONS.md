@@ -11,7 +11,7 @@ title page and the Отзыв. Who is it (name and position)?
 
 - **Default:** a blank line is left for you to fill in.
 
-**Answer:**
+**Answer:** Чагаева и есть тот самый руководитель практики от предприятия, т.к. мой университет и есть место практики.
 
 ## 2. Checks that cannot be run in the cloud session
 
@@ -25,7 +25,7 @@ protocol (Приложение Б)?
   50/100/200-user load test, categorisation accuracy, the portfolio control calculation,
   backup/restore. No measurements will be invented.
 
-**Answer:**
+**Answer:** Думаю что ты прав, то, что ты не сможешь выполнить, занеси в графу необходимы доработки
 
 ## 3. Size of Приложение А (source code)
 
@@ -36,7 +36,7 @@ or key modules only?
 - **Default:** key modules of each subsystem in the appendix, laid out as in the teacher's
   template (А.1 package, А.1.1 class), with the complete code in this repository.
 
-**Answer:**
+**Answer:** давай тогда в отчет вставим полный код в приложение А, преподаватель может попросить такой вариант скорее всего, по опыту сдачи одногруппников
 
 ## 4. Organisation names
 
@@ -47,7 +47,7 @@ Which should the protocol and report use?
 - **Default:** keep the course-project names so the ТЗ, ПМИ and protocol stay consistent, and
   state in the introduction that the practice took place at ЦУО ИРИТ-РТФ УрФУ.
 
-**Answer:**
+**Answer:** Это выдуманные части в моей работе, т.к. реального заказчика нет, преподаватель советовал оформить это как стартап. Но если это не получится, можно оставить названия из курсового проекта.
 
 ## 5. Test dates
 
@@ -57,7 +57,7 @@ and the report is due 11.01.2027. Which dates go in the protocol?
 - **Default:** December 2026, inside the practice period, with a note that the schedule was
   moved.
 
-**Answer:**
+**Answer:** Да, ты прав, курсовой проект писался как пример и способ научиться создавать такие работы и даты там были взяты просто для вида, возьми конечно даты с приказа, 02.11-27.12 и сдача 11.01.2027, это настоящие даты по настоящему приказу
 
 ## 6. External service accounts
 
@@ -67,7 +67,7 @@ that should be wired in?
 - **Default:** no. Push and e-mail go through adapters that log locally until keys are set in
   the config.
 
-**Answer:**
+**Answer:** Сделай как считаешь нужным
 
 ## 7. Building the Android app in the cloud session
 
@@ -79,7 +79,7 @@ Kotlin code can be written there but not compiled. May access to that host be re
 - With access the APK can be compiled, its JVM tests run, and real screens rendered for the user
   manual where possible; otherwise the manual uses images from the Figma prototype.
 
-**Answer:**
+**Answer:** Попробуй сделать максимально все сам, чтобы запускать работу мне пришлось по минимому
 
 ## 8. Title-page codes
 
@@ -88,7 +88,7 @@ the order) and a УДК chosen under 004. Are there different values?
 
 - **Default:** those.
 
-**Answer:**
+**Answer:** Вообще нужно свериться с реальными документами и определить реальный код моего приложения согласно гостам и регламентирующим документам, вот этот файл с название «ОКПД2 36-99-2018» кажется может подсказать
 
 ## 9. Deliverables
 
@@ -98,7 +98,7 @@ Anything to add or drop?
 
 - **Default:** that set.
 
-**Answer:**
+**Answer:** Все что ты сказал и дополнительно все необходимое чтобы можно было потом собрать его у себя на компьютере и инструкцию по тому, как это запустить и сделать, желательно с пояснениями
 
 ## Things that cannot be used
 
@@ -108,4 +108,4 @@ Anything to add or drop?
 - **The `.vpp` and `.mdj` model files:** they cannot be edited there, so the ArchiMate, SysML
   and UML diagrams will be drawn anew as images.
 
-**Notes:**
+**Notes:** Постарайся все оформить максимально грамотно
