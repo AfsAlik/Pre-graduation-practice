@@ -104,3 +104,29 @@ def test_goal_behind_schedule(api):
 def test_goal_deadline_must_be_in_future(api):
     api.post("/goals", {"name": "Вчера", "target_amount": "1000",
                         "deadline": (date.today() - timedelta(days=1)).isoformat()}, expected=422)
+
+
+def test_lost_delivery_task_is_redelivered(api, db):
+    """Уведомление, задача доставки которого потеряна, передается повторно периодической задачей."""
+    from datetime import timedelta
+
+    from app.models import Notification, utcnow
+
+    account = api.account(initial="100000")
+    budget_category = api.category_id("Кафе")
+    api.post("/budgets", {"category_id": budget_category, "period": "month", "limit_amount": "1000"})
+    api.spend(account["id"], 900, "Кафе")
+    notification = db.query(Notification).filter(Notification.kind == "budget_warning").order_by(
+        Notification.created_at.desc()).first()
+    # Имитация аварийного завершения процесса: уведомление сохранено, но не передано
+    notification.push_sent_at = None
+    notification.event_at = utcnow() - timedelta(minutes=5)
+    db.commit()
+    notifier.outbox.clear()
+
+    assert notifier.redeliver_pending(db) >= 1
+    db.commit()
+    db.refresh(notification)
+    assert notification.push_sent_at is not None
+    assert any(m["channel"] == "push" for m in notifier.outbox)
+    assert notifier.redeliver_pending(db) == 0  # повторно не передается

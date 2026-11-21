@@ -21,7 +21,7 @@ from ..services.periods import day_end, day_start
 from ..services.tasks import enqueue
 
 router = APIRouter(prefix="/admin", tags=["Администрирование"])
-JOB_NAMES = ("health_check", "recurring_reminders", "daily", "backup")
+JOB_NAMES = ("health_check", "redeliver_notifications", "recurring_reminders", "daily", "backup")
 CSV_HEADER = ["at", "journal", "user_email", "action", "entity", "entity_id", "ip", "details"]
 
 

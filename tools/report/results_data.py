@@ -976,7 +976,9 @@ class Results:
         # Несоответствия, выявленные сценариями
         for stage in self.stages:
             for item in stage.items:
-                if item.verdict == FAIL and stage.number not in (2, 3):
+                # для п. 15 г ниже приводится конкретная доработка
+                if item.verdict == FAIL and stage.number not in (2, 3) and \
+                        (stage.number, item.letter) != (15, "г"):
                     add(f"Устранить несоответствие по этапу {stage.number}, п. {item.letter} "
                         f"(«{item.title}») и повторить проверку", D_PRACTICE)
         add("Провести проверки на пяти смартфонах и эмуляторах по п. 4.1.16 ПМИ, включая "
@@ -1026,11 +1028,24 @@ class Results:
                 D_PRACTICE)
         main_level = self.level(self.main, 100)
         login = self.request(main_level, LOGIN)
-        if login and login["p95_ms"] > login["limit_ms"]:
-            add(f"Сократить время входа в систему: 95-й перцентиль {num(login['p95_ms'], 0)} мс при "
-                "100 пользователях превышает 2 с", D_JAN)
-        if self.stage(15).items[1].verdict == PARTIAL or self.stage(15).items[0].verdict == PARTIAL:
-            add("Повторить нагрузочные тесты в объеме, установленном п. 4.1.15 ПМИ", D_JAN)
+        peak = [(name, self.request(level, LOGIN)) for name, level in
+                (("100 пользователях", main_level), ("200 пользователях", self.level(self.steps, 200)),
+                 ("200 пользователях на двух экземплярах", self.level(self.two, 200)))]
+        slow = [f"{num(stat['p95_ms'] / 1000, 1)} с при {name}" for name, stat in peak
+                if stat and stat["p95_ms"] > stat["limit_ms"]]
+        if slow:
+            add("Сократить время входа в систему при одновременном входе большого числа "
+                f"пользователей (95-й перцентиль: {', '.join(slow)} при допустимых 2 с): подобрать "
+                "параметры хеширования паролей Argon2 и число процессорных ядер серверного "
+                "приложения", D_JAN)
+        every = self.request(main_level, ALL)
+        if main_level and every and (every["requests"] < 18000 or main_level["minutes"] < 29.5):
+            add("Повторить основной нагрузочный тест продолжительностью не менее 30 мин после выхода "
+                f"на 100 пользователей (в проведенном тесте – {num(main_level['minutes'], 1)} мин и "
+                f"{num(every['requests'], 0)} запросов при требуемых 18 000, так как время разгона "
+                "входило в заданную продолжительность теста)", D_PRACTICE)
+        elif self.stage(15).items[0].verdict == PARTIAL:
+            add("Повторить ступенчатый нагрузочный тест в объеме, установленном п. 4.1.15 ПМИ", D_JAN)
         unseen = (self.model or {}).get("unseen_accuracy")
         add("Расширить обучающую выборку модели категоризации примерами, накопленными пользователями"
             + (f": точность на торговых точках, отсутствующих в обучающей выборке, составляет "

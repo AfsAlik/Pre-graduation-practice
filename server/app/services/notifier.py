@@ -8,6 +8,7 @@
 """
 import logging
 import smtplib
+from datetime import timedelta
 from email.message import EmailMessage
 
 from sqlalchemy.orm import Session
@@ -141,3 +142,30 @@ def deliver_notification(db: Session, notification_id: str) -> None:
 @task("send_email")
 def send_email_task(db: Session, to: str, subject: str, body: str) -> None:
     send_email(to, subject, body, integration(db, "email_provider"))
+
+
+def redeliver_pending(db: Session) -> int:
+    """Повторно передает уведомления, задача доставки которых была потеряна.
+
+    Задача доставки ставится в очередь после фиксации транзакции; если процесс
+    завершился аварийно между фиксацией и постановкой задачи, уведомление осталось
+    бы непереданным. Задача выполняется исполнителем фоновых задач раз в минуту и
+    обрабатывает уведомления старше одной минуты и не старше суток.
+    """
+    now = utcnow()
+    pending = (db.query(Notification)
+               .filter(Notification.push_sent_at.is_(None),
+                       Notification.event_at <= now - timedelta(minutes=1),
+                       Notification.event_at >= now - timedelta(days=1))
+               .order_by(Notification.event_at).limit(500).all())
+    sent = 0
+    for notification in pending:
+        user = db.get(User, notification.user_id)
+        if user is None or not user_settings(user).push_enabled:
+            continue
+        deliver_notification(db, notification.id)
+        sent += notification.push_sent_at is not None
+    if sent:
+        log.info("Повторно передано уведомлений: %d", sent)
+    return sent
+

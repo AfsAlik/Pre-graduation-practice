@@ -1,119 +1,119 @@
 {
- "backup_bytes": 9787821,
- "backup_seconds": 1.02,
- "restore_seconds": 1.39,
+ "backup_bytes": 12208544,
+ "backup_seconds": 1.15,
+ "restore_seconds": 1.5,
  "identical": true,
  "tables": {
   "users": {
    "source": {
-    "rows": 309,
-    "checksum": "86591"
+    "rows": 326,
+    "checksum": "104237"
    },
    "restored": {
-    "rows": 309,
-    "checksum": "86591"
+    "rows": 326,
+    "checksum": "104237"
    }
   },
   "accounts": {
    "source": {
-    "rows": 680,
-    "checksum": "14934600.00"
+    "rows": 691,
+    "checksum": "15554700.00"
    },
    "restored": {
-    "rows": 680,
-    "checksum": "14934600.00"
+    "rows": 691,
+    "checksum": "15554700.00"
    }
   },
   "categories": {
    "source": {
-    "rows": 51,
+    "rows": 53,
     "checksum": "0"
    },
    "restored": {
-    "rows": 51,
+    "rows": 53,
     "checksum": "0"
    }
   },
   "transactions": {
    "source": {
-    "rows": 82286,
-    "checksum": "596654025.00"
+    "rows": 99895,
+    "checksum": "669513832.00"
    },
    "restored": {
-    "rows": 82286,
-    "checksum": "596654025.00"
+    "rows": 99895,
+    "checksum": "669513832.00"
    }
   },
   "budgets": {
    "source": {
-    "rows": 1069,
+    "rows": 1077,
     "checksum": "0"
    },
    "restored": {
-    "rows": 1069,
+    "rows": 1077,
     "checksum": "0"
    }
   },
   "goals": {
    "source": {
-    "rows": 414,
+    "rows": 415,
     "checksum": "0"
    },
    "restored": {
-    "rows": 414,
+    "rows": 415,
     "checksum": "0"
    }
   },
   "goal_contributions": {
    "source": {
-    "rows": 624,
-    "checksum": "17940000.00"
+    "rows": 626,
+    "checksum": "18040000.00"
    },
    "restored": {
-    "rows": 624,
-    "checksum": "17940000.00"
+    "rows": 626,
+    "checksum": "18040000.00"
    }
   },
   "investment_trades": {
    "source": {
-    "rows": 1056,
+    "rows": 1062,
     "checksum": "0"
    },
    "restored": {
-    "rows": 1056,
+    "rows": 1062,
     "checksum": "0"
    }
   },
   "recommendations": {
    "source": {
-    "rows": 1257,
+    "rows": 1309,
     "checksum": "0"
    },
    "restored": {
-    "rows": 1257,
+    "rows": 1309,
     "checksum": "0"
    }
   },
   "notifications": {
    "source": {
-    "rows": 2683,
+    "rows": 2802,
     "checksum": "0"
    },
    "restored": {
-    "rows": 2683,
+    "rows": 2802,
     "checksum": "0"
    }
   },
   "audit_log": {
    "source": {
-    "rows": 87954,
+    "rows": 106223,
     "checksum": "0"
    },
    "restored": {
-    "rows": 87954,
+    "rows": 106223,
     "checksum": "0"
    }
   }
  },
- "rows_total": 178383
+ "rows_total": 214479
 }

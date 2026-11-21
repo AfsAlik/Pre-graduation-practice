@@ -31,7 +31,7 @@ from ..models import (
 from . import insights, ml_registry, monitoring
 from .categories import SYSTEM_USER_ID
 from .currency import refresh_rates
-from .notifier import notify
+from .notifier import notify, redeliver_pending
 from .periods import add_months
 from .quotes import refresh_user_quotes
 from .tasks import task
@@ -163,6 +163,7 @@ def backup_if_due(db: Session) -> None:
 JOBS = [
     ("backup", 60, backup_if_due),
     ("health_check", 60, monitoring.run_health_check),
+    ("redeliver_notifications", 60, redeliver_pending),
     ("recurring_reminders", 3600, remind_recurring_payments),
     ("daily", 24 * 3600, daily),
 ]
