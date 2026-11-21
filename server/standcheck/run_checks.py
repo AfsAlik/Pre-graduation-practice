@@ -228,10 +228,16 @@ def stage_5(stand: Stand) -> None:
         return names.get(category_id) if category_id else None
 
     correct = 0
+    entry_errors = []
     for sample in CONTROL_SET:
         saved = user.post("/transactions", {"kind": sample["kind"], "amount": "100",
                                             "account_id": card["id"], "merchant": sample["text"]})
-        correct += root_name(saved["category_id"]) == sample["category"]
+        assigned = root_name(saved["category_id"])
+        if assigned == sample["category"]:
+            correct += 1
+        else:
+            entry_errors.append({"text": sample["text"], "expected": sample["category"],
+                                 "assigned": assigned or "не присвоена"})
     accuracy = correct / len(CONTROL_SET)
     record(5, "в", "Точность автоматической категоризации на контрольной выборке не менее 80 %",
            accuracy >= 0.80,
@@ -239,7 +245,7 @@ def stage_5(stand: Stand) -> None:
            f"accuracy {evaluated['accuracy']:.3f}, precision {evaluated['precision']:.3f}, "
            f"recall {evaluated['recall']:.3f}, F1 {evaluated['f1']:.3f}",
            accuracy=round(accuracy, 4), correct=correct, total=len(CONTROL_SET),
-           errors=evaluated["errors"])
+           errors=evaluated["errors"], entry_errors=entry_errors)
 
     parent = user.post("/categories", {"name": "Хобби", "kind": "expense"})
     child = user.post("/categories", {"name": "Рыбалка", "kind": "expense",
@@ -335,7 +341,9 @@ def stage_6(stand: Stand) -> None:
            f"израсходовано {state['percent']} %, статус «{state['status_title']}», остаток "
            f"{state['remaining']} руб. Выделение цветом на экране не проверялось")
 
-    deadline = date.today() + timedelta(days=183)
+    today = date.today()
+    month = today.month + 6
+    deadline = date(today.year + (month - 1) // 12, (month - 1) % 12 + 1, min(today.day, 28))
     goal = user.post("/goals", {"name": "Отпуск", "target_amount": "100000",
                                 "deadline": deadline.isoformat(), "priority": "high"})
     record(6, "г", "Создание цели «Отпуск»: 100 000 руб., 6 месяцев, высокий приоритет",
@@ -344,7 +352,7 @@ def stage_6(stand: Stand) -> None:
     progress = user.get(f"/goals/{goal['id']}/progress")
     record(6, "д", "Накопление 40 000 руб.: прогресс 40 %, прогноз даты, рекомендуемая сумма",
            progress["percent"] == 40.0 and progress["forecast_date"] is not None
-           and Decimal(progress["recommended_monthly"]) > 0,
+           and Decimal(progress["recommended_monthly"]) == Decimal("10000"),
            f"прогресс {progress['percent']} %, прогнозируемая дата {progress['forecast_date']}, "
            f"рекомендуемая сумма {progress['recommended_monthly']} руб. в месяц")
     user.post("/goal-contributions", {"goal_id": goal["id"], "amount": "60000"})
@@ -489,11 +497,15 @@ def stage_8(stand: Stand) -> None:
            f"отчет: доходы {report['income']}, расходы {report['expense']}; по транзакциям: "
            f"{income:.2f} и {expense:.2f} ({len(items)} операций)")
     account = next(a for a in user.get("/accounts") if a["name"] == "Наличные")
+    user.spend(account["id"], 700, "Транспорт")
+    items = user.get("/transactions", date_from=month_start, date_to=today, limit=500)["items"]
+    expense = sum(Decimal(i["amount"]) for i in items if i["kind"] == "expense")
     by_account = user.get("/reports", start=month_start, end=today, account_id=account["id"])
     by_category = user.get("/reports", start=month_start, end=today,
                            category_id=user.category("Продукты"))
     record(8, "г", "Фильтры по счету и категории изменяют данные отчета",
-           Decimal(by_account["expense"]) < expense and 0 < Decimal(by_category["expense"]) < expense,
+           0 < Decimal(by_account["expense"]) < expense
+           and 0 < Decimal(by_category["expense"]) < expense,
            f"по счету «Наличные»: {by_account['expense']}; по категории «Продукты»: "
            f"{by_category['expense']} руб.")
     forecast = dashboard["forecast"]

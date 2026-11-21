@@ -12,6 +12,7 @@ import csv
 import json
 import math
 from collections import defaultdict
+from datetime import UTC, datetime
 
 # Предельное время по видам запросов, мс (п. 4.2.2.2, 4.2.2.7, 4.2.2.8, 4.2.2.9 ТЗ)
 LIMITS = {"GET /reports": 5000, "GET /recommendations": 10000, "GET /forecast": 10000,
@@ -66,7 +67,9 @@ def main() -> None:
     parser.add_argument("--out")
     args = parser.parse_args()
     rows = load(args.log)
-    report: dict = {"total_requests": len(rows),
+    report: dict = {"started_at": datetime.fromtimestamp(rows[0]["time"], UTC).isoformat(),
+                    "finished_at": datetime.fromtimestamp(rows[-1]["time"], UTC).isoformat(),
+                    "total_requests": len(rows),
                     "duration_minutes": round((rows[-1]["time"] - rows[0]["time"]) / 60, 1)}
     levels = args.users or sorted({r["users"] for r in rows if r["users"] and r["users"] % 50 == 0})
     for level in levels:

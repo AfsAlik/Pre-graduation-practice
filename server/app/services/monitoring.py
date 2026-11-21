@@ -15,7 +15,7 @@ from sqlalchemy.orm import Session
 
 from ..db import SessionLocal
 from ..ml import client as ml_client
-from ..models import ErrorLog, HealthCheck, Notification, RequestStat, utcnow
+from ..models import ErrorLog, HealthCheck, Notification, RequestStat, User, utcnow
 from .currency import rates_info
 
 log = logging.getLogger(__name__)
@@ -125,8 +125,19 @@ def summary(db: Session, hours: int = 24) -> dict:
         for n in db.query(Notification).filter(Notification.event_at >= since,
                                                Notification.push_sent_at.is_not(None))
     )
-    pending = db.query(func.count(Notification.id)).filter(
-        Notification.event_at >= since, Notification.push_sent_at.is_(None)).scalar() or 0
+    # Не переданные уведомления: push-канал включен, с момента события прошло более минуты.
+    # Уведомления пользователей, отключивших push-канал, учитываются отдельно.
+    from .notifier import user_settings
+
+    pending = disabled = 0
+    waiting = utcnow() - timedelta(seconds=60)
+    unsent = (db.query(Notification, User).join(User, User.id == Notification.user_id)
+              .filter(Notification.event_at >= since, Notification.push_sent_at.is_(None)).all())
+    for notification, user in unsent:
+        if not user_settings(user).push_enabled:
+            disabled += 1
+        elif notification.event_at <= waiting:
+            pending += 1
     logged_errors = db.query(func.count(ErrorLog.id)).filter(ErrorLog.at >= since).scalar() or 0
     return {
         "period_hours": hours,
@@ -146,6 +157,7 @@ def summary(db: Session, hours: int = 24) -> dict:
         "push": {
             "handed_over": len(delays),
             "not_handed_over": int(pending),
+            "push_disabled": int(disabled),
             "within_minute_percent": (
                 round(sum(1 for d in delays if d <= 60) / len(delays) * 100, 2) if delays else None),
             "p95_seconds": round(delays[int(len(delays) * 0.95) - 1], 3) if delays else None,
