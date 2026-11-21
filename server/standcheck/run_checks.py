@@ -53,7 +53,9 @@ class Api:
 
     def __init__(self, base: str, email: str, password: str, totp: str | None = None):
         self.base, self.email, self.password = base, email, password
-        self.http = httpx.Client(timeout=120)
+        # Клиент закрывает простаивающие соединения раньше сервера (у сервера – 30 с),
+        # чтобы запрос не уходил в соединение, уже закрытое сервером
+        self.http = httpx.Client(timeout=120, limits=httpx.Limits(keepalive_expiry=5))
         response = self.http.post(f"{base}{API}/auth/login",
                                   json={"email": email, "password": password, "totp_code": totp})
         response.raise_for_status()

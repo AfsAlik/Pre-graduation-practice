@@ -137,7 +137,7 @@ def add_protocol(report: Report, text_of) -> None:
     rows = [["Этап", "Проверяемый параметр", "Требования (п. ТЗ)", "Методика (п. ПМИ)", "Результат"]]
     for stage in stages:
         rows.append([str(stage.number), stage.title, stage.tz, stage.pmi, stage.verdict_text])
-    report.table(None, rows, [1.2, 6.2, 3.1, 2.6, 3.4], 12, ["c", "l", "c", "c", "l"])
+    report.table(None, rows, [1.5, 6.0, 3.0, 2.6, 3.4], 12, ["c", "l", "c", "c", "l"])
 
     _section(report, 6, "Перечень необходимых доработок и рекомендуемые сроки их выполнения")
     report.paragraph("В ходе проведения предварительных комплексных испытаний Системы выявлены "

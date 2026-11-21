@@ -1,14 +1,18 @@
 {
- "placeholder": true,
- "build_ok": null,
- "unit_tests_total": null,
- "unit_tests_failed": null,
- "screenshot_tests": null,
- "screens": null,
- "lint_errors": null,
- "lint_warnings": null,
- "apk_size_mb": null,
- "min_sdk": null,
- "target_sdk": null,
- "notes": []
+ "build_ok": true,
+ "unit_tests_total": 101,
+ "unit_tests_failed": 0,
+ "screenshot_tests": 31,
+ "screens": ["00_onboarding", "01_login", "01_register", "02_dashboard", "02_dashboard_dark", "02_dashboard_full", "02_dashboard_offline", "03_add_transaction", "03_add_transaction_errors", "04_accounts", "04_recurring", "04_transactions", "04_transactions_filters", "05_budget", "06_goals", "06_goals_full", "07_investments", "07_investments_full", "08_asset", "09_reports", "09_reports_full", "10_recommendations", "11_notification_settings", "11_profile", "12_admin_ai", "12_admin_menu", "13_admin_models", "14_admin_users", "15_admin_logs", "16_admin_monitoring", "17_admin_settings"],
+ "lint_errors": 0,
+ "lint_warnings": 49,
+ "apk_size_mb": 80.5,
+ "min_sdk": 26,
+ "target_sdk": 35,
+ "notes": [
+  "В число модульных тестов входят два теста совместимости с серверной частью (регистрация, вход, синхронизация всех видов данных, импорт выписки, экспорт отчета, операции аналитика и администратора); они выполняются над запущенным серверным приложением и пройдены.",
+  "Модель распознавания текста ML Kit, включенная в приложение, поддерживает только латиницу: сумма и дата чека определяются по цифрам, а наименование торговой точки, набранное кириллицей, не распознается.",
+  "В мобильном приложении не реализованы: управление согласиями на получение банковских данных (п. 4.2.1.7 д ТЗ), изменение роли существующей учетной записи, отклонение рекомендации, импорт и экспорт версий моделей; эти операции доступны только через программный интерфейс серверной части либо отсутствуют.",
+  "Выпускаемая сборка с сокращением кода (R8) собирается, но на устройстве не запускалась."
+ ]
 }
